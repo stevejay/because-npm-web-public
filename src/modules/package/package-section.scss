@@ -1,0 +1,13 @@
+@import "scss/variables";
+.section {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: $gutter;
+  @include from-phone {
+    margin: $gutter * 2;
+  }
+  @include from-tablet {
+    margin: $gutter * 2 $gutter $gutter * 2 $gutter * 2;
+  }
+}

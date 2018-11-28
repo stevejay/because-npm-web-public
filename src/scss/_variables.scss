@@ -1,0 +1,138 @@
+@import "node_modules/sass-material-colors/sass/sass-material-colors";
+// https://www.materialui.co/colors
+$grey-50: material-color("grey", "50");
+$grey-100: material-color("grey", "100");
+$grey-200: material-color("grey", "200");
+$grey-300: material-color("grey", "300");
+$grey-400: material-color("grey", "400");
+$grey-500: material-color("grey", "500");
+$grey-600: material-color("grey", "600");
+$grey-700: material-color("grey", "700");
+$grey-800: material-color("grey", "800");
+$grey-850: #3c3c3c;
+$grey-900: material-color("grey", "900");
+$primary-300: #eddbcd;
+$primary-600: #e38337;
+$primary-900: #c06014;
+$primary-a00: #b55911;
+$primary-800: lighten($primary-900, 5%);
+$primary-grey-300: #e6e4e1;
+$secondary-600: #ab9879;
+$border-radius: 6px;
+$gutter: 1rem;
+$narrow-phone-width: 320px;
+$phone-width: 480px;
+$tablet-width: 768px;
+$desktop-width: 992px;
+$wide-desktop-width: 1200px;
+$main-content-min-height: calc(100vh - 150px);
+$max-section-width: 960px;
+@mixin from-phone {
+  @media (min-width: #{$phone-width}) {
+    @content;
+  }
+}
+
+@mixin from-tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin from-desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin destyled-input() {
+  background-color: transparent;
+  border: 0px solid;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin icon-button($dimension) {
+  @include destyled-input;
+  line-height: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  & svg {
+    width: $dimension;
+    height: $dimension;
+  }
+}
+
+@mixin destyled-button() {
+  cursor: pointer;
+  display: inline-block; // outline: none;
+  border: none;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  user-select: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin header() {
+  margin-top: 0;
+  font-weight: 500;
+}
+
+@mixin display-1() {
+  @include header;
+  letter-spacing: 0.015em;
+  font-size: 2.5rem;
+  line-height: 1.2em;
+  margin-top: 0;
+  margin-bottom: 0.67em;
+  @media (min-width: 320px) and (max-width: 991px) {
+    font-size: calc(2.5rem + 16 * (100vw - 320px) / (992 - 320));
+  }
+  @include from-desktop {
+    font-size: calc(2.5rem + 16px);
+  }
+}
+
+@mixin display-2() {
+  @include header;
+  font-size: 2rem;
+  line-height: 1.2em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  @media (min-width: 320px) and (max-width: 991px) {
+    font-size: calc(2rem + 8 * (100vw - 320px) / (992 - 320));
+  }
+  @include from-desktop {
+    font-size: calc(2rem + 8px);
+  }
+}
+
+@mixin paragraph() {
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-size: 1rem;
+}
+
+@mixin display-paragraph() {
+  @include paragraph;
+  letter-spacing: 0.015em;
+  @media (min-width: 320px) and (max-width: 991px) {
+    font-size: calc(1rem + 8 * (100vw - 320px) / (992 - 320));
+  }
+  @include from-desktop {
+    font-size: calc(1rem + 8px);
+  }
+}
+
+@mixin blockPadding() {
+  padding: 0.75em 1em;
+}

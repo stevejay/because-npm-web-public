@@ -1,0 +1,35 @@
+@import "scss/variables";
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid $primary-900;
+  border-radius: 6px;
+  padding: $gutter;
+}
+
+.header {
+  font-size: 1.75rem;
+  line-height: 1;
+  text-transform: lowercase;
+  margin: 0 0 0.5em 0;
+  color: $primary-900;
+}
+
+.description {
+  margin: 0 0 0.25em 0;
+}
+
+.link {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: bold;
+  letter-spacing: 0.005em;
+  & a {
+    color: $primary-900;
+    text-decoration: none;
+    &:hover {
+      border-bottom: 1px solid $primary-900;
+    }
+  }
+}

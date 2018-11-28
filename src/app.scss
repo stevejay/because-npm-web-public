@@ -1,0 +1,22 @@
+html,
+body {
+  font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500; // line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[data-whatintent="mouse"] *:focus {
+  outline: none;
+}

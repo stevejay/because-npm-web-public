@@ -1,0 +1,24 @@
+@import "scss/variables";
+.button {
+  @include destyled-button;
+  @include blockPadding;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  transition: transform 0.2s;
+  &:active {
+    transform: scale(1.02);
+  }
+}
+
+.primary {
+  background-color: $primary-900;
+  color: $grey-50;
+  &:hover {
+    background-color: $primary-800;
+  }
+}
+
+.secondary {
+  background-color: $primary-grey-300;
+  color: $grey-900;
+}

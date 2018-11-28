@@ -1,0 +1,44 @@
+@import "scss/variables";
+.container {
+  background-color: $primary-grey-300;
+  padding: $gutter;
+  margin: $gutter;
+  @include from-phone {
+    margin: $gutter * 2;
+  }
+  @include from-tablet {
+    width: 15rem;
+    align-self: flex-start;
+    flex-shrink: 0;
+    margin: $gutter * 2 $gutter * 2 $gutter * 2 $gutter;
+  }
+}
+
+.header {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  & a {
+    color: $primary-900;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: 0.005em;
+  }
+  & a:hover {
+    border-bottom: 1px solid $primary-900;
+  }
+}

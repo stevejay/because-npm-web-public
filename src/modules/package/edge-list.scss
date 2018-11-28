@@ -1,0 +1,9 @@
+@import "scss/variables";
+.moreButton {
+  align-self: flex-start;
+  max-width: 14rem;
+  margin-left: 0.5rem;
+  @include from-phone {
+    margin-left: 1.75rem;
+  }
+}

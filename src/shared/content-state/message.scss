@@ -1,0 +1,26 @@
+@import "scss/variables";
+.heading {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0em 1.5em 0.8em;
+  font-weight: bold;
+  letter-spacing: 0.005em;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: lowercase;
+  color: $grey-400;
+  border-radius: 0.75em;
+  @include from-tablet {
+    font-size: 1.5rem;
+  }
+}
+
+.icon {
+  width: 4rem;
+  height: 4rem;
+  color: $grey-400;
+  @include from-tablet {
+    width: 5rem;
+    height: 5rem;
+  }
+}
