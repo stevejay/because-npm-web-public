@@ -2,13 +2,13 @@ import * as React from "react";
 import { IBusProps, withBus } from "react-bus";
 import { RouteComponentProps, withRouter } from "react-router";
 import { SEARCH_BAR_FOCUS } from "src/shared/bus-events";
-import DiscoverSection from "./discover";
+import DiscoveringSection from "./discovering-section";
 
-class DiscoverSectionHandler extends React.Component<
+class DiscoveringSectionHandler extends React.Component<
   RouteComponentProps<{}> & IBusProps
 > {
   public render() {
-    return <DiscoverSection onSearchClick={this.handleSearchClick} />;
+    return <DiscoveringSection onSearchClick={this.handleSearchClick} />;
   }
 
   private handleSearchClick = () => {
@@ -18,5 +18,5 @@ class DiscoverSectionHandler extends React.Component<
 }
 
 export default withBus<{}>()(
-  withRouter<RouteComponentProps<{}>>(DiscoverSectionHandler)
+  withRouter<RouteComponentProps<{}>>(DiscoveringSectionHandler)
 );

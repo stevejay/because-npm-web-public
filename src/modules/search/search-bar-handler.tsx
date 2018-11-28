@@ -30,7 +30,7 @@ class SearchBarHandler extends React.Component<
     }
 
     mutate({ variables: { searchTerm } }).then(() => {
-      form.reset();
+      // form.reset();
       this.props.bus.emit(SEARCH_BAR_BLUR);
       if (!location.pathname.startsWith("/search")) {
         history.push("/search");

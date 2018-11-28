@@ -1,15 +1,15 @@
 import * as React from "react";
 import Button, { ButtonType } from "src/shared/button";
-import Section from "../section";
-import styles from "./discover.css";
+import SectionContainer from "../section-container";
+import styles from "./discovering-section.css";
 import GraphImage from "./graph-image";
 
 interface IProps {
   onSearchClick: () => void;
 }
 
-const DiscoverSection = ({ onSearchClick }: IProps) => (
-  <Section className={styles.section}>
+const DiscoveringSection = ({ onSearchClick }: IProps) => (
+  <SectionContainer className={styles.section}>
     <div className={styles.row}>
       <div className={styles.column}>
         <h1 className={styles.header}>
@@ -31,7 +31,7 @@ const DiscoverSection = ({ onSearchClick }: IProps) => (
         <GraphImage className={styles.image} />
       </div>
     </div>
-  </Section>
+  </SectionContainer>
 );
 
-export default DiscoverSection;
+export default DiscoveringSection;

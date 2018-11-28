@@ -1,0 +1,22 @@
+@import "scss/variables";
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.input {
+  @include destyled-input;
+  width: 100%;
+  padding: 0.5em 0 0.5rem 0.5rem;
+  color: $grey-900;
+  font-size: 1.125rem;
+  &::placeholder {
+    color: $grey-500;
+    opacity: 1;
+  }
+}
+
+.menuContainer {
+  position: relative;
+}

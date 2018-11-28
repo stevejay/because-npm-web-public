@@ -1,0 +1,16 @@
+@import "scss/variables";
+.menu {
+  position: absolute;
+  background-color: $grey-50;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  max-height: calc(100vh - 7rem);
+  overflow-y: scroll;
+  @include from-phone {
+    left: 30px;
+    right: 30px;
+  }
+}

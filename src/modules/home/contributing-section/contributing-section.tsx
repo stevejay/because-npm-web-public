@@ -1,10 +1,10 @@
 import * as React from "react";
-import Section from "../section";
-import styles from "./contribute.css";
+import SectionContainer from "../section-container";
+import styles from "./contributing-section.css";
 import TwitterImage from "./twitter-image";
 
-const ContributeSection = () => (
-  <Section className={styles.section}>
+const ContributingSection = () => (
+  <SectionContainer className={styles.section}>
     <h2 className={styles.header}>
       Want to contribute to the graph? Just tweet!
     </h2>
@@ -37,7 +37,7 @@ const ContributeSection = () => (
         </p>
       </div>
     </div>
-  </Section>
+  </SectionContainer>
 );
 
-export default ContributeSection;
+export default ContributingSection;
