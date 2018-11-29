@@ -4,8 +4,7 @@ import { Query } from "react-apollo";
 import { BulletList } from "react-content-loader";
 import Delay from "react-delay";
 import { RouteComponentProps, withRouter } from "react-router";
-import Error from "src/shared/content-state/error";
-import NoResults from "src/shared/content-state/no-results";
+import { Error, NoGraphResults } from "src/shared/content-state";
 import EdgeList from "./edge-list";
 import { EdgeSearch } from "./graphql/queries";
 
@@ -34,7 +33,7 @@ class EdgeListHandler extends React.Component<Props> {
               </Delay>
             );
           } else if (!data.edgeSearch || _.isEmpty(data.edgeSearch.edges)) {
-            return <NoResults text="No alternative packages" />;
+            return <NoGraphResults text="No alternative packages" />;
           } else {
             return (
               <EdgeList

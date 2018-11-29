@@ -1,8 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { IoIosSearch } from "react-icons/io";
-import Message from "src/shared/content-state/message";
-import NoResults from "src/shared/content-state/no-results";
+import { Message, NoGraphResults } from "src/shared/content-state";
 import ScrollToTop from "src/shared/scroll/scroll-to-top";
 import SearchResult from "./search-result";
 import styles from "./search-result-list.css";
@@ -34,7 +33,7 @@ const SearchResultList = ({ results }: IProps) => {
     return (
       <React.Fragment>
         <ScrollToTop />
-        <NoResults />
+        <NoGraphResults />
       </React.Fragment>
     );
   }

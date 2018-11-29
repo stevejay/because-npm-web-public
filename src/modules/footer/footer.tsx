@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { shouldUpdate } from "recompact";
-import Logo from "src/shared/logo";
+import Logo from "src/shared/logo/logo";
 import styles from "./footer.css";
 
 const Footer = () => (

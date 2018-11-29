@@ -10,7 +10,7 @@
   }
 }
 
-.primary {
+.primary-button {
   background-color: $primary-900;
   color: $grey-50;
   &:hover {
@@ -18,7 +18,7 @@
   }
 }
 
-.secondary {
+.secondary-button {
   background-color: $primary-grey-300;
   color: $grey-900;
 }

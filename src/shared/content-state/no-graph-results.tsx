@@ -1,9 +1,13 @@
 import * as React from "react";
 import ContentBox from "./content-box";
+import styles from "./no-graph-results.css";
 import NoResultsGraphic from "./no-results-graphic";
-import styles from "./no-results.css";
 
-const NoResults = ({ text = "No matching packages" }: { text?: string }) => (
+interface IProps {
+  text?: string;
+}
+
+const NoResults: React.SFC<IProps> = ({ text = "No matching packages" }) => (
   <ContentBox>
     <NoResultsGraphic className={styles.graphic} />
     <h1 className={styles.title}>

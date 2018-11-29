@@ -15,7 +15,7 @@ const EdgeCommentList: React.SFC<{
       ))}
       {hasNextPage && (
         <Button
-          type={ButtonType.secondary}
+          type={ButtonType.Secondary}
           onClick={onMore}
           className={styles.moreButton}
         >

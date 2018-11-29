@@ -2,20 +2,20 @@ import * as React from "react";
 import styles from "./button.css";
 
 export enum ButtonType {
-  primary = "primary",
-  secondary = "secondary"
+  Primary = "primary-button",
+  Secondary = "secondary-button"
 }
 
 interface IProps {
   type: ButtonType;
   className?: string;
   children: React.ReactNode;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = ({ type, className, onClick, children }: IProps) => (
+const Button = ({ type, className = "", onClick, children }: IProps) => (
   <button
-    className={`${styles.button} ${styles[type]} ${className || ""}`}
+    className={`${styles.button} ${styles[type]} ${className}`}
     onClick={onClick}
   >
     {children}

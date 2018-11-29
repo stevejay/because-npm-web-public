@@ -14,7 +14,7 @@ const EdgeList: React.SFC<{ edges: any; hasNextPage: string; onMore: any }> = ({
     ))}
     {hasNextPage && (
       <Button
-        type={ButtonType.secondary}
+        type={ButtonType.Secondary}
         onClick={onMore}
         className={styles.moreButton}
       >

@@ -1,5 +1,5 @@
 declare module "global/window" {
-  export default interface window {}
+  export default window;
 }
 
 declare module "global/document" {

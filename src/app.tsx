@@ -4,7 +4,7 @@ import { ApolloProvider } from "react-apollo";
 import { Provider as BusProvider } from "react-bus";
 import { Route, Switch } from "react-router";
 import { withRouter } from "react-router-dom";
-import { Page } from "src/shared/page";
+import Page from "src/shared/page";
 import ScrollResetListener from "src/shared/scroll/scroll-reset-listener";
 import "what-input";
 import apolloClient from "./apollo-client";

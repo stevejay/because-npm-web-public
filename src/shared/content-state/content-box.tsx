@@ -5,7 +5,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const ContentBox = ({ children }: IProps) => (
+const ContentBox: React.SFC<IProps> = ({ children }) => (
   <section className={styles.container}>{children}</section>
 );
 

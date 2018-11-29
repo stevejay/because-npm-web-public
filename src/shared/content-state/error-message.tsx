@@ -6,7 +6,7 @@ interface IProps {
   title: string;
 }
 
-const ErrorMessage = ({ errorCode, title }: IProps) => (
+const ErrorMessage: React.SFC<IProps> = ({ errorCode, title }) => (
   <h1 className={styles.container}>
     <span className={styles.errorCode}>{errorCode}</span>
     <span className={styles.title}>{title}</span>

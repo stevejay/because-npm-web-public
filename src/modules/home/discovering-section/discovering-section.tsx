@@ -20,7 +20,7 @@ const DiscoveringSection = ({ onSearchClick }: IProps) => (
           the switch.
         </p>
         <Button
-          type={ButtonType.primary}
+          type={ButtonType.Primary}
           className={styles.button}
           onClick={onSearchClick}
         >

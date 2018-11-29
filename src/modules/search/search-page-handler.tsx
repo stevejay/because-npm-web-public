@@ -1,8 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { ChildDataProps, graphql, Query } from "react-apollo";
-import Error from "src/shared/content-state/error";
-import Loading from "src/shared/content-state/loading";
+import { Error, Loading } from "src/shared/content-state";
 import { NodeSearch, SearchParams } from "./graphql/queries";
 import SearchPage from "./search-page";
 

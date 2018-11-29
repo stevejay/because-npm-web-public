@@ -1,5 +1,4 @@
-// Has a big assumption: you'll keep the bus prop name
-// as the default of 'bus'.
+// Has a big assumption: you'll keep the bus prop name as the default of 'bus'.
 
 declare module "react-bus" {
   import * as React from "react";
@@ -9,14 +8,15 @@ declare module "react-bus" {
     bus: Bus;
   }
 
+  type Listener = () => void;
+
   export function withBus<P extends object>(): (
     baseComponent: any
-  ) => // baseComponent: Component<P & IBusProps>
-  Component<P>;
+  ) => Component<P>;
 
   export type Bus = {
-    on: (event: string, listener: () => void) => void;
-    off: (event: string, listener: () => void) => void;
+    on: (event: string, listener: Listener) => void;
+    off: (event: string, listener: Listener) => void;
     emit: (event: string, payload?: any) => void;
   };
 
