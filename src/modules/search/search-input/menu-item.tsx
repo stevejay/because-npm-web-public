@@ -6,7 +6,7 @@ const MenuItem = (
 ) => (
   <li {...rest} className={`${styles.item} ${isActive ? styles.active : ""}`}>
     <h3 className={styles.header}>{item.id}</h3>
-    {item.description && (
+    {false && item.description && (
       <p className={styles.description}>{item.description}</p>
     )}
   </li>

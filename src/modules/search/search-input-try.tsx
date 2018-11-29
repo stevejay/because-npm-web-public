@@ -1,7 +1,9 @@
 import Downshift from "downshift";
 import * as _ from "lodash";
 import * as React from "react";
+import { IBusProps, withBus } from "react-bus";
 import { RouteComponentProps, withRouter } from "react-router";
+import { SEARCH_BAR_BLUR, SEARCH_BAR_FOCUS } from "src/shared/bus-events";
 import styles from "./search-input-try.css";
 import TypeaheadMenuHandler from "./typeahead-menu-handler";
 
@@ -11,31 +13,58 @@ function itemToString(option: any): string {
   return option ? option.id : "";
 }
 
-interface IProps extends RouteComponentProps<any> {}
+interface IProps {
+  value: string;
+  onChange: (inputValue: string) => void;
+}
 
-interface IStateProps {
+interface IState {
   typeaheadValue: string;
 }
 
-class SearchInputTry extends React.Component<IProps, IStateProps> {
+class SearchInputTry extends React.Component<
+  RouteComponentProps<IProps> & IProps & IBusProps,
+  IState
+> {
   public state = { typeaheadValue: "" };
 
+  private inputRef: React.RefObject<HTMLInputElement>;
+
   private handleTypeheadInput = _.debounce((changes: any) => {
-    // tslint:disable-next-line:no-console
-    console.log("typing ahead", changes.inputValue);
     this.setState({ typeaheadValue: changes.inputValue });
   }, TYPEAHEAD_DEBOUNCE_MS);
 
+  constructor(props: RouteComponentProps<IProps> & IProps & IBusProps) {
+    super(props);
+    this.inputRef = React.createRef();
+  }
+
+  public componentDidMount() {
+    this.props.bus.on(SEARCH_BAR_FOCUS, this.handleSearchBarFocus);
+    this.props.bus.on(SEARCH_BAR_BLUR, this.handleSearchBarBlur);
+  }
+
+  public componentWillUnmount() {
+    this.props.bus.off(SEARCH_BAR_FOCUS, this.handleSearchBarFocus);
+    this.props.bus.off(SEARCH_BAR_BLUR, this.handleSearchBarBlur);
+  }
+
+  public componentDidUpdate(prevProps: IProps) {
+    if (prevProps.value && !this.props.value) {
+      this.handleTypeheadInput.cancel();
+      this.setState({ typeaheadValue: "" });
+    }
+  }
+
   public render() {
+    const { value, onChange } = this.props;
     const { typeaheadValue } = this.state;
-
-    // tslint:disable-next-line:no-console
-    console.log("typeadheadValue", typeaheadValue);
-
     return (
       <Downshift
+        inputValue={value}
         itemToString={itemToString}
         onStateChange={this.handleStateChange}
+        onInputValueChange={onChange}
         onSelect={this.handleSelect}
       >
         {({
@@ -43,10 +72,8 @@ class SearchInputTry extends React.Component<IProps, IStateProps> {
           getMenuProps,
           getItemProps,
           isOpen,
-          // clearSelection,
           selectedItem,
           highlightedIndex
-          // inputValue
         }) => (
           <div className={styles.container}>
             <input
@@ -56,6 +83,7 @@ class SearchInputTry extends React.Component<IProps, IStateProps> {
                 className: styles.input,
                 name: "searchTerm",
                 placeholder: "Search for an npm package",
+                ref: this.inputRef,
                 spellCheck: false,
                 type: "text"
               })}
@@ -74,40 +102,32 @@ class SearchInputTry extends React.Component<IProps, IStateProps> {
         )}
       </Downshift>
     );
-
-    // return (
-    //   <input // ref={this.inputRef}
-    //     name="searchTerm"
-    //     className={styles.input}
-    //     aria-label="Enter a package name to search for"
-    //     autoComplete="off"
-    //     autoCorrect="off"
-    //     placeholder="Search for an npm package"
-    //     spellCheck={false}
-    //   />
-    // );
   }
 
   private handleSelect = (selectedItem: any) => {
-    // tslint:disable-next-line:no-console
-    console.log("handle select", selectedItem);
-
     this.setState({ typeaheadValue: "" });
+    this.props.bus.emit(SEARCH_BAR_BLUR);
     this.props.history.push(`/package/${selectedItem.id}`);
   };
 
   private handleStateChange = (changes: any) => {
     if (changes.type === Downshift.stateChangeTypes.changeInput) {
-      // tslint:disable-next-line:no-console
-      console.log(
-        "handle state change inputValue",
-        changes,
-        Downshift.stateChangeTypes.changeInput
-      );
-
       this.handleTypeheadInput(changes);
+    }
+  };
+
+  private handleSearchBarFocus = () => {
+    if (this.inputRef.current) {
+      this.inputRef.current.focus();
+    }
+  };
+
+  private handleSearchBarBlur = () => {
+    if (this.inputRef.current) {
+      this.inputRef.current.blur();
     }
   };
 }
 
-export default withRouter<RouteComponentProps<IProps>>(SearchInputTry);
+// fix this any
+export default withBus<IProps>()(withRouter<any>(SearchInputTry));

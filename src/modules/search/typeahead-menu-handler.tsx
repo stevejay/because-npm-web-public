@@ -15,7 +15,6 @@ function TypeaheadMenu({
   return (
     <ul {...getMenuProps({ className: styles.menu })}>
       {isOpen &&
-        // !loading &&
         autocompleteNodeSearch &&
         !_.isEmpty(autocompleteNodeSearch.nodes) &&
         autocompleteNodeSearch.nodes.map((item: any, index: any) => (
@@ -25,7 +24,6 @@ function TypeaheadMenu({
             {...getItemProps({
               // @ts-ignore
               isActive: highlightedIndex === index,
-              // isSelected: selectedItem === item,
               item
             })}
           />

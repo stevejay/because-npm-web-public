@@ -11,26 +11,40 @@ interface IGraphqlProps {
   mutate: MutationFn<{ searchTerm: string }>;
 }
 
+interface IState {
+  searchTerm: string;
+}
+
 class SearchBarHandler extends React.Component<
-  RouteComponentProps<{}> & IGraphqlProps & IBusProps
+  RouteComponentProps<{}> & IGraphqlProps & IBusProps,
+  IState
 > {
+  public state = { searchTerm: "" };
+
   public render() {
-    return <SearchBar onSubmit={this.handleSubmit} />;
+    return (
+      <SearchBar
+        searchTerm={this.state.searchTerm}
+        onSearchTermChange={this.handleSearchTermChange}
+        onSubmit={this.handleSubmit}
+      />
+    );
   }
+
+  private handleSearchTermChange = (inputValue: string) => {
+    this.setState({ searchTerm: inputValue });
+  };
 
   private handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { mutate, location, history } = this.props;
-    const form = event.target as HTMLFormElement;
-    const data = new FormData(form);
-
-    const searchTerm = (data.get("searchTerm") || "").toString().trim();
-    if (!searchTerm) {
+    const { searchTerm } = this.state;
+    const finalSearchTerm = searchTerm.trim();
+    if (!finalSearchTerm) {
       return;
     }
-
-    mutate({ variables: { searchTerm } }).then(() => {
-      // form.reset();
+    mutate({ variables: { searchTerm: finalSearchTerm } }).then(() => {
+      this.setState({ searchTerm: "" });
       this.props.bus.emit(SEARCH_BAR_BLUR);
       if (!location.pathname.startsWith("/search")) {
         history.push("/search");
