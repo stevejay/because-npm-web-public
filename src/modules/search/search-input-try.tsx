@@ -32,6 +32,12 @@ class SearchInputTry extends React.Component<
 
   private handleTypeheadInput = _.debounce((changes: any) => {
     this.setState({ typeaheadValue: changes.inputValue });
+
+    // tslint:disable-next-line:no-console
+    console.log(
+      "handleTypeheadInput - set typeaheadValue to",
+      changes.inputValue
+    );
   }, TYPEAHEAD_DEBOUNCE_MS);
 
   constructor(props: RouteComponentProps<IProps> & IProps & IBusProps) {
@@ -49,16 +55,23 @@ class SearchInputTry extends React.Component<
     this.props.bus.off(SEARCH_BAR_BLUR, this.handleSearchBarBlur);
   }
 
-  public componentDidUpdate(prevProps: IProps) {
-    if (prevProps.value && !this.props.value) {
-      this.handleTypeheadInput.cancel();
-      this.setState({ typeaheadValue: "" });
-    }
-  }
+  // public componentDidUpdate(prevProps: IProps) {
+  //   if (prevProps.value && !this.props.value) {
+  //     this.handleTypeheadInput.cancel();
+  //     this.setState({ typeaheadValue: "" });
+
+  //     // tslint:disable-next-line:no-console
+  //     console.log("componentDidUpdate - typeaheadValue cleared");
+  //   }
+  // }
 
   public render() {
     const { value, onChange } = this.props;
     const { typeaheadValue } = this.state;
+
+    // tslint:disable-next-line:no-console
+    console.log("value/typeaheadValue", value, typeaheadValue);
+
     return (
       <Downshift
         inputValue={value}
@@ -104,10 +117,24 @@ class SearchInputTry extends React.Component<
     );
   }
 
-  private handleSelect = (selectedItem: any) => {
-    this.setState({ typeaheadValue: "" });
+  private handleSelect = (selectedItem: any, stateAndHelpers: any) => {
+    if (!selectedItem) {
+      return;
+    }
     this.props.bus.emit(SEARCH_BAR_BLUR);
+
     this.props.history.push(`/package/${selectedItem.id}`);
+    // tslint:disable-next-line:no-console
+    console.log("handleSelect - typeaheadValue cleared", selectedItem.id);
+
+    stateAndHelpers.setState({
+      inputValue: "",
+      isOpen: false,
+      selectedItem: null // This is the answer!!
+    });
+
+    this.setState({ typeaheadValue: "" });
+    // this.props.onChange("");
   };
 
   private handleStateChange = (changes: any) => {

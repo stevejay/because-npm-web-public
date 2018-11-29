@@ -32,6 +32,9 @@ class SearchBarHandler extends React.Component<
   }
 
   private handleSearchTermChange = (inputValue: string) => {
+    // tslint:disable-next-line:no-console
+    console.log("handleSearchTermChange", inputValue);
+
     this.setState({ searchTerm: inputValue });
   };
 
