@@ -26,7 +26,10 @@ export default {
           query: RecentHistory
         });
         cache.writeData({
-          data: getUpdatedRecentHistoryPackagesSlice(currentState, newPackage)
+          data: createUpdatedRecentHistoryPackagesSlice(
+            currentState,
+            newPackage
+          )
         });
         return null;
       }
@@ -38,7 +41,7 @@ export default {
   }
 };
 
-export function getUpdatedRecentHistoryPackagesSlice(
+export function createUpdatedRecentHistoryPackagesSlice(
   currentState: IRecentHistoryPackagesSlice,
   newPackage: string
 ): IRecentHistoryPackagesSlice {
