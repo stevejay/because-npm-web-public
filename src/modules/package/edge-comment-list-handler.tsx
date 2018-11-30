@@ -6,16 +6,28 @@ import Delay from "react-delay";
 import { Error, NoGraphResults } from "src/shared/content-state";
 import EdgeCommentList from "./edge-comment-list";
 import { EdgeCommentSearch } from "./graphql/queries";
+import {
+  IEdgeComment,
+  IEdgeCommentSearchResult,
+  IEdgeCommentSearchVariables,
+  IFetchMoreFunc,
+  ISearchNode
+} from "./types";
 
 interface IProps {
   edgeId: string;
 }
 
+class EdgeCommentSearchQuery extends Query<
+  IEdgeCommentSearchResult,
+  IEdgeCommentSearchVariables
+> {}
+
 class EdgeCommentListHandler extends React.Component<IProps> {
   public render() {
     const { edgeId } = this.props;
     return (
-      <Query
+      <EdgeCommentSearchQuery
         query={EdgeCommentSearch}
         variables={{
           after: null,
@@ -23,8 +35,7 @@ class EdgeCommentListHandler extends React.Component<IProps> {
           first: 15
         }}
       >
-        {({ loading, error, data, fetchMore }: any) => {
-          // fix this any
+        {({ loading, error, data, fetchMore }) => {
           if (error) {
             return <Error />;
           } else if (loading || !data) {
@@ -49,18 +60,19 @@ class EdgeCommentListHandler extends React.Component<IProps> {
             );
           }
         }}
-      </Query>
+      </EdgeCommentSearchQuery>
     );
   }
 
   private handleMore = (
-    data: any, // fix any
-    fetchMore: any // fix any
+    data: IEdgeCommentSearchResult,
+    fetchMore: IFetchMoreFunc<IEdgeCommentSearchResult>
   ) => {
-    const lastEdge: any = _.last(data.edgeCommentSearch.edges); // fix any
+    const lastEdge: ISearchNode<IEdgeComment> | undefined = _.last(
+      data.edgeCommentSearch.edges
+    );
     fetchMore({
-      updateQuery: (prev: any, { fetchMoreResult }: any) => {
-        // fix anys
+      updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
           return prev;
         }

@@ -1,13 +1,13 @@
 import * as React from "react";
 import styles from "./edge-comment.css";
+import toDisplayDate from "./to-display-date";
+import { IEdgeComment } from "./types";
 
-function toDisplayDate(timestampMs: number) {
-  return new Date(timestampMs).toLocaleDateString();
+interface IProps {
+  edgeComment: IEdgeComment;
 }
 
-const EdgeComment: React.SFC<{
-  edgeComment: any;
-}> = ({ edgeComment }) => (
+const EdgeComment: React.SFC<IProps> = ({ edgeComment }) => (
   <li className={styles.listItem}>
     <p className={styles.description}>{edgeComment.comment}</p>
     <p className={styles.info}>

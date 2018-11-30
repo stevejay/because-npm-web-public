@@ -2,12 +2,15 @@ import * as React from "react";
 import Button, { ButtonType } from "src/shared/button";
 import EdgeComment from "./edge-comment";
 import styles from "./edge-comment-list.css";
+import { IEdgeComment, ISearchNode } from "./types";
 
-const EdgeCommentList: React.SFC<{
-  edges: any;
-  hasNextPage: string;
-  onMore: any;
-}> = ({ edges, hasNextPage, onMore }) => (
+interface IProps {
+  edges: Array<ISearchNode<IEdgeComment>>;
+  hasNextPage: boolean;
+  onMore: () => void;
+}
+
+const EdgeCommentList: React.SFC<IProps> = ({ edges, hasNextPage, onMore }) => (
   <div className={styles.listContainer}>
     <ul className={styles.list}>
       {edges.map((edge: any) => (

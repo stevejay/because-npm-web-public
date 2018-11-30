@@ -7,14 +7,23 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { Error, NoGraphResults } from "src/shared/content-state";
 import EdgeList from "./edge-list";
 import { EdgeSearch } from "./graphql/queries";
+import {
+  IEdge,
+  IEdgeSearchResult,
+  IEdgeSearchVariables,
+  IFetchMoreFunc,
+  ISearchNode
+} from "./types";
 
-type Props = RouteComponentProps<{}> & {};
+type AllProps = RouteComponentProps<{}> & {};
 
-class EdgeListHandler extends React.Component<Props> {
+class EdgeSearchQuery extends Query<IEdgeSearchResult, IEdgeSearchVariables> {}
+
+class EdgeListHandler extends React.Component<AllProps> {
   public render() {
     const { match } = this.props;
     return (
-      <Query
+      <EdgeSearchQuery
         query={EdgeSearch}
         variables={{
           after: null,
@@ -22,8 +31,7 @@ class EdgeListHandler extends React.Component<Props> {
           tailNodeId: match.params[0]
         }}
       >
-        {({ loading, error, data, fetchMore }: any) => {
-          // fix this any
+        {({ loading, error, data, fetchMore }) => {
           if (error) {
             return <Error />;
           } else if (loading || !data) {
@@ -45,18 +53,19 @@ class EdgeListHandler extends React.Component<Props> {
             );
           }
         }}
-      </Query>
+      </EdgeSearchQuery>
     );
   }
 
   private handleMore = (
-    data: any, // fix any
-    fetchMore: any // fix any
+    data: IEdgeSearchResult,
+    fetchMore: IFetchMoreFunc<IEdgeSearchResult>
   ) => {
-    const lastEdge: any = _.last(data.edgeSearch.edges); // fix any
+    const lastEdge: ISearchNode<IEdge> | undefined = _.last(
+      data.edgeSearch.edges
+    );
     fetchMore({
-      updateQuery: (prev: any, { fetchMoreResult }: any) => {
-        // fix anys
+      updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
           return prev;
         }

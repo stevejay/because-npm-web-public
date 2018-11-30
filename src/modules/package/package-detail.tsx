@@ -1,10 +1,9 @@
 import * as React from "react";
 import ContentLoader from "react-content-loader";
 import styles from "./package-detail.css";
+import { INode } from "./types";
 
-// TODO fix any
-
-const PackageDetail: React.SFC<{ nodeName: string; node: any }> = ({
+const PackageDetail: React.SFC<{ nodeName: string; node: INode }> = ({
   nodeName,
   node
 }) => (

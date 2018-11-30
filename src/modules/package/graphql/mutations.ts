@@ -1,9 +1,7 @@
 import gql from "graphql-tag";
 
-// TODO fix any
-
 export const UpdateRecentHistoryPackages = gql`
-  mutation UpdateRecentHistoryPackages($nodeName: any!) {
+  mutation UpdateRecentHistoryPackages($nodeName: String!) {
     updateRecentHistoryPackages(nodeName: $nodeName) @client
   }
 `;
