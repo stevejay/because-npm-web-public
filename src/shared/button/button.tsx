@@ -13,7 +13,12 @@ interface IProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = ({ type, className = "", onClick, children }: IProps) => (
+const Button: React.SFC<IProps> = ({
+  type,
+  className = "",
+  onClick,
+  children
+}) => (
   <button
     className={`${styles.button} ${styles[type]} ${className}`}
     onClick={onClick}

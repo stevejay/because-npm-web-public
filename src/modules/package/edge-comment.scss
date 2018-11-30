@@ -1,4 +1,4 @@
-@import "scss/variables";
+@import "scss/_base";
 .listItem {
   margin: 0;
   padding: 0 0 1rem 0;
@@ -21,11 +21,11 @@
   justify-content: space-between;
   padding-top: 0.2em;
   & a {
-    color: $primary-900;
+    color: $primary-800;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     &:hover {
-      border-bottom: 1px solid $primary-900;
+      border-bottom: 1px solid $primary-800;
     }
   }
 }

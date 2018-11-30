@@ -6,8 +6,8 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const SectionContainer = ({ className, children }: IProps) => (
-  <section className={`${styles.section} ${className || ""}`}>
+const SectionContainer: React.SFC<IProps> = ({ className = "", children }) => (
+  <section className={`${styles.section} ${className}`}>
     <div className={styles.inner}>{children}</div>
   </section>
 );

@@ -1,4 +1,4 @@
-@import "scss/variables";
+@import "scss/_base";
 .button {
   @include destyled-button;
   @include blockPadding;
@@ -11,14 +11,14 @@
 }
 
 .primary-button {
-  background-color: $primary-900;
+  background-color: $primary-800;
   color: $grey-50;
   &:hover {
-    background-color: $primary-800;
+    background-color: $primary-700;
   }
 }
 
 .secondary-button {
-  background-color: $primary-grey-300;
+  background-color: $primary-200;
   color: $grey-900;
 }

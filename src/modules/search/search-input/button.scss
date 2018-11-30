@@ -1,4 +1,4 @@
-@import "scss/variables";
+@import "scss/_base";
 .button {
   @include icon-button(2em);
   color: $grey-600;

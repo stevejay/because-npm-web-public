@@ -4,7 +4,7 @@ import styles from "./recent-packages.css";
 
 interface IProps {
   packages: string[];
-  onLinkClick: () => void;
+  onLinkClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 const RecentPackages: React.SFC<IProps> = ({ packages, onLinkClick }) => (

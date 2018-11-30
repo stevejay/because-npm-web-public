@@ -5,7 +5,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const Page = ({ children }: IProps) => (
+const Page: React.SFC<IProps> = ({ children }) => (
   <div className={styles.page}>{children}</div>
 );
 

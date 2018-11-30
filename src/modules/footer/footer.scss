@@ -1,6 +1,6 @@
-@import "scss/variables";
+@import "scss/_base";
 .footer {
-  background-color: $primary-grey-300;
+  background-color: $primary-200;
   min-height: 33vh;
   max-height: 300px;
   padding: $gutter;
@@ -43,9 +43,7 @@
   list-style: none;
   font-size: 1rem;
   font-weight: 500;
-  text-transform: lowercase; // @include from-tablet {
-  //   font-size: 1rem;
-  // }
+  text-transform: lowercase;
   a {
     color: $grey-600;
     text-decoration: none;

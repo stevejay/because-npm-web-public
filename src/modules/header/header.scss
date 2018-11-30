@@ -1,9 +1,9 @@
-@import "scss/variables";
+@import "scss/_base";
 .header {
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: center;
   padding: 0.85em 1em;
-  background-color: $primary-grey-300;
+  background-color: $primary-200;
 }

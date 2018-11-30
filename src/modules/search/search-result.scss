@@ -1,4 +1,4 @@
-@import "scss/variables";
+@import "scss/_base";
 .container {
   list-style: none;
   padding: 0.75em 0 0.75em;
@@ -16,7 +16,7 @@
 
 .link {
   text-decoration: none;
-  color: $primary-900;
+  color: $primary-800;
   &:hover {
     text-decoration: underline;
   }
@@ -24,7 +24,7 @@
 
 .name {
   margin: 0;
-  color: $primary-900;
+  color: $primary-800;
   text-transform: lowercase;
   letter-spacing: 0.005em;
   display: inline-block;

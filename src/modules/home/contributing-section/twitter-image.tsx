@@ -4,7 +4,7 @@ interface IProps {
   className: string;
 }
 
-const TwitterImage = ({ className }: IProps) => (
+const TwitterImage: React.SFC<IProps> = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" version="1.1">
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <path

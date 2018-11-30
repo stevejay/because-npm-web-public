@@ -75,6 +75,4 @@ const client = new ApolloClient({
   link: ApolloLink.from([errorLink, requestLink, clientStateLink, httpLink])
 });
 
-// client.onResetStore(clientStateLink.writeDefaults);
-
 export default client;

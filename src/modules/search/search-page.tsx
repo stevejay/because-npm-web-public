@@ -13,7 +13,7 @@ interface IProps {
   }> | null;
 }
 
-const SearchPage = ({ results }: IProps) => (
+const SearchPage: React.SFC<IProps> = ({ results }) => (
   <main className={styles.container}>
     <SearchResultList results={results} />
   </main>

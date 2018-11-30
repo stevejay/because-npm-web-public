@@ -5,7 +5,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const LegalContent = ({ children }: IProps) => (
+const LegalContent: React.SFC<IProps> = ({ children }) => (
   <main className={styles.container}>
     <div className={styles.innerContainer}>{children}</div>
   </main>

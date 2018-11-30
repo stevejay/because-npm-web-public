@@ -14,7 +14,7 @@ interface IProps {
 
 const EARLY_STOPPING_COUNT = 100;
 
-const SearchResult = ({ result }: IProps) => (
+const SearchResult: React.SFC<IProps> = ({ result }) => (
   <li className={styles.container}>
     <Link to={`/package/${result.id}`} className={styles.link}>
       <h2 className={styles.name}>{result.id}</h2>

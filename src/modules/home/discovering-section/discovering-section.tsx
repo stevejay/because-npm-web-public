@@ -5,10 +5,10 @@ import styles from "./discovering-section.css";
 import GraphImage from "./graph-image";
 
 interface IProps {
-  onSearchClick: () => void;
+  onSearchClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const DiscoveringSection = ({ onSearchClick }: IProps) => (
+const DiscoveringSection: React.SFC<IProps> = ({ onSearchClick }) => (
   <SectionContainer className={styles.section}>
     <div className={styles.row}>
       <div className={styles.column}>

@@ -8,7 +8,6 @@ import Page from "src/shared/page";
 import ScrollResetListener from "src/shared/scroll/scroll-reset-listener";
 import "what-input";
 import apolloClient from "./apollo-client";
-import "./app.css";
 import { NotFoundPage } from "./modules/error";
 import { Footer } from "./modules/footer";
 import { Header } from "./modules/header";
@@ -16,6 +15,7 @@ import { HomePage } from "./modules/home";
 import { PrivacyPage, TermsPage } from "./modules/legal";
 import { PackagePageHandler } from "./modules/package";
 import { SearchBarHandler, SearchPageHandler } from "./modules/search";
+import "./scss/app.css";
 
 const App = () => (
   <ApolloProvider client={apolloClient}>

@@ -4,7 +4,7 @@ interface IProps {
   className: string;
 }
 
-const GraphImage = ({ className }: IProps) => (
+const GraphImage: React.SFC<IProps> = ({ className }) => (
   <svg className={className} viewBox="0 0 357 357" version="1.1">
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <circle id="Oval" fill="#2A2A2A" cx="178.5" cy="178.5" r="178.5" />

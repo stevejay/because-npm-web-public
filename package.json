@@ -16,6 +16,7 @@
     "graphql-tag": "^2.10.0",
     "lodash": "^4.17.11",
     "loglevel": "^1.6.1",
+    "material-colors": "^1.2.6",
     "normalize.css": "^8.0.0",
     "react": "^16.5.0",
     "react-apollo": "^2.3.1",

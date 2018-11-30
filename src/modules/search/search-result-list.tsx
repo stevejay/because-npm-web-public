@@ -16,7 +16,7 @@ interface IProps {
   }> | null;
 }
 
-const SearchResultList = ({ results }: IProps) => {
+const SearchResultList: React.SFC<IProps> = ({ results }) => {
   if (_.isNil(results)) {
     return (
       <React.Fragment>

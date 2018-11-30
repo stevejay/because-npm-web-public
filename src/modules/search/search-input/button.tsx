@@ -1,19 +1,22 @@
 import * as React from "react";
 import styles from "./button.css";
 
+type EventHandler = (event?: React.MouseEvent<HTMLButtonElement>) => void;
+type EventCallback = () => void;
+
 interface IProps {
   ariaLabel: string;
   icon: any;
   type?: string;
-  onClick?: () => void;
+  onClick?: EventHandler | EventCallback;
 }
 
-const Button = ({
+const Button: React.SFC<IProps> = ({
   ariaLabel,
   type = "button",
   icon: Icon,
   onClick
-}: IProps) => (
+}) => (
   <button
     className={styles.button}
     aria-label={ariaLabel}

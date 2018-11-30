@@ -1,4 +1,4 @@
-@import "scss/variables";
+@import "scss/_base";
 .container {
   margin-left: 0.5rem;
   border-bottom: 1px solid $grey-300;
@@ -26,11 +26,11 @@
   text-transform: lowercase;
   & a {
     font-weight: bold;
-    color: $primary-900;
+    color: $primary-800;
     letter-spacing: 0.005em;
     text-decoration: none;
     &:hover {
-      border-bottom: 1px solid $primary-900;
+      border-bottom: 1px solid $primary-800;
     }
   }
 }

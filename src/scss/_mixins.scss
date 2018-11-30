@@ -1,32 +1,5 @@
-@import "node_modules/sass-material-colors/sass/sass-material-colors";
-// https://www.materialui.co/colors
-$grey-50: material-color("grey", "50");
-$grey-100: material-color("grey", "100");
-$grey-200: material-color("grey", "200");
-$grey-300: material-color("grey", "300");
-$grey-400: material-color("grey", "400");
-$grey-500: material-color("grey", "500");
-$grey-600: material-color("grey", "600");
-$grey-700: material-color("grey", "700");
-$grey-800: material-color("grey", "800");
-$grey-850: #3c3c3c;
-$grey-900: material-color("grey", "900");
-$primary-300: #eddbcd;
-$primary-600: #e38337;
-$primary-900: #c06014;
-$primary-a00: #b55911;
-$primary-800: lighten($primary-900, 5%);
-$primary-grey-300: #e6e4e1;
-$secondary-600: #ab9879;
-$border-radius: 6px;
-$gutter: 1rem;
-$narrow-phone-width: 320px;
-$phone-width: 480px;
-$tablet-width: 768px;
-$desktop-width: 992px;
-$wide-desktop-width: 1200px;
-$main-content-min-height: calc(100vh - 150px);
-$max-section-width: 960px;
+@import "./sizes";
+
 @mixin from-phone {
   @media (min-width: #{$phone-width}) {
     @content;
@@ -71,7 +44,7 @@ $max-section-width: 960px;
 
 @mixin destyled-button() {
   cursor: pointer;
-  display: inline-block; // outline: none;
+  display: inline-block;
   border: none;
   font-style: normal;
   text-align: center;

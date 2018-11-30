@@ -8,7 +8,7 @@ declare module "react-bus" {
     bus: Bus;
   }
 
-  type Listener = () => void;
+  type Listener = (event: React.SyntheticEvent<any>) => void;
 
   export function withBus<P extends object>(): (
     baseComponent: any
