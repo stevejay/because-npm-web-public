@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IoIosSearch } from "react-icons/io";
-import SearchInputTry from "../search-input-try";
+import SearchInput from "../search-input";
 import Button from "./button";
 import styles from "./search-bar.css";
 
@@ -17,7 +17,7 @@ const SearchBar: React.SFC<IProps> = ({
 }) => (
   <form className={styles.form} onSubmit={onSubmit}>
     <Button type="submit" ariaLabel="Submit search" icon={IoIosSearch} />
-    <SearchInputTry value={searchTerm} onChange={onSearchTermChange} />
+    <SearchInput value={searchTerm} onChange={onSearchTermChange} />
   </form>
 );
 

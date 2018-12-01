@@ -4,13 +4,9 @@ import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import { IAppBusProps, withAppBus } from "src/shared/app-bus";
 import MenuHandler from "./menu-handler";
-import styles from "./search-input-try.css";
+import styles from "./search-input.css";
 
-const TYPEAHEAD_DEBOUNCE_MS = 500;
-
-function itemToString(option: any): string {
-  return option ? option.id : "";
-}
+const TYPEAHEAD_DEBOUNCE_MS = 400;
 
 interface IProps {
   value: string;
@@ -21,22 +17,20 @@ interface IState {
   typeaheadValue: string;
 }
 
-class SearchInputTry extends React.Component<
+class SearchInput extends React.Component<
   RouteComponentProps<IProps> & IProps & IAppBusProps,
   IState
 > {
+  private static itemToString(option: any): string {
+    return option ? option.id : "";
+  }
+
   public state = { typeaheadValue: "" };
 
   private inputRef: React.RefObject<HTMLInputElement>;
 
   private handleTypeheadInput = _.debounce((changes: any) => {
     this.setState({ typeaheadValue: changes.inputValue });
-
-    // tslint:disable-next-line:no-console
-    console.log(
-      "handleTypeheadInput - set typeaheadValue to",
-      changes.inputValue
-    );
   }, TYPEAHEAD_DEBOUNCE_MS);
 
   constructor(props: RouteComponentProps<IProps> & IProps & IAppBusProps) {
@@ -54,35 +48,29 @@ class SearchInputTry extends React.Component<
     this.props.appBus.removeBlurSearchBarListener(this.handleSearchBarBlur);
   }
 
-  // public componentDidUpdate(prevProps: IProps) {
-  //   if (prevProps.value && !this.props.value) {
-  //     this.handleTypeheadInput.cancel();
-  //     this.setState({ typeaheadValue: "" });
-
-  //     // tslint:disable-next-line:no-console
-  //     console.log("componentDidUpdate - typeaheadValue cleared");
-  //   }
-  // }
-
   public render() {
     const { value, onChange } = this.props;
     const { typeaheadValue } = this.state;
     return (
       <Downshift
         inputValue={value}
-        itemToString={itemToString}
+        itemToString={SearchInput.itemToString}
         onStateChange={this.handleStateChange}
         onInputValueChange={onChange}
         onSelect={this.handleSelect}
       >
         {({
           getInputProps,
+          getLabelProps,
           getMenuProps,
           getItemProps,
           isOpen,
           highlightedIndex
         }) => (
           <div className={styles.container}>
+            <label {...getLabelProps({ className: styles.label })}>
+              Search for an npm package
+            </label>
             <input
               {...getInputProps({
                 autoComplete: "off",
@@ -114,18 +102,9 @@ class SearchInputTry extends React.Component<
     if (!selectedItem) {
       return;
     }
+    stateAndHelpers.clearSelection();
     this.props.appBus.blurSearchBar();
-
     this.props.history.push(`/package/${selectedItem.id}`);
-    // tslint:disable-next-line:no-console
-    console.log("handleSelect - typeaheadValue cleared", selectedItem.id);
-
-    stateAndHelpers.setState({
-      inputValue: "",
-      isOpen: false,
-      selectedItem: null // This is the answer!!
-    });
-
     this.setState({ typeaheadValue: "" });
   };
 
@@ -149,7 +128,5 @@ class SearchInputTry extends React.Component<
 }
 
 export default withAppBus<IProps>(
-  withRouter<RouteComponentProps<IProps> & IProps & IAppBusProps>(
-    SearchInputTry
-  )
+  withRouter<RouteComponentProps<IProps> & IProps & IAppBusProps>(SearchInput)
 );

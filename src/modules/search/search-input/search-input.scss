@@ -17,6 +17,10 @@
   }
 }
 
+.label {
+  @include visually-hidden;
+}
+
 .menuContainer {
   position: relative;
 }

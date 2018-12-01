@@ -1,4 +1,3 @@
-// import { GetItemPropsOptions, GetMenuPropsOptions } from "downshift";
 import * as _ from "lodash";
 import * as React from "react";
 import { graphql } from "react-apollo";
@@ -23,6 +22,9 @@ interface IProps {
   isOpen: boolean;
 }
 
+// Note: had to put an ul in this handler class as I couldn't work
+// out how the innerRef thing is supposed to work.
+
 const MenuHandler: React.SFC<IQueryProps & IProps> = ({
   data: { autocompleteNodeSearch },
   getItemProps,
@@ -39,7 +41,6 @@ const MenuHandler: React.SFC<IQueryProps & IProps> = ({
           key={item.id}
           item={item}
           {...getItemProps({
-            // @ts-ignore
             isActive: highlightedIndex === index,
             item
           })}
