@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Query } from "react-apollo";
-import { IAppBusProps, withAppBus } from "src/shared/app-bus";
+import { IAppBusProps, withAppBus } from "src/shared/app-bus/app-bus";
 import { RecentHistory } from "../graphql/queries";
 import { IRecentHistoryResult } from "../types";
 import RecentPackages from "./recent-packages";
@@ -23,7 +23,7 @@ class RecentPackagesHandler extends React.Component<IAppBusProps> {
   }
 
   private handleLinkClick = () => {
-    this.props.appBus.scrollToTop();
+    this.props.bus.scrollToTop.emit();
   };
 }
 

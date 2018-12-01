@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import { graphql, MutationFn } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { IAppBusProps, withAppBus } from "src/shared/app-bus";
+import { IAppBusProps, withAppBus } from "src/shared/app-bus/app-bus";
 import { UpdateSearchParams } from "../graphql/mutations";
 import SearchBar from "./search-bar";
 
@@ -44,7 +44,7 @@ class SearchBarHandler extends React.Component<
     }
     mutate({ variables: { searchTerm: finalSearchTerm } }).then(() => {
       this.setState({ searchTerm: "" });
-      this.props.appBus.blurSearchBar();
+      this.props.bus.searchBarBlur.emit();
       if (!location.pathname.startsWith("/search")) {
         history.push("/search");
       }

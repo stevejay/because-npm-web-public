@@ -1,6 +1,6 @@
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
-import { IAppBusProps, withAppBus } from "src/shared/app-bus";
+import { IAppBusProps, withAppBus } from "src/shared/app-bus/app-bus";
 import DiscoveringSection from "./discovering-section";
 
 class DiscoveringSectionHandler extends React.Component<
@@ -11,7 +11,7 @@ class DiscoveringSectionHandler extends React.Component<
   }
 
   private handleSearchClick = () => {
-    this.props.appBus.focusSearchBar();
+    this.props.bus.searchBarFocus.emit();
     this.props.history.push("/search");
   };
 }

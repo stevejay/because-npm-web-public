@@ -12,3 +12,9 @@ export interface INodeSearchVariables {
 export interface INodeSearchResult {
   nodeSearch: ISearchEdges<INode>;
 }
+
+export interface IAutocompleteNodeSearchResult {
+  autocompleteNodeSearch: {
+    nodes: Array<INode>;
+  };
+}

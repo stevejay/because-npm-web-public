@@ -3,7 +3,7 @@ import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import { Route, Switch } from "react-router";
 import { withRouter } from "react-router-dom";
-import Page from "src/shared/page";
+import { Page, PageMain } from "src/shared/page";
 import ScrollResetListener from "src/shared/scroll/scroll-reset-listener";
 import "what-input";
 import apolloClient from "./apollo-client";
@@ -19,17 +19,19 @@ import "./scss/app.css";
 const App = () => (
   <ApolloProvider client={apolloClient}>
     <Page>
-      <ScrollResetListener />
-      <Header />
-      <SearchBar />
-      <Switch>
-        <Route exact={true} path="/terms" component={TermsPage} />
-        <Route exact={true} path="/privacy" component={PrivacyPage} />
-        <Route exact={true} path="/search" component={SearchPage} />
-        <Route exact={true} path="/" component={HomePage} />
-        <Route path="/package/(.*)" component={PackagePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <PageMain>
+        <ScrollResetListener />
+        <Header />
+        <SearchBar />
+        <Switch>
+          <Route exact={true} path="/terms" component={TermsPage} />
+          <Route exact={true} path="/privacy" component={PrivacyPage} />
+          <Route exact={true} path="/search" component={SearchPage} />
+          <Route exact={true} path="/" component={HomePage} />
+          <Route path="/package/(.*)" component={PackagePage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </PageMain>
       <Footer />
     </Page>
   </ApolloProvider>

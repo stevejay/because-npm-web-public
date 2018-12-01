@@ -1,26 +1,35 @@
 import Downshift from "downshift";
 import * as _ from "lodash";
 import * as React from "react";
+import { withApollo } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { IAppBusProps, withAppBus } from "src/shared/app-bus";
+import { IAppBusProps, withAppBus } from "src/shared/app-bus/app-bus";
+import { AutocompleteNodeSearch } from "../graphql/queries";
 import MenuHandler from "./menu-handler";
 import styles from "./search-input.css";
 
 const TYPEAHEAD_DEBOUNCE_MS = 400;
 
-interface IProps {
+interface IApolloProps {
+  client: any;
+}
+
+interface IOwnProps {
   value: string;
   onChange: (inputValue: string) => void;
 }
+
+interface IAllProps
+  extends RouteComponentProps<IOwnProps>,
+    IOwnProps,
+    IAppBusProps,
+    IApolloProps {}
 
 interface IState {
   typeaheadValue: string;
 }
 
-class SearchInput extends React.Component<
-  RouteComponentProps<IProps> & IProps & IAppBusProps,
-  IState
-> {
+class SearchInput extends React.Component<IAllProps, IState> {
   private static itemToString(option: any): string {
     return option ? option.id : "";
   }
@@ -29,24 +38,26 @@ class SearchInput extends React.Component<
 
   private inputRef: React.RefObject<HTMLInputElement>;
 
-  private handleTypeheadInput = _.debounce((changes: any) => {
-    this.setState({ typeaheadValue: changes.inputValue });
+  private handleTypeheadInput = _.debounce((inputValue: any) => {
+    this.setState({ typeaheadValue: inputValue });
   }, TYPEAHEAD_DEBOUNCE_MS);
 
-  constructor(props: RouteComponentProps<IProps> & IProps & IAppBusProps) {
+  constructor(props: IAllProps) {
     super(props);
     this.inputRef = React.createRef();
   }
 
   public componentDidMount() {
-    this.props.appBus.addFocusSearchBarListener(this.handleSearchBarFocus);
-    this.props.appBus.addBlurSearchBarListener(this.handleSearchBarBlur);
+    this.props.bus.searchBarFocus.addListener(this.handleSearchBarFocus);
+    this.props.bus.searchBarBlur.addListener(this.handleSearchBarBlur);
   }
 
   public componentWillUnmount() {
-    this.props.appBus.removeFocusSearchBarListener(this.handleSearchBarFocus);
-    this.props.appBus.removeBlurSearchBarListener(this.handleSearchBarBlur);
+    this.props.bus.searchBarFocus.removeListener(this.handleSearchBarFocus);
+    this.props.bus.searchBarBlur.removeListener(this.handleSearchBarBlur);
   }
+
+  // TODO can I push <div className={styles.menuContainer}> lower?
 
   public render() {
     const { value, onChange } = this.props;
@@ -57,6 +68,7 @@ class SearchInput extends React.Component<
         itemToString={SearchInput.itemToString}
         onStateChange={this.handleStateChange}
         onInputValueChange={onChange}
+        onOuterClick={this.handleOuterClick}
         onSelect={this.handleSelect}
       >
         {({
@@ -98,19 +110,23 @@ class SearchInput extends React.Component<
     );
   }
 
+  private handleOuterClick = () => {
+    this.resetTypeahead();
+  };
+
   private handleSelect = (selectedItem: any, stateAndHelpers: any) => {
     if (!selectedItem) {
       return;
     }
     stateAndHelpers.clearSelection();
-    this.props.appBus.blurSearchBar();
+    this.props.bus.searchBarBlur.emit();
     this.props.history.push(`/package/${selectedItem.id}`);
-    this.setState({ typeaheadValue: "" });
+    this.resetTypeahead();
   };
 
   private handleStateChange = (changes: any) => {
     if (changes.type === Downshift.stateChangeTypes.changeInput) {
-      this.handleTypeheadInput(changes);
+      this.handleTypeheadInput(changes.inputValue);
     }
   };
 
@@ -125,8 +141,23 @@ class SearchInput extends React.Component<
       this.inputRef.current.blur();
     }
   };
+
+  private resetTypeahead() {
+    this.props.client.writeQuery({
+      data: {
+        autocompleteNodeSearch: {
+          __typename: "NodeAutocompleteResult",
+          nodes: []
+        }
+      },
+      query: AutocompleteNodeSearch
+    });
+    this.setState({ typeaheadValue: "" });
+  }
 }
 
-export default withAppBus<IProps>(
-  withRouter<RouteComponentProps<IProps> & IProps & IAppBusProps>(SearchInput)
+export default withAppBus<IOwnProps>(
+  withRouter<RouteComponentProps<IOwnProps> & IOwnProps & IAppBusProps>(
+    withApollo(SearchInput)
+  )
 );

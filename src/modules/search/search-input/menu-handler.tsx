@@ -2,8 +2,11 @@ import * as _ from "lodash";
 import * as React from "react";
 import { graphql } from "react-apollo";
 import { AutocompleteNodeSearch } from "../graphql/queries";
-import styles from "./menu-handler.css";
-import MenuItem from "./menu-item";
+import Menu from "./menu";
+
+const MAX_AUTOCOMPLETE_ITEMS = 10;
+
+// TODO rename this component to TypeaheadMenuHandler?
 
 interface IVariables {
   first: number;
@@ -11,10 +14,10 @@ interface IVariables {
 }
 
 interface IQueryProps {
-  data: any;
+  data: any; // TODO try to remove any here.
 }
 
-interface IProps {
+interface IOwnProps {
   typeaheadValue: string;
   getItemProps: any;
   getMenuProps: any;
@@ -22,38 +25,34 @@ interface IProps {
   isOpen: boolean;
 }
 
-// Note: had to put an ul in this handler class as I couldn't work
-// out how the innerRef thing is supposed to work.
-
-const MenuHandler: React.SFC<IQueryProps & IProps> = ({
-  data: { autocompleteNodeSearch },
+const MenuHandler: React.SFC<IQueryProps & IOwnProps> = ({
+  data,
   getItemProps,
   getMenuProps,
   highlightedIndex,
   isOpen
-}) => (
-  <ul {...getMenuProps({ className: styles.menu })}>
-    {isOpen &&
-      autocompleteNodeSearch &&
-      !_.isEmpty(autocompleteNodeSearch.nodes) &&
-      autocompleteNodeSearch.nodes.map((item: any, index: any) => (
-        <MenuItem
-          key={item.id}
-          item={item}
-          {...getItemProps({
-            isActive: highlightedIndex === index,
-            item
-          })}
-        />
-      ))}
-  </ul>
-);
+}) => {
+  // tslint:disable-next-line:no-console
+  // console.log("data!", JSON.stringify(data));
+  return (
+    <Menu
+      data={data}
+      getItemProps={getItemProps}
+      getMenuProps={getMenuProps}
+      highlightedIndex={highlightedIndex}
+      isOpen={isOpen}
+    />
+  );
+};
 
-export default graphql<IProps, {}, IVariables>(AutocompleteNodeSearch, {
-  options: (props: IProps) => ({
+export default graphql<IOwnProps, {}, IVariables>(AutocompleteNodeSearch, {
+  options: (props: IOwnProps) => ({
+    // fetchPolicy: "network-only",
     variables: {
-      first: 10,
+      first: MAX_AUTOCOMPLETE_ITEMS,
       term: props.typeaheadValue
     }
   })
+  // skip: ({ typeaheadValue }: IOwnProps) =>
+  //   !typeaheadValue || typeaheadValue.length <= 2
 })(MenuHandler);

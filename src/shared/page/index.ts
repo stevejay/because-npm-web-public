@@ -1,2 +1,3 @@
 import Page from "./page";
-export default Page;
+import PageMain from "./page-main";
+export { Page, PageMain };
