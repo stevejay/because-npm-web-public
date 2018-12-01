@@ -1,15 +1,14 @@
 import window from "global/window";
 import * as React from "react";
-import { IBusProps, withBus } from "react-bus";
-import { SCROLL_TO_TOP } from "src/shared/bus-events";
+import { IAppBusProps, withAppBus } from "src/shared/app-bus";
 
-class ScrollResetListener extends React.Component<IBusProps> {
+class ScrollResetListener extends React.Component<IAppBusProps> {
   public componentDidMount() {
-    this.props.bus.on(SCROLL_TO_TOP, this.handleScrollToTop);
+    this.props.appBus.addScrollToTopListener(this.handleScrollToTop);
   }
 
   public componentWillUnmount() {
-    this.props.bus.off(SCROLL_TO_TOP, this.handleScrollToTop);
+    this.props.appBus.removeScrollToTopListener(this.handleScrollToTop);
   }
 
   public render() {
@@ -23,4 +22,4 @@ class ScrollResetListener extends React.Component<IBusProps> {
   };
 }
 
-export default withBus<{}>()(ScrollResetListener);
+export default withAppBus<{}>(ScrollResetListener);

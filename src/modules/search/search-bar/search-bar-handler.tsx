@@ -1,9 +1,8 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { graphql, MutationFn } from "react-apollo";
-import { IBusProps, withBus } from "react-bus";
 import { RouteComponentProps, withRouter } from "react-router";
-import { SEARCH_BAR_BLUR } from "src/shared/bus-events";
+import { IAppBusProps, withAppBus } from "src/shared/app-bus";
 import { UpdateSearchParams } from "../graphql/mutations";
 import SearchBar from "./search-bar";
 
@@ -16,7 +15,7 @@ interface IState {
 }
 
 class SearchBarHandler extends React.Component<
-  RouteComponentProps<{}> & IGraphqlProps & IBusProps,
+  RouteComponentProps<IAppBusProps> & IGraphqlProps & IAppBusProps,
   IState
 > {
   public state = { searchTerm: "" };
@@ -45,7 +44,7 @@ class SearchBarHandler extends React.Component<
     }
     mutate({ variables: { searchTerm: finalSearchTerm } }).then(() => {
       this.setState({ searchTerm: "" });
-      this.props.bus.emit(SEARCH_BAR_BLUR);
+      this.props.appBus.blurSearchBar();
       if (!location.pathname.startsWith("/search")) {
         history.push("/search");
       }
@@ -53,8 +52,10 @@ class SearchBarHandler extends React.Component<
   };
 }
 
-export default withBus<{}>()(
-  graphql(UpdateSearchParams)(
-    withRouter<RouteComponentProps<{}>>(SearchBarHandler)
+export default withAppBus<{}>(
+  graphql<IAppBusProps>(UpdateSearchParams)(
+    withRouter<
+      RouteComponentProps<IAppBusProps> & IGraphqlProps & IAppBusProps
+    >(SearchBarHandler)
   )
 );

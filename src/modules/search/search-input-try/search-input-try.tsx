@@ -1,9 +1,8 @@
 import Downshift from "downshift";
 import * as _ from "lodash";
 import * as React from "react";
-import { IBusProps, withBus } from "react-bus";
 import { RouteComponentProps, withRouter } from "react-router";
-import { SEARCH_BAR_BLUR, SEARCH_BAR_FOCUS } from "src/shared/bus-events";
+import { IAppBusProps, withAppBus } from "src/shared/app-bus";
 import MenuHandler from "./menu-handler";
 import styles from "./search-input-try.css";
 
@@ -23,7 +22,7 @@ interface IState {
 }
 
 class SearchInputTry extends React.Component<
-  RouteComponentProps<IProps> & IProps & IBusProps,
+  RouteComponentProps<IProps> & IProps & IAppBusProps,
   IState
 > {
   public state = { typeaheadValue: "" };
@@ -40,19 +39,19 @@ class SearchInputTry extends React.Component<
     );
   }, TYPEAHEAD_DEBOUNCE_MS);
 
-  constructor(props: RouteComponentProps<IProps> & IProps & IBusProps) {
+  constructor(props: RouteComponentProps<IProps> & IProps & IAppBusProps) {
     super(props);
     this.inputRef = React.createRef();
   }
 
   public componentDidMount() {
-    this.props.bus.on(SEARCH_BAR_FOCUS, this.handleSearchBarFocus);
-    this.props.bus.on(SEARCH_BAR_BLUR, this.handleSearchBarBlur);
+    this.props.appBus.addFocusSearchBarListener(this.handleSearchBarFocus);
+    this.props.appBus.addBlurSearchBarListener(this.handleSearchBarBlur);
   }
 
   public componentWillUnmount() {
-    this.props.bus.off(SEARCH_BAR_FOCUS, this.handleSearchBarFocus);
-    this.props.bus.off(SEARCH_BAR_BLUR, this.handleSearchBarBlur);
+    this.props.appBus.removeFocusSearchBarListener(this.handleSearchBarFocus);
+    this.props.appBus.removeBlurSearchBarListener(this.handleSearchBarBlur);
   }
 
   // public componentDidUpdate(prevProps: IProps) {
@@ -115,7 +114,7 @@ class SearchInputTry extends React.Component<
     if (!selectedItem) {
       return;
     }
-    this.props.bus.emit(SEARCH_BAR_BLUR);
+    this.props.appBus.blurSearchBar();
 
     this.props.history.push(`/package/${selectedItem.id}`);
     // tslint:disable-next-line:no-console
@@ -149,6 +148,8 @@ class SearchInputTry extends React.Component<
   };
 }
 
-export default withBus<IProps>()(
-  withRouter<RouteComponentProps<IProps>>(SearchInputTry)
+export default withAppBus<IProps>(
+  withRouter<RouteComponentProps<IProps> & IProps & IAppBusProps>(
+    SearchInputTry
+  )
 );

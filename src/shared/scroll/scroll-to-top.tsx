@@ -1,10 +1,9 @@
 import * as React from "react";
-import { IBusProps, withBus } from "react-bus";
-import { SCROLL_TO_TOP } from "src/shared/bus-events";
+import { IAppBusProps, withAppBus } from "src/shared/app-bus";
 
-class ScrollToTop extends React.Component<IBusProps> {
+class ScrollToTop extends React.Component<IAppBusProps> {
   public componentDidMount() {
-    this.props.bus.emit(SCROLL_TO_TOP);
+    this.props.appBus.scrollToTop();
   }
 
   public render() {
@@ -12,4 +11,4 @@ class ScrollToTop extends React.Component<IBusProps> {
   }
 }
 
-export default withBus<{}>()(ScrollToTop);
+export default withAppBus<{}>(ScrollToTop);

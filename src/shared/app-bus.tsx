@@ -1,46 +1,51 @@
+import { Emitter } from "mitt";
+import * as Mitt from "mitt/dist/mitt.umd";
 import * as React from "react";
-import * as mitt from "mitt";
 
-const SEARCH_BAR_FOCUS = "search-bar-focus";
 const SEARCH_BAR_BLUR = "search-bar-blur";
+const SEARCH_BAR_FOCUS = "search-bar-focus";
 const SCROLL_TO_TOP = "scroll-to-top";
 
 class AppBus {
-  private bus = new mitt();
+  private bus: mitt.Emitter;
 
-  addFocusSearchBarListener(callback: mitt.Handler) {
+  constructor() {
+    this.bus = new Mitt() as Emitter;
+  }
+
+  public addFocusSearchBarListener(callback: mitt.Handler) {
     this.bus.on(SEARCH_BAR_FOCUS, callback);
   }
 
-  removeFocusSearchBarListener(callback: mitt.Handler) {
+  public removeFocusSearchBarListener(callback: mitt.Handler) {
     this.bus.off(SEARCH_BAR_FOCUS, callback);
   }
 
-  focusSearchBar() {
+  public focusSearchBar() {
     this.bus.emit(SEARCH_BAR_FOCUS);
   }
 
-  addBlurSearchBarListener(callback: mitt.Handler) {
+  public addBlurSearchBarListener(callback: mitt.Handler) {
     this.bus.on(SEARCH_BAR_BLUR, callback);
   }
 
-  removeBlurSearchBarListener(callback: mitt.Handler) {
+  public removeBlurSearchBarListener(callback: mitt.Handler) {
     this.bus.off(SEARCH_BAR_BLUR, callback);
   }
 
-  blurSearchBar() {
+  public blurSearchBar() {
     this.bus.emit(SEARCH_BAR_BLUR);
   }
 
-  addScrollToTopListener(callback: mitt.Handler) {
+  public addScrollToTopListener(callback: mitt.Handler) {
     this.bus.on(SCROLL_TO_TOP, callback);
   }
 
-  removeScrollToTopListener(callback: mitt.Handler) {
+  public removeScrollToTopListener(callback: mitt.Handler) {
     this.bus.off(SCROLL_TO_TOP, callback);
   }
 
-  scrollToTop() {
+  public scrollToTop() {
     this.bus.emit(SCROLL_TO_TOP);
   }
 }
