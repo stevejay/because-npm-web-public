@@ -57,8 +57,6 @@ class SearchInput extends React.Component<IAllProps, IState> {
     this.props.bus.searchBarBlur.removeListener(this.handleSearchBarBlur);
   }
 
-  // TODO can I push <div className={styles.menuContainer}> lower?
-
   public render() {
     const { value, onChange } = this.props;
     const { typeaheadValue } = this.state;
