@@ -1,7 +1,9 @@
 import * as _ from "lodash";
 
 export default function getErrorStatusCode(error: any) {
-  if (!error) {
+  if (_.isFinite(error)) {
+    return error;
+  } else if (!error) {
     return 500;
   } else if (error.status) {
     return Number(error.status);

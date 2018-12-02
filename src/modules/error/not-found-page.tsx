@@ -1,6 +1,13 @@
 import * as React from "react";
-import styles from "./not-found-page.css";
+import { ErrorMessage } from "src/shared/content-state";
+import ScrollToTop from "src/shared/scroll/scroll-to-top";
+// import styles from "./not-found-page.css";
 
-const NotFoundPage = () => <main className={styles.container}>Not found</main>;
+const NotFoundPage = () => (
+  <>
+    <ScrollToTop />
+    <ErrorMessage error={404} />
+  </>
+);
 
 export default NotFoundPage;

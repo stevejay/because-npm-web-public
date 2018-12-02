@@ -5,7 +5,7 @@ import { EMAIL, WEBSITE } from "./constants";
 import LegalContent from "./legal-content";
 
 const PrivacyPage = () => (
-  <React.Fragment>
+  <>
     <ScrollToTop />
     <LegalContent>
       <h1>Privacy Policy</h1>
@@ -259,7 +259,7 @@ const PrivacyPage = () => (
         <li>By email: {EMAIL}</li>
       </ul>
     </LegalContent>
-  </React.Fragment>
+  </>
 );
 
 export default shouldUpdate(() => false)(PrivacyPage);

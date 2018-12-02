@@ -17,6 +17,9 @@ const Footer = () => (
       <li className={styles.link}>
         <Link to="/privacy">Privacy &amp; Cookies</Link>
       </li>
+      <li className={styles.link}>
+        <Link to="/credits">Credits</Link>
+      </li>
     </ul>
   </footer>
 );

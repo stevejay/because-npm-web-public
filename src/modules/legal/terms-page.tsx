@@ -5,7 +5,7 @@ import { EMAIL, WEBSITE } from "./constants";
 import LegalContent from "./legal-content";
 
 const TermsPage = () => (
-  <React.Fragment>
+  <>
     <ScrollToTop />
     <LegalContent>
       <h1>Terms and Conditions</h1>
@@ -141,7 +141,7 @@ const TermsPage = () => (
         {EMAIL}.
       </p>
     </LegalContent>
-  </React.Fragment>
+  </>
 );
 
 export default shouldUpdate(() => false)(TermsPage);

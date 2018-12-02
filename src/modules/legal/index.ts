@@ -1,3 +1,4 @@
+import CreditsPage from "./credits-page";
 import PrivacyPage from "./privacy-page";
 import TermsPage from "./terms-page";
-export { PrivacyPage, TermsPage };
+export { CreditsPage, PrivacyPage, TermsPage };
