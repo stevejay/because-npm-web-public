@@ -16,7 +16,7 @@ class PackagePageHandler extends React.Component<AllProps> {
   }
 
   public componentDidUpdate(prevProps: AllProps) {
-    if (this.props.match.params[0] !== prevProps.match.params[0]) {
+    if (this.getNodeId(this.props) !== this.getNodeId(prevProps)) {
       this.updateRecentHistory();
     }
   }
@@ -28,9 +28,13 @@ class PackagePageHandler extends React.Component<AllProps> {
   private updateRecentHistory() {
     this.props.mutate({
       variables: {
-        nodeId: this.props.match.params[0]
+        nodeId: this.getNodeId(this.props)
       }
     });
+  }
+
+  private getNodeId(props: AllProps) {
+    return props.match.params[0];
   }
 }
 

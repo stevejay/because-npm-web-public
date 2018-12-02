@@ -19,12 +19,10 @@ class EdgeHandler extends React.Component<IProps, IState> {
   }
 
   public render() {
-    const { edge } = this.props;
-    const { expanded } = this.state;
     return (
       <Edge
-        edge={edge}
-        expanded={expanded}
+        edge={this.props.edge}
+        expanded={this.state.expanded}
         onClick={this.handleSeeCommentsClick}
       />
     );

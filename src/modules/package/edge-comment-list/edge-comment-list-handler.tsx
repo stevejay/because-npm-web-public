@@ -6,6 +6,7 @@ import Delay from "react-delay";
 import { ErrorMessage, Message } from "src/shared/content-state";
 import { IEdgeComment } from "src/types/domain-types";
 import { IFetchMoreFunc, ISearchNode } from "src/types/graphql-types";
+import { EDGE_COMMENT_DEFAULT_TAKE } from "../constants";
 import { EdgeCommentSearch } from "../graphql/queries";
 import {
   IEdgeCommentSearchResult,
@@ -31,7 +32,7 @@ class EdgeCommentListHandler extends React.Component<IProps> {
         variables={{
           after: null,
           edgeId,
-          first: 15
+          first: EDGE_COMMENT_DEFAULT_TAKE
         }}
       >
         {({ loading, error, data, fetchMore }) => {

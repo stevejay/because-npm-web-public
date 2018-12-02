@@ -13,7 +13,7 @@ interface IProps {
 
 const EdgeList: React.SFC<IProps> = ({ edges, hasNextPage, onMore }) => (
   <>
-    {edges.map((edge, index: number) => (
+    {edges.map((edge, index) => (
       <EdgeHandler
         key={edge.node.id}
         edge={edge.node}

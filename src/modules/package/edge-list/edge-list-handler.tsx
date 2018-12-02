@@ -7,6 +7,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { ErrorMessage, Message } from "src/shared/content-state";
 import { IEdge } from "src/types/domain-types";
 import { IFetchMoreFunc, ISearchNode } from "src/types/graphql-types";
+import { EDGE_DEFAULT_TAKE } from "../constants";
 import { EdgeSearch } from "../graphql/queries";
 import { IEdgeSearchResult, IEdgeSearchVariables } from "../types";
 import EdgeList from "./edge-list";
@@ -23,7 +24,7 @@ class EdgeListHandler extends React.Component<AllProps> {
         query={EdgeSearch}
         variables={{
           after: null,
-          first: 15,
+          first: EDGE_DEFAULT_TAKE,
           tailNodeId: match.params[0]
         }}
       >
@@ -53,6 +54,7 @@ class EdgeListHandler extends React.Component<AllProps> {
     );
   }
 
+  // TODO Find a better way to manage fetchMore updating of the cache:
   private handleMore = (
     data: IEdgeSearchResult,
     fetchMore: IFetchMoreFunc<IEdgeSearchResult>

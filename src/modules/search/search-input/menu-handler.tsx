@@ -31,28 +31,21 @@ const MenuHandler: React.SFC<IQueryProps & IOwnProps> = ({
   getMenuProps,
   highlightedIndex,
   isOpen
-}) => {
-  // tslint:disable-next-line:no-console
-  // console.log("data!", JSON.stringify(data));
-  return (
-    <Menu
-      data={data}
-      getItemProps={getItemProps}
-      getMenuProps={getMenuProps}
-      highlightedIndex={highlightedIndex}
-      isOpen={isOpen}
-    />
-  );
-};
+}) => (
+  <Menu
+    data={data}
+    getItemProps={getItemProps}
+    getMenuProps={getMenuProps}
+    highlightedIndex={highlightedIndex}
+    isOpen={isOpen}
+  />
+);
 
 export default graphql<IOwnProps, {}, IVariables>(AutocompleteNodeSearch, {
   options: (props: IOwnProps) => ({
-    // fetchPolicy: "network-only",
     variables: {
       first: MAX_AUTOCOMPLETE_ITEMS,
       term: props.typeaheadValue
     }
   })
-  // skip: ({ typeaheadValue }: IOwnProps) =>
-  //   !typeaheadValue || typeaheadValue.length <= 2
 })(MenuHandler);
