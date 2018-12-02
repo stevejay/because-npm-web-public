@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import { BulletList } from "react-content-loader";
 import Delay from "react-delay";
 import { RouteComponentProps, withRouter } from "react-router";
-import { Error, Message } from "src/shared/content-state";
+import { ErrorMessage, Message } from "src/shared/content-state";
 import { IEdge } from "src/types/domain-types";
 import { IFetchMoreFunc, ISearchNode } from "src/types/graphql-types";
 import { EdgeSearch } from "../graphql/queries";
@@ -29,7 +29,7 @@ class EdgeListHandler extends React.Component<AllProps> {
       >
         {({ loading, error, data, fetchMore }) => {
           if (error) {
-            return <Error />;
+            return <ErrorMessage error={error} />;
           } else if (loading || !data) {
             return (
               <Delay wait={1000}>

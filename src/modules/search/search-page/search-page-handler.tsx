@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { ChildDataProps, graphql, Query } from "react-apollo";
-import { Error, Loading } from "src/shared/content-state";
+import { ErrorMessage, Loading } from "src/shared/content-state";
 import { NodeSearch, SearchParams } from "../graphql/queries";
 import { INodeSearchResult, INodeSearchVariables } from "../types";
 import SearchPage from "./search-page";
@@ -32,7 +32,7 @@ class SearchPageHandler extends React.Component<ChildProps> {
       >
         {({ loading, error, data, fetchMore }) => {
           if (error) {
-            return <Error />;
+            return <ErrorMessage error={error} />;
           } else if (loading || !data) {
             return <Loading delayMs={1000} />;
           } else {

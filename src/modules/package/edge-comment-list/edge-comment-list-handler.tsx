@@ -3,7 +3,7 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { BulletList } from "react-content-loader";
 import Delay from "react-delay";
-import { Error, Message } from "src/shared/content-state";
+import { ErrorMessage, Message } from "src/shared/content-state";
 import { IEdgeComment } from "src/types/domain-types";
 import { IFetchMoreFunc, ISearchNode } from "src/types/graphql-types";
 import { EdgeCommentSearch } from "../graphql/queries";
@@ -36,7 +36,7 @@ class EdgeCommentListHandler extends React.Component<IProps> {
       >
         {({ loading, error, data, fetchMore }) => {
           if (error) {
-            return <Error />;
+            return <ErrorMessage error={error} />;
           } else if (loading || !data) {
             return (
               <Delay wait={1000}>
