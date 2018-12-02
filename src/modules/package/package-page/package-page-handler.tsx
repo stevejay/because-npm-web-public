@@ -5,7 +5,7 @@ import { UpdateRecentHistoryPackages } from "../graphql/mutations";
 import PackagePage from "./package-page";
 
 interface IVariables {
-  nodeName: string;
+  nodeId: string;
 }
 
 type AllProps = RouteComponentProps<{}> & {} & MutateProps<{}, IVariables>;
@@ -28,7 +28,7 @@ class PackagePageHandler extends React.Component<AllProps> {
   private updateRecentHistory() {
     this.props.mutate({
       variables: {
-        nodeName: this.props.match.params[0]
+        nodeId: this.props.match.params[0]
       }
     });
   }

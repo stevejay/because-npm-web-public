@@ -3,13 +3,16 @@ import ContentLoader from "react-content-loader";
 import { INode } from "src/types/domain-types";
 import styles from "./package-detail.css";
 
-const PackageDetail: React.SFC<{ nodeName: string; node: INode }> = ({
-  nodeName,
-  node
-}) => (
+interface IProps {
+  nodeId: string;
+  node: INode;
+  loading: boolean;
+}
+
+const PackageDetail: React.SFC<IProps> = ({ nodeId, node, loading }) => (
   <article className={styles.container}>
-    <h1 className={styles.header}>{node ? node.id : nodeName}</h1>
-    {node && (
+    <h1 className={styles.header}>{nodeId}</h1>
+    {!loading && node && (
       <>
         <p className={styles.description}>{node ? node.description : ""}</p>
         <p className={styles.link}>
@@ -17,7 +20,7 @@ const PackageDetail: React.SFC<{ nodeName: string; node: INode }> = ({
         </p>
       </>
     )}
-    {!node && (
+    {(loading || !node) && (
       <ContentLoader
         height={25}
         width={310}

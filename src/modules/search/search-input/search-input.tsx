@@ -85,6 +85,7 @@ class SearchInput extends React.Component<IAllProps, IState> {
             </label>
             <input
               {...getInputProps({
+                autoCapitalize: "off",
                 autoComplete: "off",
                 autoCorrect: "off",
                 className: styles.input,

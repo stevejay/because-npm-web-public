@@ -3,7 +3,7 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { BulletList } from "react-content-loader";
 import Delay from "react-delay";
-import { Error, NoGraphResults } from "src/shared/content-state";
+import { Error, Message } from "src/shared/content-state";
 import { IEdgeComment } from "src/types/domain-types";
 import { IFetchMoreFunc, ISearchNode } from "src/types/graphql-types";
 import { EdgeCommentSearch } from "../graphql/queries";
@@ -47,7 +47,7 @@ class EdgeCommentListHandler extends React.Component<IProps> {
             !data.edgeCommentSearch ||
             _.isEmpty(data.edgeCommentSearch.edges)
           ) {
-            return <NoGraphResults text="No matching comments" />;
+            return <Message>No comments found for this package</Message>;
           } else {
             return (
               <EdgeCommentList

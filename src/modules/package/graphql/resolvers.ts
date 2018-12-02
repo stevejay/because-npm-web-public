@@ -21,7 +21,7 @@ export default {
   resolvers: {
     Mutation: {
       updateRecentHistoryPackages: (__: any, values: any, { cache }: any) => {
-        const newPackage: string = values.nodeName;
+        const newPackage: string = values.nodeId;
         const currentState: IRecentHistoryPackagesSlice = cache.readQuery({
           query: RecentHistory
         });

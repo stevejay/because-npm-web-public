@@ -5,11 +5,12 @@
   border: 3px solid $primary-800;
   border-radius: 6px;
   padding: $gutter;
+  overflow: hidden;
 }
 
 .header {
+  @include package-name-display;
   font-size: 1.75rem;
-  line-height: 1;
   text-transform: lowercase;
   margin: 0 0 0.5em 0;
   color: $primary-800;

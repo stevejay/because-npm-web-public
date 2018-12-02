@@ -1,6 +1,7 @@
 import * as React from "react";
 import { IconType } from "react-icons/lib/iconBase";
 import ContentBox from "./content-box";
+import ContentText from "./content-text";
 import styles from "./message.css";
 
 interface IProps {
@@ -11,7 +12,7 @@ interface IProps {
 const Message: React.SFC<IProps> = ({ icon: Icon, children }) => (
   <ContentBox>
     {Icon && <Icon className={styles.icon} />}
-    <h2 className={styles.heading}>{children}</h2>
+    <ContentText>{children}</ContentText>
   </ContentBox>
 );
 

@@ -13,15 +13,19 @@ class NodeByNameQuery extends Query<
 
 type Props = RouteComponentProps<{}> & {};
 
-const PackageDetailHandler: React.SFC<Props> = ({ match }) => (
-  <NodeByNameQuery query={NodeByName} variables={{ id: match.params[0] }}>
-    {({ data }) => (
-      <PackageDetail
-        nodeName={match.params[0]}
-        node={_.get(data, "node.node", null)}
-      />
-    )}
-  </NodeByNameQuery>
-);
+const PackageDetailHandler: React.SFC<Props> = ({ match }) => {
+  const nodeId = match.params[0];
+  return (
+    <NodeByNameQuery query={NodeByName} variables={{ id: nodeId }}>
+      {({ data, loading }) => (
+        <PackageDetail
+          nodeId={nodeId}
+          node={_.get(data, "node.node", null)}
+          loading={loading}
+        />
+      )}
+    </NodeByNameQuery>
+  );
+};
 
 export default withRouter<RouteComponentProps<{}>>(PackageDetailHandler);

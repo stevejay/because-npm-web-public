@@ -1,4 +1,5 @@
 import * as React from "react";
+import ContentText from "./content-text";
 import styles from "./error-message.css";
 
 interface IProps {
@@ -7,10 +8,10 @@ interface IProps {
 }
 
 const ErrorMessage: React.SFC<IProps> = ({ errorCode, title }) => (
-  <h1 className={styles.container}>
+  <div className={styles.container}>
     <span className={styles.errorCode}>{errorCode}</span>
-    <span className={styles.title}>{title}</span>
-  </h1>
+    <ContentText>{title}</ContentText>
+  </div>
 );
 
 export default ErrorMessage;

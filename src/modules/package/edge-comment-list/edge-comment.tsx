@@ -12,9 +12,7 @@ const EdgeComment: React.SFC<IProps> = ({ edgeComment }) => (
     <p className={styles.description}>{edgeComment.comment}</p>
     <p className={styles.info}>
       <span>{toDisplayDate(Number(edgeComment.timestampMs))}</span>
-      <a href={edgeComment.sourceLink}>
-        View Tweet by {edgeComment.sourceUserId}
-      </a>
+      <a href={edgeComment.sourceLink}>View Tweet</a>
     </p>
   </li>
 );

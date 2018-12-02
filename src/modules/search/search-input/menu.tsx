@@ -19,7 +19,11 @@ const Menu: React.SFC<IProps> = ({
   highlightedIndex,
   isOpen
 }) => (
-  <ul {...getMenuProps({ className: styles.menu })}>
+  <ul
+    {...getMenuProps({
+      className: `${styles.menu} ${isOpen ? "open" : "closed"}`
+    })}
+  >
     {isOpen &&
       data &&
       data.autocompleteNodeSearch &&
