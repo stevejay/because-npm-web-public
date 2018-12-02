@@ -9,7 +9,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   max-height: calc(100vh - 7rem);
   overflow-y: scroll;
-  border-radius: 8px;
   @include from-phone {
     left: 0px;
     right: 30px;

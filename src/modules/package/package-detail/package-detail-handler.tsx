@@ -8,9 +8,6 @@ import { NodeByName } from "../graphql/queries";
 import { INodeByNameSearchResult, INodeByNameSearchVariables } from "../types";
 import PackageDetail from "./package-detail";
 
-// TODO create an error component that can interpret the graphql
-// and show 404 or 500 error as appropriate.
-
 class NodeByNameQuery extends Query<
   INodeByNameSearchResult,
   INodeByNameSearchVariables
@@ -22,11 +19,10 @@ const PackageDetailHandler: React.SFC<Props> = ({ match }) => {
   const nodeId = match.params[0];
   return (
     <NodeByNameQuery query={NodeByName} variables={{ id: nodeId }}>
-      {({ data, loading, error }) => {
-        if (error) {
-          return <ErrorMessage error={error} />;
-        }
-        return (
+      {({ data, loading, error }) =>
+        error ? (
+          <ErrorMessage error={error} />
+        ) : (
           <>
             <PackageDetail
               nodeId={nodeId}
@@ -35,8 +31,8 @@ const PackageDetailHandler: React.SFC<Props> = ({ match }) => {
             />
             <EdgeList />
           </>
-        );
-      }}
+        )
+      }
     </NodeByNameQuery>
   );
 };

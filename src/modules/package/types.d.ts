@@ -44,3 +44,19 @@ export interface INodeByNameSearchResult {
     node: INode;
   };
 }
+
+// node page search
+
+export interface INodePageSearchVariables {
+  after: string | null;
+  id: string;
+  first: number;
+}
+
+export interface INodePageSearchResult {
+  edgeSearch: ISearchEdges<IEdge>;
+  edgeCommentSearch: ISearchEdges<IEdgeComment>;
+  node: {
+    node: INode;
+  };
+}

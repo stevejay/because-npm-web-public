@@ -1,6 +1,5 @@
 import * as React from "react";
-import ContentBox from "src/shared/content-state/content-box";
-import ContentText from "src/shared/content-state/content-text";
+import { ContentBox, ContentText } from "src/shared/content-state";
 import NoResultsGraphic from "./no-results-graphic";
 import styles from "./no-results.css";
 

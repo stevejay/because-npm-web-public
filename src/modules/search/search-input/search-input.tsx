@@ -97,13 +97,15 @@ class SearchInput extends React.Component<IAllProps, IState> {
               })}
             />
             <div className={styles.menuContainer}>
-              <MenuHandler
-                getItemProps={getItemProps}
-                getMenuProps={getMenuProps}
-                highlightedIndex={highlightedIndex}
-                typeaheadValue={typeaheadValue}
-                isOpen={isOpen}
-              />
+              {typeaheadValue && typeaheadValue.length > 2 && (
+                <MenuHandler
+                  getItemProps={getItemProps}
+                  getMenuProps={getMenuProps}
+                  highlightedIndex={highlightedIndex}
+                  typeaheadValue={typeaheadValue}
+                  isOpen={isOpen}
+                />
+              )}
             </div>
           </div>
         )}
