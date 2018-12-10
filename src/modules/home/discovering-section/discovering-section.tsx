@@ -1,7 +1,7 @@
 import * as React from "react";
-import Button, { ButtonType } from "src/shared/button";
+import Button, { ButtonType } from "../../../shared/button";
 import SectionContainer from "../section-container";
-import styles from "./discovering-section.css";
+import styles from "./discovering-section.module.scss";
 import GraphImage from "./graph-image";
 
 interface IProps {

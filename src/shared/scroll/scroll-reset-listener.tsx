@@ -1,6 +1,6 @@
 import window from "global/window";
 import * as React from "react";
-import { IAppBusProps, withAppBus } from "src/shared/app-bus/app-bus";
+import { IAppBusProps, withAppBus } from "../app-bus/app-bus";
 
 class ScrollResetListener extends React.Component<IAppBusProps> {
   public componentDidMount() {

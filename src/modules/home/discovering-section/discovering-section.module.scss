@@ -1,0 +1,56 @@
+@import "styles/_base.scss";
+.section {
+  background-color: $grey-800;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  @include from-tablet {
+    flex-direction: row;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  @include display-1;
+  color: $primary-300;
+}
+
+.paragraph {
+  @include display-paragraph;
+  color: $primary-300;
+}
+
+.button {
+  @include from-tablet {
+    max-width: 15em;
+  }
+  font-size: 1rem;
+  @media (min-width: 320px) and (max-width: 991px) {
+    font-size: calc(1rem + 8 * (100vw - 320px) / (992 - 320));
+  }
+  @include from-desktop {
+    font-size: calc(1rem + 8px);
+  }
+}
+
+.image {
+  width: 250px;
+  margin: $gutter * 1.25 auto;
+  @include from-phone {
+    width: 285px;
+  }
+  @include from-tablet {
+    margin-left: $gutter * 1.5;
+    margin-right: 0;
+    width: 320px;
+  }
+  @include from-desktop {
+    width: 355px;
+  }
+}

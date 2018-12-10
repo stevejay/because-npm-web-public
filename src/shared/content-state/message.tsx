@@ -2,7 +2,7 @@ import * as React from "react";
 import { IconType } from "react-icons/lib/iconBase";
 import ContentBox from "./content-box";
 import ContentText from "./content-text";
-import styles from "./message.css";
+import styles from "./message.module.scss";
 
 interface IProps {
   icon?: IconType;

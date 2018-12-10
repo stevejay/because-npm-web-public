@@ -1,0 +1,10 @@
+@import "styles/_base.scss";
+.page {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: $grey-50;
+}

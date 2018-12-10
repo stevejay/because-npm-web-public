@@ -1,7 +1,7 @@
 import * as React from "react";
 import PackageDetail from "../package-detail";
 import RecentPackages from "../recent-packages";
-import styles from "./package-page.css";
+import styles from "./package-page.module.scss";
 
 const PackagePage: React.SFC = () => (
   <main className={styles.container}>

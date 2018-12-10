@@ -1,7 +1,7 @@
 import * as React from "react";
 import { shouldUpdate } from "recompact";
-import Logo from "src/shared/logo/logo";
-import styles from "./header.css";
+import Logo from "../../shared/logo/logo";
+import styles from "./header.module.scss";
 
 const Header = () => (
   <header className={styles.header}>

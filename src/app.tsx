@@ -3,8 +3,8 @@ import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import { Route, Switch } from "react-router";
 import { withRouter } from "react-router-dom";
-import { Page, PageMain } from "src/shared/page";
-import ScrollResetListener from "src/shared/scroll/scroll-reset-listener";
+import { Page, PageMain } from "./shared/page";
+import ScrollResetListener from "./shared/scroll/scroll-reset-listener";
 import "what-input";
 import apolloClient from "./apollo-client";
 import { NotFoundPage } from "./modules/error";
@@ -14,7 +14,7 @@ import { HomePage } from "./modules/home";
 import { CreditsPage, PrivacyPage, TermsPage } from "./modules/legal";
 import { PackagePage } from "./modules/package";
 import { SearchBar, SearchPage } from "./modules/search";
-import "./scss/app.css";
+import "./styles/app.scss";
 
 const App = () => (
   <ApolloProvider client={apolloClient}>

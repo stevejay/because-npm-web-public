@@ -2,7 +2,7 @@ import * as React from "react";
 import Delay from "react-delay";
 import { IoIosHourglass as TimeIcon } from "react-icons/io";
 import ContentBox from "./content-box";
-import styles from "./loading.css";
+import styles from "./loading.module.scss";
 
 interface IProps {
   delayMs?: number;

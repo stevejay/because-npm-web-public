@@ -1,13 +1,13 @@
 import * as _ from "lodash";
 import * as React from "react";
 import { IoIosSearch } from "react-icons/io";
-import { Message } from "src/shared/content-state";
-import ScrollToTop from "src/shared/scroll/scroll-to-top";
-import { INode } from "src/types/domain-types";
-import { ISearchNode } from "src/types/graphql-types";
+import { Message } from "../../../shared/content-state";
+import ScrollToTop from "../../../shared/scroll/scroll-to-top";
+import { INode } from "../../../types/domain-types";
+import { ISearchNode } from "../../../types/graphql-types";
 import NoResults from "../no-results";
 import SearchResult from "./search-result";
-import styles from "./search-result-list.css";
+import styles from "./search-result-list.module.scss";
 
 interface IProps {
   results: Array<ISearchNode<INode>> | null;

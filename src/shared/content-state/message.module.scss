@@ -1,0 +1,11 @@
+@import "styles/_base.scss";
+
+.icon {
+  width: 4rem;
+  height: 4rem;
+  color: $grey-400;
+  @include from-tablet {
+    width: 5rem;
+    height: 5rem;
+  }
+}

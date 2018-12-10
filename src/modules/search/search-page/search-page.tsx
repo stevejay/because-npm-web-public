@@ -1,9 +1,9 @@
 import * as _ from "lodash";
 import * as React from "react";
-import { INode } from "src/types/domain-types";
-import { ISearchNode } from "src/types/graphql-types";
+import { INode } from "../../../types/domain-types";
+import { ISearchNode } from "../../../types/graphql-types";
 import SearchResultList from "../search-result-list";
-import styles from "./search-page.css";
+import styles from "./search-page.module.scss";
 
 interface IProps {
   results: Array<ISearchNode<INode>> | null;

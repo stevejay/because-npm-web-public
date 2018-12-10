@@ -1,7 +1,7 @@
 import * as React from "react";
-import { INode } from "src/types/domain-types";
+import { INode } from "../../../types/domain-types";
 import PackageDetailLoader from "./package-detail-loader";
-import styles from "./package-detail.css";
+import styles from "./package-detail.module.scss";
 
 interface IProps {
   nodeId: string;

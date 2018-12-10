@@ -1,0 +1,12 @@
+@import "styles/_base.scss";
+.button {
+  @include icon-button(2em);
+  color: $grey-600;
+  transition: color 0.15s, transform 0.2s;
+  &:hover {
+    color: $grey-900;
+  }
+  &:active {
+    transform: scale(1.1);
+  }
+}

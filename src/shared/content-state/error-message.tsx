@@ -2,10 +2,10 @@ import * as _ from "lodash";
 import * as React from "react";
 import ContentBox from "./content-box";
 import ContentText from "./content-text";
-import styles from "./error-message.css";
+import styles from "./error-message.module.scss";
 import getErrorStatusCode from "./get-error-status-code";
 
-const ERROR_MESSAGES = {
+const ERROR_MESSAGES: { [key: number]: string } = {
   404: "Not Found",
   500: "Server Error"
 };

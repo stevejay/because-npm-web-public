@@ -1,0 +1,44 @@
+@import "styles/_base.scss";
+.title {
+  display: block;
+  margin: 0.5em 0 0;
+  font-size: 1.25rem; // margin: 0.5em 0 0;
+  font-weight: 300;
+  letter-spacing: 0.005em;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: lowercase;
+  color: $grey-800;
+  @include from-tablet {
+    font-size: 1.25rem * 7/6;
+  }
+}
+
+// .title {
+//   display: block;
+//   font-size: 1.25rem;
+//   margin: 0;
+//   font-weight: 700;
+//   letter-spacing: 0.05em;
+//   line-height: 1.3;
+//   text-transform: lowercase;
+//   color: $primary-600;
+//   @include from-tablet {
+//     font-size: 1.25rem * 4/3;
+//   }
+// }
+// .heading {
+//   font-size: 1rem;
+//   margin: 0;
+//   padding: 0em 1.5em 0.8em;
+//   font-weight: bold;
+//   letter-spacing: 0.005em;
+//   line-height: 1.3;
+//   text-align: center;
+//   text-transform: lowercase;
+//   color: $grey-400;
+//   border-radius: 0.75em;
+//   @include from-tablet {
+//     font-size: 1.5rem;
+//   }
+// }

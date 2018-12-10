@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { graphql, MutateProps } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
@@ -34,10 +35,10 @@ class PackagePageHandler extends React.Component<AllProps> {
   }
 
   private getNodeId(props: AllProps) {
-    return props.match.params[0];
+    return _.get(props.match, "params[0]");
   }
 }
 
 export default graphql<{}, {}, IVariables>(UpdateRecentHistoryPackages)(
-  withRouter<AllProps>(PackagePageHandler)
+  withRouter<any>(PackagePageHandler) // TODO get rid of any here
 );

@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./legal-content.css";
+import styles from "./legal-content.module.scss";
 
 interface IProps {
   children: React.ReactNode;

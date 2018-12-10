@@ -3,9 +3,9 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { BulletList } from "react-content-loader";
 import Delay from "react-delay";
-import { ErrorMessage, Message } from "src/shared/content-state";
-import { IEdgeComment } from "src/types/domain-types";
-import { IFetchMoreFunc, ISearchNode } from "src/types/graphql-types";
+import { ErrorMessage, Message } from "../../../shared/content-state";
+import { IEdgeComment } from "../../../types/domain-types";
+import { IFetchMoreFunc, ISearchNode } from "../../../types/graphql-types";
 import { EDGE_COMMENT_DEFAULT_TAKE } from "../constants";
 import { EdgeCommentSearch } from "../graphql/queries";
 import {
@@ -64,15 +64,17 @@ class EdgeCommentListHandler extends React.Component<IProps> {
     );
   }
 
+  // TODO fix these any
+
   private handleMore = (
     data: IEdgeCommentSearchResult,
-    fetchMore: IFetchMoreFunc<IEdgeCommentSearchResult>
+    fetchMore: any //IFetchMoreFunc<IEdgeCommentSearchResult>
   ) => {
     const lastEdge: ISearchNode<IEdgeComment> | undefined = _.last(
       data.edgeCommentSearch.edges
     );
     fetchMore({
-      updateQuery: (prev, { fetchMoreResult }) => {
+      updateQuery: (prev: any, { fetchMoreResult }: any) => {
         if (!fetchMoreResult) {
           return prev;
         }

@@ -1,2 +1,2 @@
-import { IAppBusProps, withAppBus } from "./app-bus";
-export { IAppBusProps, withAppBus };
+import { withAppBus } from "./app-bus";
+export { withAppBus };

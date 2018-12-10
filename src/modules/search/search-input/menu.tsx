@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import { IAutocompleteNodeSearchResult } from "../types";
 import MenuItem from "./menu-item";
-import styles from "./menu.css";
+import styles from "./menu.module.scss";
 
 interface IProps {
   data: IAutocompleteNodeSearchResult;

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { shouldUpdate } from "recompact";
-import ScrollToTop from "src/shared/scroll/scroll-to-top";
+import ScrollToTop from "../../shared/scroll/scroll-to-top";
 import { EMAIL, WEBSITE } from "./constants";
 import LegalContent from "./legal-content";
 

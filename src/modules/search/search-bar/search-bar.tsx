@@ -2,7 +2,7 @@ import * as React from "react";
 import { IoIosSearch } from "react-icons/io";
 import SearchInput from "../search-input";
 import Button from "./button";
-import styles from "./search-bar.css";
+import styles from "./search-bar.module.scss";
 
 interface IProps {
   searchTerm: string;

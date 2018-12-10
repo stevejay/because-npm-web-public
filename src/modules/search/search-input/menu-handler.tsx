@@ -14,7 +14,7 @@ interface IVariables {
 }
 
 interface IQueryProps {
-  data: any; // TODO try to remove any here.
+  data?: any; // TODO try to remove any here.
 }
 
 interface IOwnProps {

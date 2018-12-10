@@ -1,6 +1,6 @@
 import * as React from "react";
 import SectionContainer from "../section-container";
-import styles from "./contributing-section.css";
+import styles from "./contributing-section.module.scss";
 import TwitterImage from "./twitter-image";
 
 const ContributingSection = () => (

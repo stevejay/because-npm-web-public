@@ -22,7 +22,7 @@ class AppBus {
 const bus = new AppBus();
 
 export interface IAppBusProps {
-  bus: AppBus;
+  bus: any; // TODO get rid of any here
 }
 
 export function withAppBus<P = {}, S = any>(

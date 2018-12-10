@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./content-box.css";
+import styles from "./content-box.module.scss";
 
 interface IProps {
   children: React.ReactNode;

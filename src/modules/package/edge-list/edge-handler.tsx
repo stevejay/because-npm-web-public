@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import * as React from "react";
-import { IEdge } from "src/types/domain-types";
+import { IEdge } from "../../../types/domain-types";
 import Edge from "./edge";
 
 interface IProps {

@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { ErrorMessage } from "src/shared/content-state";
+import { ErrorMessage } from "../../../shared/content-state";
 import EdgeList from "../edge-list";
 import { NodeByName } from "../graphql/queries";
 import { INodeByNameSearchResult, INodeByNameSearchVariables } from "../types";
@@ -16,7 +16,7 @@ class NodeByNameQuery extends Query<
 type Props = RouteComponentProps<{}> & {};
 
 const PackageDetailHandler: React.SFC<Props> = ({ match }) => {
-  const nodeId = match.params[0];
+  const nodeId = _.get(match, "params[0]");
   return (
     <NodeByNameQuery query={NodeByName} variables={{ id: nodeId }}>
       {({ data, loading, error }) =>

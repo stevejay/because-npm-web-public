@@ -1,9 +1,9 @@
 import * as React from "react";
-import Button, { ButtonType } from "src/shared/button";
-import { IEdgeComment } from "src/types/domain-types";
-import { ISearchNode } from "src/types/graphql-types";
+import Button, { ButtonType } from "../../../shared/button";
+import { IEdgeComment } from "../../../types/domain-types";
+import { ISearchNode } from "../../../types/graphql-types";
 import EdgeComment from "./edge-comment";
-import styles from "./edge-comment-list.css";
+import styles from "./edge-comment-list.module.scss";
 
 interface IProps {
   edges: Array<ISearchNode<IEdgeComment>>;

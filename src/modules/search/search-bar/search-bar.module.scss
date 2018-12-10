@@ -1,0 +1,9 @@
+@import "styles/_base.scss";
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding: 0.35em 1em;
+  border-bottom: 1px solid $grey-300;
+}

@@ -2,9 +2,9 @@ import * as _ from "lodash";
 import * as React from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { IEdge } from "src/types/domain-types";
+import { IEdge } from "../../../types/domain-types";
 import EdgeCommentListHandler from "../edge-comment-list/edge-comment-list-handler";
-import styles from "./edge.css";
+import styles from "./edge.module.scss";
 
 interface IProps {
   expanded: boolean;

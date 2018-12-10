@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IAppBusProps, withAppBus } from "src/shared/app-bus/app-bus";
+import { IAppBusProps, withAppBus } from "../app-bus/app-bus";
 
 class ScrollToTop extends React.Component<IAppBusProps> {
   public componentDidMount() {

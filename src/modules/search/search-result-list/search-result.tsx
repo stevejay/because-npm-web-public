@@ -2,8 +2,8 @@ import * as React from "react";
 import { FaComment } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { shouldUpdate } from "recompact";
-import { INode } from "src/types/domain-types";
-import styles from "./search-result.css";
+import { INode } from "../../../types/domain-types";
+import styles from "./search-result.module.scss";
 
 interface IProps {
   result: INode;

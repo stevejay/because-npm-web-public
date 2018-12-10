@@ -1,7 +1,7 @@
 import * as React from "react";
-import { ContentBox, ContentText } from "src/shared/content-state";
+import { ContentBox, ContentText } from "../../../shared/content-state";
 import NoResultsGraphic from "./no-results-graphic";
-import styles from "./no-results.css";
+import styles from "./no-results.module.scss";
 
 const NoResults: React.SFC = () => (
   <ContentBox>

@@ -1,0 +1,25 @@
+@import "styles/_base.scss";
+.container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: $max-section-width;
+  margin: 0 auto;
+  @include from-tablet {
+    flex-direction: row;
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: $gutter;
+  @include from-phone {
+    margin: $gutter * 2;
+  }
+  @include from-tablet {
+    margin: $gutter * 2 $gutter $gutter * 2 $gutter * 2;
+  }
+}

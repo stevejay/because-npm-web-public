@@ -15,7 +15,7 @@ const requestLink = new ApolloLink(
   (operation, forward) =>
     new Observable(observer => {
       let handle: any;
-      Promise.resolve(operation)
+      Promise.all([operation])
         .then(() => {
           handle = forward
             ? forward(operation).subscribe({

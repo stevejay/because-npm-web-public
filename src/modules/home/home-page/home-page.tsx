@@ -1,8 +1,8 @@
 import * as React from "react";
-import ScrollToTop from "src/shared/scroll/scroll-to-top";
+import ScrollToTop from "../../../shared/scroll/scroll-to-top";
 import ContributingSection from "../contributing-section";
 import DiscoveringSection from "../discovering-section";
-import styles from "./home-page.css";
+import styles from "./home-page.module.scss";
 
 const HomePage = () => (
   <main className={styles.container}>

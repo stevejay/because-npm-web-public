@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./section-container.css";
+import styles from "./section-container.module.scss";
 
 interface IProps {
   className?: string;

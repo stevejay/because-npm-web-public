@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { shouldUpdate } from "recompact";
-import Logo from "src/shared/logo/logo";
-import styles from "./footer.css";
+import Logo from "../../shared/logo/logo";
+import styles from "./footer.module.scss";
 
 const Footer = () => (
   <footer className={styles.footer}>

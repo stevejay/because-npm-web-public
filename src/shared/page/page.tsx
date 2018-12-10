@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./page.css";
+import styles from "./page.module.scss";
 
 interface IProps {
   children: React.ReactNode;

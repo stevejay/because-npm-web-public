@@ -4,9 +4,9 @@ import { Query } from "react-apollo";
 import { BulletList } from "react-content-loader";
 import Delay from "react-delay";
 import { RouteComponentProps, withRouter } from "react-router";
-import { ErrorMessage, Message } from "src/shared/content-state";
-import { IEdge } from "src/types/domain-types";
-import { IFetchMoreFunc, ISearchNode } from "src/types/graphql-types";
+import { ErrorMessage, Message } from "../../../shared/content-state";
+import { IEdge } from "../../../types/domain-types";
+import { IFetchMoreFunc, ISearchNode } from "../../../types/graphql-types";
 import { EDGE_DEFAULT_TAKE } from "../constants";
 import { EdgeSearch } from "../graphql/queries";
 import { IEdgeSearchResult, IEdgeSearchVariables } from "../types";
@@ -25,7 +25,7 @@ class EdgeListHandler extends React.Component<AllProps> {
         variables={{
           after: null,
           first: EDGE_DEFAULT_TAKE,
-          tailNodeId: match.params[0]
+          tailNodeId: _.get(match, "params[0]")
         }}
       >
         {({ loading, error, data, fetchMore }) => {
@@ -54,16 +54,18 @@ class EdgeListHandler extends React.Component<AllProps> {
     );
   }
 
+  // TODO fix these any
+
   // TODO Find a better way to manage fetchMore updating of the cache:
   private handleMore = (
     data: IEdgeSearchResult,
-    fetchMore: IFetchMoreFunc<IEdgeSearchResult>
+    fetchMore: any // IFetchMoreFunc<IEdgeSearchResult>
   ) => {
     const lastEdge: ISearchNode<IEdge> | undefined = _.last(
       data.edgeSearch.edges
     );
     fetchMore({
-      updateQuery: (prev, { fetchMoreResult }) => {
+      updateQuery: (prev: any, { fetchMoreResult }: any) => {
         if (!fetchMoreResult) {
           return prev;
         }

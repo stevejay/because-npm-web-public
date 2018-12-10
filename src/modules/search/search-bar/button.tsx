@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IconType } from "react-icons/lib/iconBase";
-import styles from "./button.css";
+import styles from "./button.module.scss";
 
 type EventHandler = (event?: React.MouseEvent<HTMLButtonElement>) => void;
 type EventCallback = () => void;

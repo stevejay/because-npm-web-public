@@ -2,11 +2,14 @@ import * as _ from "lodash";
 import * as React from "react";
 import { graphql, MutationFn } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { IAppBusProps, withAppBus } from "src/shared/app-bus/app-bus";
+import { IAppBusProps, withAppBus } from "../../../shared/app-bus/app-bus";
 import { UpdateSearchParams } from "../graphql/mutations";
 import SearchBar from "./search-bar";
 
+// TODO OMG fix the any here
+
 interface IGraphqlProps {
+  data: any;
   mutate: MutationFn<{ searchTerm: string }>;
 }
 
@@ -15,7 +18,10 @@ interface IState {
 }
 
 class SearchBarHandler extends React.Component<
-  RouteComponentProps<IAppBusProps> & IGraphqlProps & IAppBusProps,
+  any,
+  // RouteComponentProps<IGraphqlProps & IAppBusProps> &
+  //  IGraphqlProps &
+  //   IAppBusProps,
   IState
 > {
   public state = { searchTerm: "" };
@@ -52,10 +58,6 @@ class SearchBarHandler extends React.Component<
   };
 }
 
-export default withAppBus<{}>(
-  graphql<IAppBusProps>(UpdateSearchParams)(
-    withRouter<
-      RouteComponentProps<IAppBusProps> & IGraphqlProps & IAppBusProps
-    >(SearchBarHandler)
-  )
+export default withAppBus<any>(
+  graphql<any>(UpdateSearchParams)(withRouter(SearchBarHandler))
 );

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { IEdgeComment } from "src/types/domain-types";
-import styles from "./edge-comment.css";
+import { IEdgeComment } from "../../../types/domain-types";
+import styles from "./edge-comment.module.scss";
 import toDisplayDate from "./to-display-date";
 
 interface IProps {

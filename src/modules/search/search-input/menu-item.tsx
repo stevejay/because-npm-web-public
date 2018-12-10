@@ -1,6 +1,6 @@
 import * as React from "react";
-import { INode } from "src/types/domain-types";
-import styles from "./menu-item.css";
+import { INode } from "../../../types/domain-types";
+import styles from "./menu-item.module.scss";
 
 interface IProps {
   item: INode;
