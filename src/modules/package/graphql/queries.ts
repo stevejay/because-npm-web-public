@@ -1,20 +1,21 @@
 import gql from "graphql-tag";
+import {
+  EdgeCommentFragments,
+  EdgeFragments,
+  NodeFragments
+} from "../../../shared/graphql/fragments";
 
 export const NodePage = gql`
   query NodePage($id: String!, $first: Int, $after: String) {
     node(id: $id) {
       node {
-        id
-        link
-        description
+        ...NodeCoreFields
       }
     }
     edgeSearch(tailNodeId: $id, first: $first, after: $after) {
       edges {
         node {
-          id
-          tailNodeId
-          headNodeId
+          ...EdgeCoreFields
         }
         cursor
       }
@@ -25,12 +26,7 @@ export const NodePage = gql`
     edgeCommentSearch(edgeId: $id, first: $first, after: $after) {
       edges {
         node {
-          id
-          edgeId
-          comment
-          sourceLink
-          sourceUserId
-          timestampMs
+          ...EdgeCommentCoreFields
         }
         cursor
       }
@@ -39,18 +35,20 @@ export const NodePage = gql`
       }
     }
   }
+  ${NodeFragments.coreFields}
+  ${EdgeFragments.coreFields}
+  ${EdgeCommentFragments.coreFields}
 `;
 
 export const NodeByName = gql`
   query Node($id: String!) {
     node(id: $id) {
       node {
-        id
-        link
-        description
+        ...NodeCoreFields
       }
     }
   }
+  ${NodeFragments.coreFields}
 `;
 
 export const EdgeSearch = gql`
@@ -58,9 +56,7 @@ export const EdgeSearch = gql`
     edgeSearch(tailNodeId: $tailNodeId, first: $first, after: $after) {
       edges {
         node {
-          id
-          tailNodeId
-          headNodeId
+          ...EdgeCoreFields
         }
         cursor
       }
@@ -69,6 +65,7 @@ export const EdgeSearch = gql`
       }
     }
   }
+  ${EdgeFragments.coreFields}
 `;
 
 export const EdgeCommentSearch = gql`
@@ -76,12 +73,7 @@ export const EdgeCommentSearch = gql`
     edgeCommentSearch(edgeId: $edgeId, first: $first, after: $after) {
       edges {
         node {
-          id
-          edgeId
-          comment
-          sourceLink
-          sourceUserId
-          timestampMs
+          ...EdgeCommentCoreFields
         }
         cursor
       }
@@ -90,6 +82,7 @@ export const EdgeCommentSearch = gql`
       }
     }
   }
+  ${EdgeCommentFragments.coreFields}
 `;
 
 export const RecentHistory = gql`

@@ -1,16 +1,16 @@
 import gql from "graphql-tag";
+import { NodeFragments } from "../../../shared/graphql/fragments";
 import { PAGE_SIZE } from "../constants";
 
 export const AutocompleteNodeSearch = gql`
   query AutocompleteNodeSearch($term: String!, $first: Int = ${PAGE_SIZE}) {
     autocompleteNodeSearch(term: $term, first: $first) {
       nodes {
-        id
-        description
-        link
+        ...NodeCoreFields
       }
     }
   }
+  ${NodeFragments.coreFields}
 `;
 
 export const NodeSearch = gql`
@@ -18,9 +18,7 @@ export const NodeSearch = gql`
     nodeSearch(term: $term, first: $first, after: $after) {
       edges {
         node {
-          id
-          description
-          link
+          ...NodeCoreFields
           edgeCount
           score
         }
@@ -31,6 +29,7 @@ export const NodeSearch = gql`
       }
     }
   }
+  ${NodeFragments.coreFields}
 `;
 
 export const SearchParams = gql`

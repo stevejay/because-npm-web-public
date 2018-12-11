@@ -4,12 +4,25 @@ import { ApolloLink, Observable } from "apollo-link";
 import { onError } from "apollo-link-error";
 import { HttpLink } from "apollo-link-http";
 import { withClientState } from "apollo-link-state";
-import * as _ from "lodash";
-import * as log from "loglevel";
+// import { toIdValue } from "apollo-utilities";
+import _ from "lodash";
+import log from "loglevel";
 import { resolvers as packageResolvers } from "./modules/package";
 import { resolvers as searchResolvers } from "./modules/search";
 
-const cache = new InMemoryCache();
+const cache: any = new InMemoryCache({
+  // cacheRedirects: {
+  //   Query: {
+  //     node: (_, args) =>
+  //       toIdValue(
+  //         cache.config.dataIdFromObject({
+  //           __typename: "Node",
+  //           id: args.id
+  //         })
+  //       )
+  //   }
+  // }
+});
 
 const requestLink = new ApolloLink(
   (operation, forward) =>
