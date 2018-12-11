@@ -8,9 +8,7 @@ import {
 export const NodePage = gql`
   query NodePage($id: String!, $first: Int, $after: String) {
     node(id: $id) {
-      node {
-        ...NodeCoreFields
-      }
+      ...NodeCoreFields
     }
     edgeSearch(tailNodeId: $id, first: $first, after: $after) {
       edges {
@@ -43,9 +41,7 @@ export const NodePage = gql`
 export const NodeByName = gql`
   query Node($id: String!) {
     node(id: $id) {
-      node {
-        ...NodeCoreFields
-      }
+      ...NodeCoreFields
     }
   }
   ${NodeFragments.coreFields}

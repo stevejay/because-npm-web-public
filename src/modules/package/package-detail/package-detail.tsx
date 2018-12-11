@@ -5,7 +5,7 @@ import styles from "./package-detail.module.scss";
 
 interface IProps {
   nodeId: string;
-  node: INode;
+  node: INode | null;
   loading: boolean;
 }
 

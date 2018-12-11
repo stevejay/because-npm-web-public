@@ -26,7 +26,7 @@ const PackageDetailHandler: React.SFC<Props> = ({ match }) => {
           <>
             <PackageDetail
               nodeId={nodeId}
-              node={_.get(data, "node.node", null)}
+              node={_.get(data, "node", null)}
               loading={loading}
             />
             <EdgeList />

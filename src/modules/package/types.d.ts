@@ -40,9 +40,7 @@ export interface INodeByNameSearchVariables {
 }
 
 export interface INodeByNameSearchResult {
-  node: {
-    node: INode;
-  };
+  node: INode | null;
 }
 
 // node page search
@@ -56,7 +54,5 @@ export interface INodePageSearchVariables {
 export interface INodePageSearchResult {
   edgeSearch: ISearchEdges<IEdge>;
   edgeCommentSearch: ISearchEdges<IEdgeComment>;
-  node: {
-    node: INode;
-  };
+  node: INode;
 }
