@@ -3,7 +3,7 @@ import {
   EdgeCommentFragments,
   EdgeFragments,
   NodeFragments
-} from "../../../shared/graphql/fragments";
+} from "../../../shared/graphql";
 
 export const NodePage = gql`
   query NodePage($id: String!, $first: Int, $after: String) {

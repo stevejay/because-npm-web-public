@@ -1,0 +1,7 @@
+{
+  "tags": ["package"],
+  "exports": {
+    "index": "*"
+  },
+  "imports": ["shared", "types"]
+}

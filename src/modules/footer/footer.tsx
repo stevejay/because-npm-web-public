@@ -1,7 +1,7 @@
 import { stubTrue } from "lodash";
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../shared/logo/logo";
+import Logo from "../../shared/logo";
 import styles from "./footer.module.scss";
 
 const Footer = () => (

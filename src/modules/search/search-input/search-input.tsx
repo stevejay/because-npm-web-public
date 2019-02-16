@@ -3,8 +3,7 @@ import { debounce } from "lodash";
 import React from "react";
 import { withApollo } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { withAppBus } from "../../../shared/app-bus";
-import { IAppBusProps } from "../../../shared/app-bus/app-bus-context";
+import { withAppBus, AppBus } from "../../../shared/app-bus";
 import { AutocompleteNodeSearch } from "../graphql/queries";
 import MenuHandler from "./menu-handler";
 import styles from "./search-input.module.scss";
@@ -20,10 +19,14 @@ type OwnProps = {
   onChange: any; // (inputValue: string) => void; // TODO fix any
 };
 
+type AppBusProps = {
+  appBus: AppBus;
+};
+
 type AllProps = RouteComponentProps<OwnProps> &
   OwnProps &
   ApolloProps &
-  IAppBusProps;
+  AppBusProps;
 
 type State = {
   typeaheadValue: string;
@@ -159,7 +162,7 @@ class SearchInput extends React.Component<AllProps, State> {
 
 // TODO Fix the any here
 export default withAppBus<OwnProps>(
-  withRouter<RouteComponentProps<OwnProps> & OwnProps & IAppBusProps>(
+  withRouter<RouteComponentProps<OwnProps> & OwnProps & AppBusProps>(
     withApollo<any>(SearchInput)
   )
 );

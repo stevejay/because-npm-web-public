@@ -1,0 +1,7 @@
+{
+  "tags": ["error"],
+  "exports": {
+    "index": "*"
+  },
+  "imports": ["shared"]
+}

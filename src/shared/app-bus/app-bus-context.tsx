@@ -17,9 +17,9 @@ export function useAppBus() {
 }
 
 // For legacy support:
-export interface IAppBusProps {
+export type AppBusProps = {
   appBus: AppBus;
-}
+};
 
 // For legacy support:
 export function withAppBus<P>(wrappedComponent: any) {

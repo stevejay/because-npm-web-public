@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { NodeFragments } from "../../../shared/graphql/fragments";
+import { NodeFragments } from "../../../shared/graphql";
 import { PAGE_SIZE } from "../constants";
 
 export const AutocompleteNodeSearch = gql`

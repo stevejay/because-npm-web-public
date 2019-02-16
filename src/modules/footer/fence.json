@@ -1,0 +1,7 @@
+{
+  "tags": ["footer"],
+  "exports": {
+    "index": "*"
+  },
+  "imports": ["shared"]
+}

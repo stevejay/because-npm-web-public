@@ -1,6 +1,6 @@
 import { stubTrue } from "lodash";
 import React from "react";
-import Logo from "../../shared/logo/logo";
+import Logo from "../../shared/logo";
 import styles from "./header.module.scss";
 
 const Header = () => (

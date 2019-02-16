@@ -1,0 +1,7 @@
+{
+  "tags": ["legal"],
+  "exports": {
+    "index": "*"
+  },
+  "imports": ["shared"]
+}
