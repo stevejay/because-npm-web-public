@@ -27,6 +27,7 @@
     "@types/storybook__addon-knobs": "^4.0.1",
     "@types/storybook__addon-viewport": "^4.1.0",
     "@types/storybook__react": "^4.0.1",
+    "@types/user-event": "^1.4.0",
     "apollo-cache-inmemory": "^1.4.3",
     "apollo-client": "^2.4.13",
     "apollo-link": "^1.2.8",
@@ -61,10 +62,12 @@
     "react-portal": "^4.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
+    "react-testing-library": "^5.8.0",
     "recompact": "^3.4.0",
     "sass-material-colors": "^0.0.5",
     "storybook-host": "^5.0.3",
     "typescript": "^3.3.3",
+    "user-event": "^1.4.4",
     "what-input": "^5.1.2"
   },
   "scripts": {

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays correctly 1`] = `
+<div>
+  <button
+    class="button primaryButton"
+  >
+    The text
+  </button>
+</div>
+`;

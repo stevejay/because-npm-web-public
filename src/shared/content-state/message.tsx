@@ -7,7 +7,7 @@ import styles from "./message.module.scss";
 
 type Props = {
   icon?: IconType;
-  graphic?: React.SFC<any>;
+  graphic?: React.FunctionComponent<any>;
   children: React.ReactNode;
 };
 
