@@ -1,8 +1,8 @@
-import { isEmpty } from "lodash";
+import classNames from "classnames";
 import React from "react";
-import { IAutocompleteNodeSearchResult } from "../types";
-import MenuItem from "./menu-item";
 import styles from "./menu.module.scss";
+import { IAutocompleteNodeSearchResult } from "../types";
+import { isEmpty } from "lodash";
 
 type Props = {
   data: IAutocompleteNodeSearchResult;
@@ -28,16 +28,16 @@ const Menu = ({
       data &&
       data.autocompleteNodeSearch &&
       !isEmpty(data.autocompleteNodeSearch.nodes) &&
-      data.autocompleteNodeSearch.nodes.map((item, index) => (
-        <MenuItem
-          key={item.id}
-          item={item}
-          {...getItemProps({
-            isActive: highlightedIndex === index,
-            item
-          })}
-        />
-      ))}
+      data.autocompleteNodeSearch.nodes.map((item, index) => {
+        const className = classNames(styles.menuItem, {
+          [styles.highlighted]: highlightedIndex === index
+        });
+        return (
+          <li key={item.id} className={className} {...getItemProps()}>
+            <h3>{item.id}</h3>
+          </li>
+        );
+      })}
   </ul>
 );
 
