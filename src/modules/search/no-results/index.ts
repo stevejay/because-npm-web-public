@@ -1,2 +1,1 @@
-import NoResults from "./no-results";
-export default NoResults;
+export { default } from "./no-results";

@@ -1,2 +1,1 @@
-import SearchBarHandler from "./search-bar-handler";
-export default SearchBarHandler;
+export { default } from "./search-bar-handler";

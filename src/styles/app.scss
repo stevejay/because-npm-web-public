@@ -1,15 +1,44 @@
+@import "styles/_base.scss";
+
+html,
+body,
+input,
+textarea,
+select,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  font-family: $primary-font-family;
+}
+
 html,
 body {
-  font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
   font-weight: 300;
   line-height: 1.5;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: 0.005em;
 }
 
 input,
 textarea,
 select,
 button {
-  font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
 }
 
@@ -19,4 +48,18 @@ button {
 
 [data-whatintent="mouse"] *:focus {
   outline: none;
+}
+
+// Fast tapping by default
+// https://webkit.org/blog/5610/more-responsive-tapping-on-ios/
+[role="button"],
+a,
+area,
+button,
+input,
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
 }

@@ -1,5 +1,5 @@
-import * as _ from "lodash";
-import * as React from "react";
+import { get } from "lodash";
+import React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
 import { ErrorMessage } from "../../../shared/content-state";
@@ -13,10 +13,10 @@ class NodeByNameQuery extends Query<
   INodeByNameSearchVariables
 > {}
 
-type Props = RouteComponentProps<{}> & {};
+type Props = RouteComponentProps & object;
 
-const PackageDetailHandler: React.SFC<Props> = ({ match }) => {
-  const nodeId = _.get(match, "params[0]");
+const PackageDetailHandler = ({ match }: Props) => {
+  const nodeId = get(match, "params[0]");
   return (
     <NodeByNameQuery query={NodeByName} variables={{ id: nodeId }}>
       {({ data, loading, error }) =>
@@ -26,7 +26,7 @@ const PackageDetailHandler: React.SFC<Props> = ({ match }) => {
           <>
             <PackageDetail
               nodeId={nodeId}
-              node={_.get(data, "node", null)}
+              node={get(data, "node", null)}
               loading={loading}
             />
             <EdgeList />
@@ -37,4 +37,4 @@ const PackageDetailHandler: React.SFC<Props> = ({ match }) => {
   );
 };
 
-export default withRouter<RouteComponentProps<{}>>(PackageDetailHandler);
+export default withRouter<RouteComponentProps>(PackageDetailHandler);

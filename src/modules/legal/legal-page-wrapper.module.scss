@@ -1,0 +1,31 @@
+@import "styles/_base.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerContainer {
+  max-width: $max-section-width;
+  padding: $gutter;
+
+  @include fromPhone {
+    padding: $gutter * 2;
+  }
+
+  p,
+  li {
+    font-size: 0.86rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $primary-800;
+  }
+}

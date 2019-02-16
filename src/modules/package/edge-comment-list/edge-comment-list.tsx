@@ -1,33 +1,46 @@
-import * as React from "react";
-import Button, { ButtonType } from "../../../shared/button";
-import { IEdgeComment } from "../../../types/domain-types";
-import { ISearchNode } from "../../../types/graphql-types";
-import EdgeComment from "./edge-comment";
-import styles from "./edge-comment-list.module.scss";
+import React from "react";
+import { Query } from "react-apollo";
+import { EDGE_COMMENT_DEFAULT_TAKE } from "../constants";
+import { EdgeCommentSearch } from "../graphql/queries";
+import InfiniteScrollList from "../../../shared/infinite-scroll-list";
+import fetchMoreHandler from "../fetch-more-handler";
+import {
+  IEdgeCommentSearchResult,
+  IEdgeCommentSearchVariables
+} from "../types";
+import EdgeComment from "../edge-comment";
 
-interface IProps {
-  edges: Array<ISearchNode<IEdgeComment>>;
-  hasNextPage: boolean;
-  onMore: () => void;
-}
+type Props = {
+  edgeId: string;
+};
 
-const EdgeCommentList: React.SFC<IProps> = ({ edges, hasNextPage, onMore }) => (
-  <div className={styles.listContainer}>
-    <ul className={styles.list}>
-      {edges.map(edge => (
-        <EdgeComment key={edge.node.id} edgeComment={edge.node} />
-      ))}
-      {hasNextPage && (
-        <Button
-          type={ButtonType.Secondary}
-          onClick={onMore}
-          className={styles.moreButton}
-        >
-          See more comments
-        </Button>
-      )}
-    </ul>
-  </div>
+class EdgeCommentSearchQuery extends Query<
+  IEdgeCommentSearchResult,
+  IEdgeCommentSearchVariables
+> {}
+
+const EdgeCommentList = ({ edgeId }: Props) => (
+  <EdgeCommentSearchQuery
+    query={EdgeCommentSearch}
+    variables={{
+      after: null,
+      edgeId,
+      first: EDGE_COMMENT_DEFAULT_TAKE
+    }}
+  >
+    {({ loading, error, data, fetchMore }) => (
+      <InfiniteScrollList
+        loading={loading}
+        error={error}
+        searchData={data ? data.edgeCommentSearch : null}
+        emptyMessage="No alternate packages found"
+        component={EdgeComment}
+        onMoreClick={() =>
+          fetchMore(fetchMoreHandler(data, "edgeCommentSearch"))
+        }
+      />
+    )}
+  </EdgeCommentSearchQuery>
 );
 
 export default EdgeCommentList;

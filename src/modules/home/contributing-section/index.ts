@@ -1,2 +1,1 @@
-import ContributingSection from "./contributing-section";
-export default ContributingSection;
+export { default } from "./contributing-section";

@@ -1,4 +1,5 @@
 @import "styles/_base.scss";
+
 .section {
   background-color: $grey-50;
 }
@@ -6,7 +7,7 @@
 .row {
   display: flex;
   flex-direction: column;
-  @include from-tablet {
+  @include fromTablet {
     flex-direction: row;
   }
 }
@@ -14,7 +15,8 @@
 .column {
   display: flex;
   flex-direction: column;
-  @include from-tablet {
+
+  @include fromTablet {
     &:nth-child(1) {
       order: 2;
     }
@@ -25,12 +27,12 @@
 }
 
 .header {
-  @include display-2;
+  @include display2;
   color: $grey-900;
 }
 
 .displayParagraph {
-  @include display-paragraph;
+  @include displayParagraph;
   color: $grey-900;
 }
 
@@ -39,13 +41,15 @@
   color: $grey-900;
 }
 
-.twitterImage {
+.contributingImage {
   width: 250px;
   margin: 0 auto $gutter * 1.25;
-  @include from-phone {
+
+  @include fromPhone {
     width: 275px;
   }
-  @include from-tablet {
+
+  @include fromTablet {
     margin-left: $gutter * 3;
     margin-right: 0;
     width: 250px;
@@ -53,18 +57,20 @@
 }
 
 .tweet {
-  @include display-paragraph;
+  @include displayParagraph;
   @include blockPadding;
   background-color: $grey-900;
   color: $primary-300;
   border-radius: $border-radius;
-  & strong {
-    color: $primary-600;
-  }
   max-width: 29rem;
   margin-left: auto;
   margin-right: auto;
-  @include from-tablet {
+
+  strong {
+    color: $primary-600;
+  }
+
+  @include fromTablet {
     margin-left: 0;
     margin-right: 0;
     max-width: inherit;

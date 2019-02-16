@@ -1,7 +1,9 @@
 @import "styles/_base.scss";
+
 .container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
   border: 3px solid $primary-800;
   border-radius: 6px;
   padding: $gutter;
@@ -9,7 +11,7 @@
 }
 
 .header {
-  @include package-name-display;
+  @include packageNameDisplay;
   font-size: 1.75rem;
   text-transform: lowercase;
   margin: 0 0 0.25em 0;
@@ -26,11 +28,13 @@
   font-size: 0.875rem;
   font-weight: bold;
   letter-spacing: 0.005em;
-  & a {
-    color: $primary-800;
-    text-decoration: none;
-    &:hover {
-      border-bottom: 1px solid $primary-800;
-    }
+}
+
+.link a {
+  color: $primary-800;
+  text-decoration: none;
+
+  &:hover {
+    border-bottom: 1px solid $primary-800;
   }
 }

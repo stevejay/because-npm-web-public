@@ -1,8 +1,10 @@
-import * as _ from "lodash";
+import { includes, take } from "lodash";
 import { RecentHistory } from "./queries";
 
 const RECENT_HISTORY_TYPENAME = "RecentHistory";
-const MAX_PACKAGES_IN_HISTORY = 10;
+const MAX_PACKAGES_IN_HISTORY = 5;
+
+// TODO persist package history to local storage
 
 interface IRecentHistoryPackagesSlice {
   recentHistory: {
@@ -46,7 +48,8 @@ export function createUpdatedRecentHistoryPackagesSlice(
   newPackage: string
 ): IRecentHistoryPackagesSlice {
   let packages: string[] = currentState.recentHistory.packages.slice();
-  if (_.includes(packages, newPackage)) {
+
+  if (includes(packages, newPackage)) {
     packages = [
       newPackage,
       ...packages.filter(element => element !== newPackage)
@@ -54,10 +57,11 @@ export function createUpdatedRecentHistoryPackagesSlice(
   } else {
     packages = [newPackage, ...packages];
   }
+
   return {
     recentHistory: {
       ...currentState.recentHistory,
-      packages: _.take(packages, MAX_PACKAGES_IN_HISTORY)
+      packages: take(packages, MAX_PACKAGES_IN_HISTORY)
     }
   };
 }

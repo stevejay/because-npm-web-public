@@ -1,35 +1,35 @@
 import Downshift from "downshift";
-import * as _ from "lodash";
-import * as React from "react";
+import { debounce } from "lodash";
+import React from "react";
 import { withApollo } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { IAppBusProps, withAppBus } from "../../../shared/app-bus/app-bus";
+import { withAppBus } from "../../../shared/app-bus";
+import { IAppBusProps } from "../../../shared/app-bus/app-bus-context";
 import { AutocompleteNodeSearch } from "../graphql/queries";
 import MenuHandler from "./menu-handler";
 import styles from "./search-input.module.scss";
 
 const TYPEAHEAD_DEBOUNCE_MS = 400;
 
-interface IApolloProps {
+type ApolloProps = {
   client: any;
-}
+};
 
-interface IOwnProps {
+type OwnProps = {
   value: string;
   onChange: any; // (inputValue: string) => void; // TODO fix any
-}
+};
 
-interface IAllProps
-  extends RouteComponentProps<IOwnProps>,
-    IOwnProps,
-    IAppBusProps,
-    IApolloProps {}
+type AllProps = RouteComponentProps<OwnProps> &
+  OwnProps &
+  ApolloProps &
+  IAppBusProps;
 
-interface IState {
+type State = {
   typeaheadValue: string;
-}
+};
 
-class SearchInput extends React.Component<IAllProps, IState> {
+class SearchInput extends React.Component<AllProps, State> {
   private static itemToString(option: any): string {
     return option ? option.id : "";
   }
@@ -38,23 +38,23 @@ class SearchInput extends React.Component<IAllProps, IState> {
 
   private inputRef: React.RefObject<HTMLInputElement>;
 
-  private handleTypeheadInput = _.debounce((inputValue: any) => {
+  private handleTypeheadInput = debounce((inputValue: any) => {
     this.setState({ typeaheadValue: inputValue });
   }, TYPEAHEAD_DEBOUNCE_MS);
 
-  constructor(props: IAllProps) {
+  constructor(props: AllProps) {
     super(props);
     this.inputRef = React.createRef();
   }
 
   public componentDidMount() {
-    this.props.bus.searchBarFocus.addListener(this.handleSearchBarFocus);
-    this.props.bus.searchBarBlur.addListener(this.handleSearchBarBlur);
+    this.props.appBus.searchBarFocus.addListener(this.handleSearchBarFocus);
+    this.props.appBus.searchBarBlur.addListener(this.handleSearchBarBlur);
   }
 
   public componentWillUnmount() {
-    this.props.bus.searchBarFocus.removeListener(this.handleSearchBarFocus);
-    this.props.bus.searchBarBlur.removeListener(this.handleSearchBarBlur);
+    this.props.appBus.searchBarFocus.removeListener(this.handleSearchBarFocus);
+    this.props.appBus.searchBarBlur.removeListener(this.handleSearchBarBlur);
   }
 
   public render() {
@@ -120,7 +120,7 @@ class SearchInput extends React.Component<IAllProps, IState> {
       return;
     }
     stateAndHelpers.clearSelection();
-    this.props.bus.searchBarBlur.emit();
+    this.props.appBus.searchBarBlur.emit();
     this.props.history.push(`/package/${selectedItem.id}`);
     this.resetTypeahead();
   };
@@ -158,8 +158,8 @@ class SearchInput extends React.Component<IAllProps, IState> {
 }
 
 // TODO Fix the any here
-export default withAppBus<IOwnProps>(
-  withRouter<RouteComponentProps<IOwnProps> & IOwnProps & IAppBusProps>(
+export default withAppBus<OwnProps>(
+  withRouter<RouteComponentProps<OwnProps> & OwnProps & IAppBusProps>(
     withApollo<any>(SearchInput)
   )
 );

@@ -1,26 +1,29 @@
-import * as React from "react";
+import React from "react";
+import ReactPlaceholder from "react-placeholder";
+import "react-placeholder/lib/reactPlaceholder.css";
 import { INode } from "../../../types/domain-types";
-import PackageDetailLoader from "./package-detail-loader";
 import styles from "./package-detail.module.scss";
 
-interface IProps {
+type Props = {
   nodeId: string;
   node: INode | null;
   loading: boolean;
-}
+};
 
-const PackageDetail: React.SFC<IProps> = ({ nodeId, node, loading }) => (
+const PackageDetail = ({ nodeId, node, loading }: Props) => (
   <article className={styles.container}>
     <h1 className={styles.header}>{nodeId}</h1>
-    {!loading && node && (
-      <>
-        <p className={styles.description}>{node && node.description}</p>
-        <p className={styles.link}>
-          <a href={node.link}>View on npmjs</a>
-        </p>
-      </>
-    )}
-    {(loading || !node) && <PackageDetailLoader />}
+    <ReactPlaceholder
+      type="text"
+      rows={2}
+      ready={!loading && !!node}
+      showLoadingAnimation
+    >
+      <p className={styles.description}>{node && node.description}</p>
+      <p className={styles.link}>
+        <a href={node ? node.link : ""}>View on npmjs</a>
+      </p>
+    </ReactPlaceholder>
   </article>
 );
 

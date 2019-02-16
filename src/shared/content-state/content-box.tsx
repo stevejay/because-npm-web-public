@@ -1,11 +1,11 @@
-import * as React from "react";
+import React from "react";
 import styles from "./content-box.module.scss";
 
-interface IProps {
+type Props = {
   children: React.ReactNode;
-}
+};
 
-const ContentBox: React.SFC<IProps> = ({ children }) => (
+const ContentBox = ({ children }: Props) => (
   <section className={styles.container}>{children}</section>
 );
 

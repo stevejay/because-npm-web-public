@@ -1,13 +1,13 @@
-import * as React from "react";
+import React from "react";
 import styles from "./content-text.module.scss";
 
-interface IProps {
+type Props = {
   children?: React.ReactNode;
   className?: string;
-}
+};
 
-const ContentText: React.SFC<IProps> = ({ children, className = "" }) => (
-  <h2 className={`${styles.title} ${className}`}>{children}</h2>
+const ContentText = ({ children, className = "" }: Props) => (
+  <h2 className={`${styles.heading} ${className}`}>{children}</h2>
 );
 
 export default ContentText;

@@ -1,5 +1,4 @@
-import * as _ from "lodash";
-import * as React from "react";
+import React from "react";
 import { graphql } from "react-apollo";
 import { AutocompleteNodeSearch } from "../graphql/queries";
 import Menu from "./menu";
@@ -13,25 +12,27 @@ interface IVariables {
   term: string;
 }
 
-interface IQueryProps {
+type QueryProps = {
   data?: any; // TODO try to remove any here.
-}
+};
 
-interface IOwnProps {
+type OwnProps = {
   typeaheadValue: string;
   getItemProps: any;
   getMenuProps: any;
   highlightedIndex: number | null;
   isOpen: boolean;
-}
+};
 
-const MenuHandler: React.SFC<IQueryProps & IOwnProps> = ({
+type AllProps = QueryProps & OwnProps;
+
+const MenuHandler = ({
   data,
   getItemProps,
   getMenuProps,
   highlightedIndex,
   isOpen
-}) => (
+}: AllProps) => (
   <Menu
     data={data}
     getItemProps={getItemProps}
@@ -41,8 +42,8 @@ const MenuHandler: React.SFC<IQueryProps & IOwnProps> = ({
   />
 );
 
-export default graphql<IOwnProps, {}, IVariables>(AutocompleteNodeSearch, {
-  options: (props: IOwnProps) => ({
+export default graphql<OwnProps, object, IVariables>(AutocompleteNodeSearch, {
+  options: (props: OwnProps) => ({
     variables: {
       first: MAX_AUTOCOMPLETE_ITEMS,
       term: props.typeaheadValue

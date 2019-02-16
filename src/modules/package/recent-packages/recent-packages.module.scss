@@ -1,17 +1,19 @@
 @import "styles/_base.scss";
+
 .container {
-  background-color: $primary-200;
-  padding: $gutter;
-  margin: $gutter;
-  @include from-phone {
-    margin: $gutter * 2;
+  border-bottom: 1px solid $grey-400;
+  padding-bottom: $gutter / 1.33;
+  margin-bottom: $gutter / 1.33;
+
+  &:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
-  @include from-tablet {
-    width: 15rem;
-    align-self: flex-start;
-    flex-shrink: 0;
-    margin: $gutter * 2 $gutter * 2 $gutter * 2 $gutter;
-  }
+}
+
+.container p {
+  margin: 0.5em 0 0;
 }
 
 .header {
@@ -31,15 +33,17 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  & a {
-    @include package-name-display;
-    color: $primary-800;
-    text-decoration: none;
-    font-size: 1.25rem;
-    font-weight: bold;
-    letter-spacing: 0.005em;
-  }
-  & a:hover {
+}
+
+.listItem a {
+  @include packageNameDisplay;
+  color: $primary-800;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 0.005em;
+
+  &:hover {
     border-bottom: 1px solid $primary-800;
   }
 }

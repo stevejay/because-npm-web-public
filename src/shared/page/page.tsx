@@ -1,11 +1,11 @@
-import * as React from "react";
+import React from "react";
 import styles from "./page.module.scss";
 
-interface IProps {
+type Props = {
   children: React.ReactNode;
-}
+};
 
-const Page: React.SFC<IProps> = ({ children }) => (
+const Page = ({ children }: Props) => (
   <div className={styles.page}>{children}</div>
 );
 

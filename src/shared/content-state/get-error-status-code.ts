@@ -1,18 +1,26 @@
-import * as _ from "lodash";
+import { get, isFinite } from "lodash";
 
 export default function getErrorStatusCode(error: any) {
-  if (_.isFinite(error)) {
+  if (isFinite(error)) {
     return error;
-  } else if (!error) {
+  }
+
+  if (!error) {
     return 500;
-  } else if (error.status) {
+  }
+
+  if (error.status) {
     return Number(error.status);
-  } else if (error.statusCode) {
+  }
+
+  if (error.statusCode) {
     return Number(error.statusCode);
-  } else if (
-    _.get(error, "graphQLErrors[0].message") === "Response code 404 (Not Found)"
-  ) {
+  }
+
+  const gqlMessage = get(error, "graphQLErrors[0].message");
+  if (gqlMessage === "Response code 404 (Not Found)") {
     return 404;
   }
+
   return 500;
 }

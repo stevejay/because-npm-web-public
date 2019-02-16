@@ -1,17 +1,20 @@
 @import "styles/_base.scss";
-.link {
+
+.heading {
   display: inline-block;
+  font-family: $logo-font-family;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-transform: lowercase;
+  margin: 0;
+}
+
+.link {
+  color: $grey-600;
   text-decoration: none;
 }
 
-.heading {
-  font-family: "Rokkitt", sans-serif;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: $grey-600;
-  margin: 0;
-  & span {
-    color: $primary-600;
-    padding-left: 0.2em;
-  }
+.link span {
+  color: $primary-600;
+  padding-left: 0.2em;
 }

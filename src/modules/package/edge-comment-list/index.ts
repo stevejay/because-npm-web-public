@@ -1,2 +1,1 @@
-import EdgeCommentListHandler from "./edge-comment-list-handler";
-export default EdgeCommentListHandler;
+export { default } from "./edge-comment-list";

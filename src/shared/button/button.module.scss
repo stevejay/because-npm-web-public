@@ -1,24 +1,27 @@
 @import "styles/_base.scss";
+
 .button {
-  @include destyled-button;
+  @include destyledButton;
   @include blockPadding;
   border-radius: $border-radius;
   font-size: 1rem;
   transition: transform 0.2s;
+
   &:active {
     transform: scale(1.02);
   }
 }
 
-.primary-button {
+.primaryButton {
   background-color: $primary-800;
   color: $grey-50;
+
   &:hover {
     background-color: $primary-700;
   }
 }
 
-.secondary-button {
+.secondaryButton {
   background-color: $primary-200;
   color: $grey-900;
 }

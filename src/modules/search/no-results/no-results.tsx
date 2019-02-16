@@ -1,17 +1,13 @@
-import * as React from "react";
-import { ContentBox, ContentText } from "../../../shared/content-state";
-import NoResultsGraphic from "./no-results-graphic";
-import styles from "./no-results.module.scss";
+import React from "react";
+import { Message } from "../../../shared/content-state";
+import { ReactComponent as NoResultsImage } from "./no-results.svg";
 
-const NoResults: React.SFC = () => (
-  <ContentBox>
-    <NoResultsGraphic className={styles.graphic} />
-    <ContentText>
-      No matching packages
-      <br />
-      found in the graph
-    </ContentText>
-  </ContentBox>
+const NoResults = () => (
+  <Message graphic={NoResultsImage}>
+    No matching packages
+    <br />
+    found in the graph
+  </Message>
 );
 
 export default NoResults;

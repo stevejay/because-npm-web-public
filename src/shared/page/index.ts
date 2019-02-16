@@ -1,3 +1,2 @@
-import Page from "./page";
-import PageMain from "./page-main";
-export { Page, PageMain };
+export { default as Page } from "./page";
+export { default as NotFooter } from "./not-footer";

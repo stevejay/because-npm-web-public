@@ -1,2 +1,1 @@
-import RecentPackagesHandler from "./recent-packages-handler";
-export default RecentPackagesHandler;
+export { default } from "./recent-packages-handler";

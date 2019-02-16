@@ -1,19 +1,22 @@
-import * as React from "react";
+import { stubTrue } from "lodash";
+import React from "react";
 import { IconType } from "react-icons/lib/iconBase";
 import ContentBox from "./content-box";
 import ContentText from "./content-text";
 import styles from "./message.module.scss";
 
-interface IProps {
+type Props = {
   icon?: IconType;
+  graphic?: React.SFC<any>;
   children: React.ReactNode;
-}
+};
 
-const Message: React.SFC<IProps> = ({ icon: Icon, children }) => (
+const Message = ({ icon: Icon, graphic: Graphic, children }: Props) => (
   <ContentBox>
     {Icon && <Icon className={styles.icon} />}
+    {Graphic && <Graphic className={styles.graphic} />}
     <ContentText>{children}</ContentText>
   </ContentBox>
 );
 
-export default Message;
+export default React.memo(Message, stubTrue);

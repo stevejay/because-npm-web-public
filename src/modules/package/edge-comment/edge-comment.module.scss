@@ -1,0 +1,27 @@
+@import "styles/_base.scss";
+
+.description,
+.info {
+  margin: 0;
+}
+
+.info {
+  color: $grey-500;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.2em;
+}
+
+.info a {
+  color: $primary-800;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+
+  &:hover {
+    border-bottom: 1px solid $primary-800;
+  }
+}

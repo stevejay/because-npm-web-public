@@ -1,6 +1,6 @@
-import * as React from "react";
+import { stubTrue } from "lodash";
+import React from "react";
 import { Link } from "react-router-dom";
-import { shouldUpdate } from "recompact";
 import Logo from "../../shared/logo/logo";
 import styles from "./footer.module.scss";
 
@@ -10,18 +10,18 @@ const Footer = () => (
       <Logo />
       <p className={styles.copyright}>&copy; 2018 Middle Engine Software Ltd</p>
     </div>
-    <ul className={styles.linkContainer}>
-      <li className={styles.link}>
+    <ul className={styles.linkList}>
+      <li>
         <Link to="/terms">Terms</Link>
       </li>
-      <li className={styles.link}>
+      <li>
         <Link to="/privacy">Privacy &amp; Cookies</Link>
       </li>
-      <li className={styles.link}>
+      <li>
         <Link to="/credits">Credits</Link>
       </li>
     </ul>
   </footer>
 );
 
-export default shouldUpdate(() => false)(Footer);
+export default React.memo(Footer, stubTrue);

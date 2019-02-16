@@ -5,7 +5,7 @@ import { onError } from "apollo-link-error";
 import { HttpLink } from "apollo-link-http";
 import { withClientState } from "apollo-link-state";
 import { toIdValue } from "apollo-utilities";
-import _ from "lodash";
+import { get, merge, some } from "lodash";
 import log from "loglevel";
 import { resolvers as packageResolvers } from "./modules/package";
 import { resolvers as searchResolvers } from "./modules/search";
@@ -52,9 +52,9 @@ const errorLink = onError(({ graphQLErrors, networkError }: any) => {
   if (
     (networkError && networkError.statusCode === 401) ||
     (graphQLErrors &&
-      _.some(
+      some(
         graphQLErrors,
-        error => _.get(error, "extensions.exception.statusCode") === 401
+        error => get(error, "extensions.exception.statusCode") === 401
       ))
   ) {
     client.resetStore();
@@ -75,7 +75,7 @@ const errorLink = onError(({ graphQLErrors, networkError }: any) => {
 });
 
 const clientStateLink = withClientState({
-  ..._.merge(searchResolvers, packageResolvers),
+  ...merge(searchResolvers, packageResolvers),
   cache
 });
 

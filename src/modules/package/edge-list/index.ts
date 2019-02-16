@@ -1,2 +1,1 @@
-import EdgeListHandler from "./edge-list-handler";
-export default EdgeListHandler;
+export { default } from "./edge-list";

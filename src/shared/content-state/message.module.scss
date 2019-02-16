@@ -4,8 +4,15 @@
   width: 4rem;
   height: 4rem;
   color: $grey-400;
-  @include from-tablet {
+
+  @include fromTablet {
     width: 5rem;
     height: 5rem;
   }
+}
+
+.graphic {
+  width: 150px;
+  height: 150px;
+  fill: $grey-300;
 }

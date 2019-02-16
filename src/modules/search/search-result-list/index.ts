@@ -1,2 +1,1 @@
-import SearchResultList from "./search-result-list";
-export default SearchResultList;
+export { default } from "./search-result-list";

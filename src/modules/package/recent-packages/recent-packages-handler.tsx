@@ -1,30 +1,46 @@
-import * as React from "react";
-import { Query } from "react-apollo";
-import { IAppBusProps, withAppBus } from "../../../shared/app-bus/app-bus";
+import { get } from "lodash";
+import React from "react";
+import { graphql, MutateProps, Query } from "react-apollo";
+import { RouteComponentProps, withRouter } from "react-router";
+import { useAppBus } from "../../../shared/app-bus";
+import { UpdateRecentHistoryPackages } from "../graphql/mutations";
 import { RecentHistory } from "../graphql/queries";
 import { IRecentHistoryResult } from "../types";
 import RecentPackages from "./recent-packages";
 
-class RecentHistoryQuery extends Query<IRecentHistoryResult, {}> {}
-
-// tslint:disable-next-line:max-classes-per-file
-class RecentPackagesHandler extends React.Component<IAppBusProps> {
-  public render() {
-    return (
-      <RecentHistoryQuery query={RecentHistory}>
-        {({ data }) => (
-          <RecentPackages
-            packages={data ? data.recentHistory.packages : null}
-            onLinkClick={this.handleLinkClick}
-          />
-        )}
-      </RecentHistoryQuery>
-    );
-  }
-
-  private handleLinkClick = () => {
-    this.props.bus.scrollToTop.emit();
-  };
+interface IGraphQLVariables {
+  nodeId: string;
 }
 
-export default withAppBus<{}>(RecentPackagesHandler);
+class RecentHistoryQuery extends Query<IRecentHistoryResult, object> {}
+
+type AllProps = RouteComponentProps & MutateProps<any, IGraphQLVariables>;
+
+const RecentPackagesHandler = ({ mutate, match }: AllProps) => {
+  const appBus = useAppBus();
+  const nodeId = get(match, "params[0]");
+
+  React.useEffect(() => {
+    mutate({ variables: { nodeId } });
+  }, [nodeId]);
+
+  return (
+    <RecentHistoryQuery query={RecentHistory}>
+      {({ data }) => (
+        <RecentPackages
+          packages={data ? data.recentHistory.packages : null}
+          onLinkClick={() => appBus.scrollToTop.emit()}
+        />
+      )}
+    </RecentHistoryQuery>
+  );
+};
+
+export default graphql<any, IGraphQLVariables>(UpdateRecentHistoryPackages)(
+  withRouter<AllProps>(
+    React.memo(
+      RecentPackagesHandler,
+      (prevProps, nextProps) => prevProps.match === nextProps.match
+    )
+  )
+);

@@ -1,2 +1,1 @@
-import DiscoveringSectionHandler from "./discovering-section-handler";
-export default DiscoveringSectionHandler;
+export { default } from "./discovering-section";

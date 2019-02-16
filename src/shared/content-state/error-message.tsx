@@ -1,5 +1,5 @@
-import * as _ from "lodash";
-import * as React from "react";
+import { stubTrue } from "lodash";
+import React from "react";
 import ContentBox from "./content-box";
 import ContentText from "./content-text";
 import styles from "./error-message.module.scss";
@@ -10,11 +10,11 @@ const ERROR_MESSAGES: { [key: number]: string } = {
   500: "Server Error"
 };
 
-interface IProps {
+type Props = {
   error: any;
-}
+};
 
-const ErrorMessage: React.SFC<IProps> = ({ error }) => {
+const ErrorMessage = ({ error }: Props) => {
   const statusCode = getErrorStatusCode(error);
   return (
     <ContentBox>
@@ -28,4 +28,4 @@ const ErrorMessage: React.SFC<IProps> = ({ error }) => {
   );
 };
 
-export default ErrorMessage;
+export default React.memo(ErrorMessage, stubTrue);

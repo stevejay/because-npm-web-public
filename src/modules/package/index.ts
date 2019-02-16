@@ -1,3 +1,2 @@
-import resolvers from "./graphql/resolvers";
-import PackagePage from "./package-page";
-export { resolvers, PackagePage };
+export { default as resolvers } from "./graphql/resolvers";
+export { default as PackagePage } from "./package-page";

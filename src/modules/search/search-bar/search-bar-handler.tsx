@@ -1,63 +1,44 @@
-import * as _ from "lodash";
-import * as React from "react";
-import { graphql, MutationFn } from "react-apollo";
+import React from "react";
+import { graphql, MutateProps } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { IAppBusProps, withAppBus } from "../../../shared/app-bus/app-bus";
+import { useAppBus } from "../../../shared/app-bus";
 import { UpdateSearchParams } from "../graphql/mutations";
 import SearchBar from "./search-bar";
 
-// TODO OMG fix the any here
-
-interface IGraphqlProps {
-  data: any;
-  mutate: MutationFn<{ searchTerm: string }>;
-}
-
-interface IState {
+type GraphQLVariables = {
   searchTerm: string;
-}
+};
 
-class SearchBarHandler extends React.Component<
-  any,
-  // RouteComponentProps<IGraphqlProps & IAppBusProps> &
-  //  IGraphqlProps &
-  //   IAppBusProps,
-  IState
-> {
-  public state = { searchTerm: "" };
+type Props = MutateProps<any, GraphQLVariables> & RouteComponentProps;
 
-  public render() {
-    return (
-      <SearchBar
-        searchTerm={this.state.searchTerm}
-        onSearchTermChange={this.handleSearchTermChange}
-        onSubmit={this.handleSubmit}
-      />
-    );
-  }
+const SearchBarHandler = ({ mutate, location, history }: Props) => {
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const appBus = useAppBus();
 
-  private handleSearchTermChange = (inputValue: string) => {
-    this.setState({ searchTerm: inputValue });
-  };
-
-  private handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { mutate, location, history } = this.props;
-    const { searchTerm } = this.state;
     const finalSearchTerm = searchTerm.trim();
     if (!finalSearchTerm) {
       return;
     }
     mutate({ variables: { searchTerm: finalSearchTerm } }).then(() => {
-      this.setState({ searchTerm: "" });
-      this.props.bus.searchBarBlur.emit();
+      setSearchTerm("");
+      appBus.searchBarBlur.emit();
       if (!location.pathname.startsWith("/search")) {
         history.push("/search");
       }
     });
   };
-}
 
-export default withAppBus<any>(
-  graphql<any>(UpdateSearchParams)(withRouter(SearchBarHandler))
+  return (
+    <SearchBar
+      searchTerm={searchTerm}
+      onSearchTermChange={setSearchTerm}
+      onSubmit={handleSubmit}
+    />
+  );
+};
+
+export default withRouter(
+  graphql<any, GraphQLVariables>(UpdateSearchParams)(SearchBarHandler)
 );

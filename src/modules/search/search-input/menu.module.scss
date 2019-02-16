@@ -1,4 +1,5 @@
 @import "styles/_base.scss";
+
 .menu {
   position: absolute;
   background-color: $grey-50;
@@ -9,12 +10,13 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   max-height: calc(100vh - 7rem);
   overflow-y: scroll;
-  @include from-phone {
+
+  @include fromPhone {
     left: 0px;
     right: 30px;
   }
 }
 
 .menu.closed {
-  @include visually-hidden;
+  @include visuallyHidden;
 }

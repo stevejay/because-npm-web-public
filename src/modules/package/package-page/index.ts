@@ -1,2 +1,1 @@
-import PackagePageHandler from "./package-page-handler";
-export default PackagePageHandler;
+export { default } from "./package-page";

@@ -1,17 +1,19 @@
 @import "styles/_base.scss";
+
 .item {
   list-style: none;
   margin: 0;
   padding: 0.6em 1em;
   border-bottom: 1px solid $grey-300;
   cursor: pointer;
+
   &:last-of-type {
     border-bottom: none;
   }
 }
 
 .header {
-  @include package-name-display;
+  @include packageNameDisplay;
   margin: 0;
   text-transform: lowercase;
   font-size: 1.125rem;

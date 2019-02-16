@@ -1,2 +1,1 @@
-import SearchInput from "./search-input";
-export default SearchInput;
+export { default } from "./search-input";

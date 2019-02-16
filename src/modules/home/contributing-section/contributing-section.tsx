@@ -1,16 +1,16 @@
-import * as React from "react";
-import SectionContainer from "../section-container";
+import React from "react";
+import Section from "../section";
 import styles from "./contributing-section.module.scss";
-import TwitterImage from "./twitter-image";
+import { ReactComponent as ContributingImage } from "./contributing.svg";
 
 const ContributingSection = () => (
-  <SectionContainer className={styles.section}>
+  <Section className={styles.section}>
     <h2 className={styles.header}>
       Want to contribute to the graph? Just tweet!
     </h2>
     <div className={styles.row}>
       <div className={styles.column}>
-        <TwitterImage className={styles.twitterImage} />
+        <ContributingImage className={styles.contributingImage} />
       </div>
       <div className={styles.column}>
         <p className={styles.displayParagraph}>
@@ -37,7 +37,7 @@ const ContributingSection = () => (
         </p>
       </div>
     </div>
-  </SectionContainer>
+  </Section>
 );
 
 export default ContributingSection;

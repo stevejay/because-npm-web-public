@@ -1,6 +1,3 @@
-import ContentBox from "./content-box";
-import ContentText from "./content-text";
-import ErrorMessage from "./error-message";
-import Loading from "./loading";
-import Message from "./message";
-export { ContentBox, ContentText, ErrorMessage, Loading, Message };
+export { default as ErrorMessage } from "./error-message";
+export { default as Loading } from "./loading";
+export { default as Message } from "./message";

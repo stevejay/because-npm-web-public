@@ -1,14 +1,13 @@
-import * as React from "react";
-import { IAppBusProps, withAppBus } from "../app-bus/app-bus";
+import { stubTrue } from "lodash";
+import React from "react";
+import { useAppBus } from "../app-bus";
 
-class ScrollToTop extends React.Component<IAppBusProps> {
-  public componentDidMount() {
-    this.props.bus.scrollToTop.emit();
-  }
+const ScrollToTop = () => {
+  const appBus = useAppBus();
+  React.useEffect(() => {
+    appBus.scrollToTop.emit();
+  }, []);
+  return null;
+};
 
-  public render() {
-    return null;
-  }
-}
-
-export default withAppBus<{}>(ScrollToTop);
+export default React.memo(ScrollToTop, stubTrue);

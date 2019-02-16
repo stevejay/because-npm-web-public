@@ -1,2 +1,1 @@
-import SearchPageHandler from "./search-page-handler";
-export default SearchPageHandler;
+export { default } from "./search-page-handler";

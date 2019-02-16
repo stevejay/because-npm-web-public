@@ -1,13 +1,13 @@
-import * as React from "react";
+import React from "react";
 import { INode } from "../../../types/domain-types";
 import styles from "./menu-item.module.scss";
 
-interface IProps {
+type Props = {
   item: INode;
   isActive: boolean;
-}
+};
 
-const MenuItem: React.SFC<IProps> = ({ item, isActive, ...rest }) => (
+const MenuItem = ({ item, isActive, ...rest }: Props) => (
   <li {...rest} className={`${styles.item} ${isActive ? styles.active : ""}`}>
     <h3 className={styles.header}>{item.id}</h3>
   </li>

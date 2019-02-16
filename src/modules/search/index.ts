@@ -1,4 +1,3 @@
-import resolvers from "./graphql/resolvers";
-import SearchBar from "./search-bar";
-import SearchPage from "./search-page";
-export { resolvers, SearchBar, SearchPage };
+export { default as resolvers } from "./graphql/resolvers";
+export { default as SearchBar } from "./search-bar";
+export { default as SearchPage } from "./search-page";

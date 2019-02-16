@@ -1,4 +1,5 @@
 @import "styles/_base.scss";
+
 .container {
   width: 9rem;
   height: 9rem;
@@ -8,7 +9,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @include from-tablet {
+
+  @include fromTablet {
     width: 12rem;
     height: 12rem;
     border-radius: 6rem;
@@ -22,7 +24,9 @@
   font-weight: 500;
   margin: -0.15em 0 0;
   line-height: 1;
-  @include from-tablet {
+  font-family: $primary-font-family;
+
+  @include fromTablet {
     font-size: 4rem * 4/3;
   }
 }

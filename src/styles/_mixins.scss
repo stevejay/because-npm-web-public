@@ -1,17 +1,17 @@
 @import "./sizes";
-@mixin from-phone {
+@mixin fromPhone {
   @media (min-width: #{$phone-width}) {
     @content;
   }
 }
 
-@mixin from-tablet {
+@mixin fromTablet {
   @media (min-width: #{$tablet-width}) {
     @content;
   }
 }
 
-@mixin from-desktop {
+@mixin fromDesktop {
   @media (min-width: #{$desktop-width}) {
     @content;
   }
@@ -23,7 +23,7 @@
   }
 }
 
-@mixin destyled-input() {
+@mixin destyledInput() {
   background-color: transparent;
   border: 0px solid;
   padding: 0;
@@ -33,19 +33,19 @@
   background-clip: padding-box;
 }
 
-@mixin icon-button($dimension) {
-  @include destyled-input;
+@mixin iconButton($dimension) {
+  @include destyledInput;
   line-height: 0;
   vertical-align: middle;
   cursor: pointer;
-  & svg {
+  svg {
     width: $dimension;
     height: $dimension;
   }
 }
 
-@mixin destyled-button() {
-  @include destyled-input;
+@mixin destyledButton() {
+  @include destyledInput;
   cursor: pointer;
   display: inline-block;
   border: none;
@@ -58,7 +58,7 @@
   padding: 0;
 }
 
-@mixin package-name-display() {
+@mixin packageNameDisplay() {
   line-height: 1.3;
   word-break: break-all;
 }
@@ -68,7 +68,7 @@
   font-weight: 500;
 }
 
-@mixin display-1() {
+@mixin display1() {
   @include header;
   letter-spacing: 0.015em;
   font-size: 2.5rem;
@@ -78,12 +78,12 @@
   @media (min-width: 320px) and (max-width: 991px) {
     font-size: calc(2.5rem + 16 * (100vw - 320px) / (992 - 320));
   }
-  @include from-desktop {
+  @include fromDesktop {
     font-size: calc(2.5rem + 16px);
   }
 }
 
-@mixin display-2() {
+@mixin display2() {
   @include header;
   font-size: 2rem;
   line-height: 1.2em;
@@ -92,7 +92,7 @@
   @media (min-width: 320px) and (max-width: 991px) {
     font-size: calc(2rem + 8 * (100vw - 320px) / (992 - 320));
   }
-  @include from-desktop {
+  @include fromDesktop {
     font-size: calc(2rem + 8px);
   }
 }
@@ -103,13 +103,13 @@
   font-size: 1rem;
 }
 
-@mixin display-paragraph() {
+@mixin displayParagraph() {
   @include paragraph;
   letter-spacing: 0.015em;
   @media (min-width: 320px) and (max-width: 991px) {
     font-size: calc(1rem + 8 * (100vw - 320px) / (992 - 320));
   }
-  @include from-desktop {
+  @include fromDesktop {
     font-size: calc(1rem + 8px);
   }
 }
@@ -118,7 +118,7 @@
   padding: 0.75em 1em;
 }
 
-@mixin visually-hidden() {
+@mixin visuallyHidden() {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -127,4 +127,13 @@
   padding: 0;
   position: absolute;
   width: 1px;
+}
+
+@mixin underlineOnHover($color) {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms;
+  &:hover {
+    border-bottom: 1px solid $color;
+  }
 }

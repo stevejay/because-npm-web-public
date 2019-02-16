@@ -1,35 +1,36 @@
-import * as React from "react";
-import Button, { ButtonType } from "../../../shared/button";
-import { IEdge } from "../../../types/domain-types";
-import { ISearchNode } from "../../../types/graphql-types";
-import EdgeHandler from "./edge-handler";
-import styles from "./edge-list.module.scss";
+import { get } from "lodash";
+import React from "react";
+import { Query } from "react-apollo";
+import { RouteComponentProps, withRouter } from "react-router";
+import InfiniteScrollList from "../../../shared/infinite-scroll-list";
+import { EDGE_DEFAULT_TAKE } from "../constants";
+import { EdgeSearch } from "../graphql/queries";
+import { IEdgeSearchResult, IEdgeSearchVariables } from "../types";
+import Edge from "../edge";
+import fetchMoreHandler from "../fetch-more-handler";
 
-interface IProps {
-  edges: Array<ISearchNode<IEdge>>;
-  hasNextPage: boolean;
-  onMore: () => void;
-}
+class EdgeSearchQuery extends Query<IEdgeSearchResult, IEdgeSearchVariables> {}
 
-const EdgeList: React.SFC<IProps> = ({ edges, hasNextPage, onMore }) => (
-  <>
-    {edges.map((edge, index) => (
-      <EdgeHandler
-        key={edge.node.id}
-        edge={edge.node}
-        isFirstEdge={index === 0}
+const EdgeListHandler = ({ match }: RouteComponentProps) => (
+  <EdgeSearchQuery
+    query={EdgeSearch}
+    variables={{
+      after: null,
+      first: EDGE_DEFAULT_TAKE,
+      tailNodeId: get(match, "params[0]")
+    }}
+  >
+    {({ loading, error, data, fetchMore }) => (
+      <InfiniteScrollList
+        loading={loading}
+        error={error}
+        searchData={data ? data.edgeSearch : null}
+        emptyMessage="No alternate packages found"
+        component={Edge}
+        onMoreClick={() => fetchMore(fetchMoreHandler(data, "edgeSearch"))}
       />
-    ))}
-    {hasNextPage && (
-      <Button
-        type={ButtonType.Secondary}
-        onClick={onMore}
-        className={styles.moreButton}
-      >
-        See more alternatives
-      </Button>
     )}
-  </>
+  </EdgeSearchQuery>
 );
 
-export default EdgeList;
+export default withRouter<RouteComponentProps>(EdgeListHandler);
