@@ -3,14 +3,22 @@ import { stubTrue } from "lodash";
 import React from "react";
 import { useAppBus } from "../app-bus";
 
-function handleScrollToTop() {
-  if (window) {
-    window.scrollTo(0, 0);
-  }
+interface IHasScrollTo {
+  scrollTo: Window["scrollTo"];
 }
 
-const ScrollListener = () => {
+type Props = {
+  scrollTarget?: Partial<IHasScrollTo>;
+};
+
+const ScrollListener = ({ scrollTarget = window }: Props) => {
   const appBus = useAppBus();
+
+  const handleScrollToTop = React.useCallback(() => {
+    if (scrollTarget && scrollTarget.scrollTo) {
+      scrollTarget.scrollTo(0, 0);
+    }
+  }, []);
 
   React.useEffect(() => {
     appBus.scrollToTop.addListener(handleScrollToTop);

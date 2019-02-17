@@ -19,7 +19,11 @@ const Edge = ({ isFirst, entity }: Props) => {
   );
 
   return (
-    <Expander expandedOnMount={isFirst} headerContent={headerContent}>
+    <Expander
+      expandedOnMount={isFirst}
+      headerContent={headerContent}
+      buttonAriaLabel="See comments"
+    >
       <EdgeCommentList edgeId={entity.id} />
     </Expander>
   );

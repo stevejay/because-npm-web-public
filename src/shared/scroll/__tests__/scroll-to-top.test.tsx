@@ -1,14 +1,14 @@
 import { render } from "react-testing-library";
-import { AppBusProvider, useAppBus } from "../app-bus-context";
+import { AppBusProvider, useAppBus } from "../../app-bus";
 import React from "react";
-import userEvent from "user-event";
+import ScrollToTop from "../scroll-to-top";
 
-const TestEmitter = () => {
-  const appBus = useAppBus();
-  return (
-    <button data-testid="button" onClick={() => appBus.scrollToTop.emit()} />
-  );
-};
+// const TestEmitter = () => {
+//   const appBus = useAppBus();
+//   return (
+//     <button data-testid="button" onClick={() => appBus.scrollToTop.emit()} />
+//   );
+// };
 
 const TestListener = ({ listener }: { listener: () => void }) => {
   const appBus = useAppBus();
@@ -23,12 +23,11 @@ const TestListener = ({ listener }: { listener: () => void }) => {
 
 test("emitted events are forwarded to listeners", () => {
   const listener = jest.fn();
-  const { getByTestId } = render(
+  render(
     <AppBusProvider>
-      <TestEmitter />
+      <ScrollToTop />
       <TestListener listener={listener} />
     </AppBusProvider>
   );
-  userEvent.click(getByTestId("button"));
   expect(listener).toBeCalledTimes(1);
 });

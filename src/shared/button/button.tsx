@@ -17,7 +17,7 @@ type Props = {
 const Button = ({ type, className = "", onClick, children }: Props) => {
   const buttonClass = classNames(styles.button, styles[type], className);
   return (
-    <button className={buttonClass} onClick={onClick}>
+    <button type="button" className={buttonClass} onClick={onClick}>
       {children}
     </button>
   );

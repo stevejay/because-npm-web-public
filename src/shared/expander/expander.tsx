@@ -5,10 +5,16 @@ import styles from "./expander.module.scss";
 type Props = {
   expandedOnMount: boolean;
   headerContent: React.ReactNode;
+  buttonAriaLabel: string;
   children: React.ReactNode;
 };
 
-const Expander = ({ expandedOnMount, headerContent, children }: Props) => {
+const Expander = ({
+  expandedOnMount,
+  headerContent,
+  buttonAriaLabel,
+  children
+}: Props) => {
   const [expanded, setExpanded] = React.useState(expandedOnMount);
   return (
     <div className={styles.container}>
@@ -17,7 +23,7 @@ const Expander = ({ expandedOnMount, headerContent, children }: Props) => {
         <button
           className={styles.headerButton}
           onClick={() => setExpanded(!expanded)}
-          aria-label="See comments"
+          aria-label={buttonAriaLabel}
         >
           {expanded ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </button>

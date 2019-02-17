@@ -11,6 +11,13 @@ function renderHeader() {
   );
 }
 
+test("renders the logo as a heading", async () => {
+  const { getByTestId } = renderHeader();
+  const heading = getByTestId("site-name");
+  expect(heading).toBeInTheDocument();
+  expect(heading.tagName).toEqual("H2");
+});
+
 test("displays the site title as a link to the home page", async () => {
   const { getByTestId } = renderHeader();
   const heading = getByTestId("site-name");

@@ -10,7 +10,14 @@ type Props = {
 };
 
 const Loading = ({ delayMs = 0 }: Props) => {
-  const icon = <TimeIcon className={styles.icon} />;
+  const icon = (
+    <TimeIcon
+      className={styles.icon}
+      role="status"
+      aria-live="polite"
+      aria-label="Loading content from the server"
+    />
+  );
   const content = delayMs ? <Delay wait={delayMs}>{icon}</Delay> : icon;
   return <ContentBox>{content}</ContentBox>;
 };
