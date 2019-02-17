@@ -1,12 +1,12 @@
-import { get } from "lodash";
 import React from "react";
-import { graphql, MutateProps, Query } from "react-apollo";
-import { RouteComponentProps, withRouter } from "react-router";
-import { useAppBus } from "../../../shared/app-bus";
-import { UpdateRecentHistoryPackages } from "../graphql/mutations";
-import { RecentHistory } from "../graphql/queries";
-import { IRecentHistoryResult } from "../types";
 import RecentPackages from "./recent-packages";
+import { get } from "lodash";
+import { graphql, MutateProps, Query } from "react-apollo";
+import { IRecentHistoryResult } from "../types";
+import { RecentHistory } from "../graphql/queries";
+import { RouteComponentProps, withRouter } from "react-router";
+import { UpdateRecentHistoryPackages } from "../graphql/mutations";
+import { useAppBus } from "../../../shared/app-bus";
 
 interface IGraphQLVariables {
   nodeId: string;

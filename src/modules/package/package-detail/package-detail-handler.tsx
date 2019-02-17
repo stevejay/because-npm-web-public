@@ -1,12 +1,12 @@
-import { get } from "lodash";
+import EdgeList from "../edge-list";
+import PackageDetail from "./package-detail";
 import React from "react";
+import { ErrorMessage } from "../../../shared/content-state";
+import { get } from "lodash";
+import { INodeByNameSearchResult, INodeByNameSearchVariables } from "../types";
+import { NodeByName } from "../graphql/queries";
 import { Query } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
-import { ErrorMessage } from "../../../shared/content-state";
-import EdgeList from "../edge-list";
-import { NodeByName } from "../graphql/queries";
-import { INodeByNameSearchResult, INodeByNameSearchVariables } from "../types";
-import PackageDetail from "./package-detail";
 
 class NodeByNameQuery extends Query<
   INodeByNameSearchResult,
