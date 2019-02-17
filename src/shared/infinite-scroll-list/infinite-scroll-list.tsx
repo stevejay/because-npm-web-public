@@ -8,10 +8,10 @@ import styles from "./infinite-scroll-list.module.scss";
 
 type Props = {
   loading: boolean;
-  loadingWait?: number;
-  error: ApolloError | undefined;
+  error?: ApolloError | undefined;
   searchData: ISearchEdges<any> | null;
   emptyMessage: string;
+  moreMessage: string;
   component: any;
   onMoreClick: () => void;
 };
@@ -21,6 +21,7 @@ const InfiniteScrollList = ({
   error,
   searchData,
   emptyMessage,
+  moreMessage,
   component,
   onMoreClick
 }: Props) => {
@@ -50,7 +51,7 @@ const InfiniteScrollList = ({
               onClick={onMoreClick}
               className={styles.moreButton}
             >
-              See more comments
+              {moreMessage}
             </Button>
           )}
         </ul>

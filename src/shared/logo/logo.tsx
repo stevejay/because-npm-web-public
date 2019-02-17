@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import styles from "./logo.module.scss";
 
 const Logo = () => (
-  <h2 className={styles.heading}>
+  <h2 className={styles.heading} data-testid="site-name">
     <Link to="/" className={styles.link}>
-      Because
-      <span>NPM</span>
+      Because <span>NPM</span>
     </Link>
   </h2>
 );

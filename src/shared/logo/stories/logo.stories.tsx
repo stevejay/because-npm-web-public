@@ -1,8 +1,8 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { host } from "storybook-host";
-import { storiesOf } from "@storybook/react";
 import Logo from "../logo";
+import React from "react";
+import { host } from "storybook-host";
+import { MemoryRouter } from "react-router-dom";
+import { storiesOf } from "@storybook/react";
 import "../../../styles/app.scss";
 
 storiesOf("Logo", module)
@@ -13,7 +13,7 @@ storiesOf("Logo", module)
     })
   )
   .add("Basic", () => (
-    <BrowserRouter>
+    <MemoryRouter>
       <Logo />
-    </BrowserRouter>
+    </MemoryRouter>
   ));

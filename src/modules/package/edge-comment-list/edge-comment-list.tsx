@@ -34,6 +34,7 @@ const EdgeCommentList = ({ edgeId }: Props) => (
         error={error}
         searchData={data ? data.edgeCommentSearch : null}
         emptyMessage="No alternate packages found"
+        moreMessage="See more comments"
         component={EdgeComment}
         onMoreClick={() =>
           fetchMore(fetchMoreHandler(data, "edgeCommentSearch"))

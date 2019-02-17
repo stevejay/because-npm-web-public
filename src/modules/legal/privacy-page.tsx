@@ -1,9 +1,9 @@
 import React from "react";
 import { EMAIL, WEBSITE } from "./constants";
-import LegalPageWrapper from "./legal-page-wrapper";
+import LegalPageContainer from "./legal-page-container";
 
 const PrivacyPage = () => (
-  <LegalPageWrapper>
+  <LegalPageContainer>
     <h1>Privacy Policy</h1>
     <p>Effective date: September 14, 2018</p>
     <p>
@@ -250,7 +250,7 @@ const PrivacyPage = () => (
       If you have any questions about this Privacy Policy, please contact us by
       email at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
     </p>
-  </LegalPageWrapper>
+  </LegalPageContainer>
 );
 
 export default PrivacyPage;

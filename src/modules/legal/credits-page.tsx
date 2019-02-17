@@ -1,8 +1,8 @@
 import React from "react";
-import LegalPageWrapper from "./legal-page-wrapper";
+import LegalPageContainer from "./legal-page-container";
 
 const CreditsPage = () => (
-  <LegalPageWrapper>
+  <LegalPageContainer>
     <h1>Credits</h1>
     <p>
       Icons made by{" "}
@@ -22,7 +22,7 @@ const CreditsPage = () => (
         CC 3.0 BY
       </a>
     </p>
-  </LegalPageWrapper>
+  </LegalPageContainer>
 );
 
 export default CreditsPage;

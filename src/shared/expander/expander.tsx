@@ -10,14 +10,13 @@ type Props = {
 
 const Expander = ({ expandedOnMount, headerContent, children }: Props) => {
   const [expanded, setExpanded] = React.useState(expandedOnMount);
-  const handleClick = () => setExpanded(!expanded);
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
         <h2 className={styles.heading}>{headerContent}</h2>
         <button
           className={styles.headerButton}
-          onClick={handleClick}
+          onClick={() => setExpanded(!expanded)}
           aria-label="See comments"
         >
           {expanded ? <IoIosArrowUp /> : <IoIosArrowDown />}

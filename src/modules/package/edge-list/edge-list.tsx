@@ -26,6 +26,7 @@ const EdgeListHandler = ({ match }: RouteComponentProps) => (
         error={error}
         searchData={data ? data.edgeSearch : null}
         emptyMessage="No alternate packages found"
+        moreMessage="See more packages"
         component={Edge}
         onMoreClick={() => fetchMore(fetchMoreHandler(data, "edgeSearch"))}
       />

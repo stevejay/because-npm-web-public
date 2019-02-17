@@ -11,10 +11,10 @@ storiesOf("InfiniteScrollList", module)
   .add("Loading", () => (
     <InfiniteScrollList
       loading={true}
-      loadingWait={0}
       error={undefined}
       searchData={null}
       emptyMessage="The empty results message"
+      moreMessage="See more comments"
       component={EntityComponent}
       onMoreClick={noop}
     />
@@ -22,10 +22,10 @@ storiesOf("InfiniteScrollList", module)
   .add("Error", () => (
     <InfiniteScrollList
       loading={false}
-      loadingWait={0}
       error={new ApolloError({})}
       searchData={null}
       emptyMessage="The empty results message"
+      moreMessage="See more comments"
       component={EntityComponent}
       onMoreClick={noop}
     />
@@ -33,10 +33,10 @@ storiesOf("InfiniteScrollList", module)
   .add("Empty Results", () => (
     <InfiniteScrollList
       loading={false}
-      loadingWait={0}
       error={undefined}
       searchData={null}
       emptyMessage="The empty results message"
+      moreMessage="See more comments"
       component={EntityComponent}
       onMoreClick={noop}
     />
@@ -44,7 +44,6 @@ storiesOf("InfiniteScrollList", module)
   .add("Results With More Available", () => (
     <InfiniteScrollList
       loading={false}
-      loadingWait={0}
       error={undefined}
       searchData={{
         edges: [
@@ -60,6 +59,7 @@ storiesOf("InfiniteScrollList", module)
         pageInfo: { hasNextPage: true }
       }}
       emptyMessage="The empty results message"
+      moreMessage="See more comments"
       component={EntityComponent}
       onMoreClick={noop}
     />

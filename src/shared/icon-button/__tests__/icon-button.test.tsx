@@ -1,13 +1,17 @@
-import Button, { ButtonType } from "../button";
+import IconButton from "../icon-button";
 import React from "react";
 import { render } from "react-testing-library";
 import { noop } from "lodash";
+import { IoIosAdd } from "react-icons/io";
 
 test("displays correctly", async () => {
   const { container } = render(
-    <Button type={ButtonType.Primary} onClick={noop}>
-      The text
-    </Button>
+    <IconButton
+      ariaLabel="The label"
+      icon={IoIosAdd}
+      type="button"
+      onClick={noop}
+    />
   );
   expect(container).toMatchSnapshot();
 });

@@ -15,7 +15,9 @@
     "jsx": "preserve",
     "sourceRoot": "src/",
     "sourceMap": true,
-    "lib": ["es2015", "dom"]
+    "lib": ["es2015", "dom"],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "include": ["src"]
 }

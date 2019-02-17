@@ -24,7 +24,7 @@ const SearchPageHandler = ({ data }: DataProps<Props>) => {
       query={NodeSearch}
       variables={{ after: null, first: 25, term: searchTerm }}
     >
-      {({ loading, error, data, fetchMore }) => {
+      {({ loading, error, data }) => {
         if (error) {
           return <ErrorMessage error={error} />;
         } else if (loading || !data) {

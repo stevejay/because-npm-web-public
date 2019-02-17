@@ -1,9 +1,7 @@
-import { cleanup, render } from "react-testing-library";
+import { render } from "react-testing-library";
 import { AppBusProvider, useAppBus } from "../app-bus-context";
 import React from "react";
 import userEvent from "user-event";
-
-afterEach(cleanup);
 
 const TestEmitter = () => {
   const appBus = useAppBus();
