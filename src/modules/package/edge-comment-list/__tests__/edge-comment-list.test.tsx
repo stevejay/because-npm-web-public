@@ -11,7 +11,7 @@ import {
 import deepFreeze from "@ef-carbon/deep-freeze";
 import userEvent from "user-event";
 
-const EDGE_ID = "edge-1";
+const EDGE_ID = "edge-1 edge-2";
 
 const EDGE_COMMENT_1 = deepFreeze({
   id: "edge-comment-1",
