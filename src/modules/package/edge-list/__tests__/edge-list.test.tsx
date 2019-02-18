@@ -66,8 +66,6 @@ test("shows initial edges and no more exist", async () => {
       result: {
         data: {
           edgeSearch: {
-            // edges: [],
-            // pageInfo: { hasNextPage: false }
             edges: [
               { node: EDGE_1, cursor: "cursor-1" },
               { node: EDGE_2, cursor: "cursor-2" }
@@ -89,10 +87,7 @@ test("shows initial edges and no more exist", async () => {
       result: {
         data: {
           edgeCommentSearch: {
-            edges: [
-              // { node: EDGE_COMMENT_1, cursor: "cursor-1" },
-              // { node: EDGE_COMMENT_2, cursor: "cursor-2" }
-            ],
+            edges: [],
             pageInfo: { hasNextPage: false }
           }
         }
@@ -110,20 +105,3 @@ test("shows initial edges and no more exist", async () => {
   // expect(getByText(/Comment 2/i)).toBeInTheDocument();
   // expect(queryByText("See more comments")).toBeFalsy();
 });
-
-{
-  /* <h2
-                    class="heading"
-                  >
-                    <span>
-                      to
-                      <a
-                        href="/package/edge-2"
-                      >
-                        edge-2
-                      </a>
-
-                      because…
-                    </span>
-                  </h2> */
-}
