@@ -11,7 +11,11 @@ import fetchMoreHandler from "../fetch-more-handler";
 
 class EdgeSearchQuery extends Query<IEdgeSearchResult, IEdgeSearchVariables> {}
 
-const EdgeListHandler = ({ match }: RouteComponentProps) => (
+type RouteProps = {
+  match: RouteComponentProps["match"];
+};
+
+export const EdgeList = ({ match }: RouteProps) => (
   <EdgeSearchQuery
     query={EdgeSearch}
     variables={{
@@ -28,10 +32,12 @@ const EdgeListHandler = ({ match }: RouteComponentProps) => (
         emptyMessage="No alternate packages found"
         moreMessage="See more packages"
         component={Edge}
-        onMoreClick={() => fetchMore(fetchMoreHandler(data, "edgeSearch"))}
+        onMoreClick={async () => {
+          await fetchMore(fetchMoreHandler(data, "edgeSearch"));
+        }}
       />
     )}
   </EdgeSearchQuery>
 );
 
-export default withRouter<RouteComponentProps>(EdgeListHandler);
+export default withRouter<RouteComponentProps>(EdgeList);

@@ -1,19 +1,18 @@
 import gql from "graphql-tag";
-import {
-  EdgeCommentFragments,
-  EdgeFragments,
-  NodeFragments
-} from "../../../shared/graphql";
 
 export const NodePage = gql`
   query NodePage($id: String!, $first: Int, $after: String) {
     node(id: $id) {
-      ...NodeCoreFields
+      id
+      description
+      link
     }
     edgeSearch(tailNodeId: $id, first: $first, after: $after) {
       edges {
         node {
-          ...EdgeCoreFields
+          id
+          tailNodeId
+          headNodeId
         }
         cursor
       }
@@ -24,7 +23,12 @@ export const NodePage = gql`
     edgeCommentSearch(edgeId: $id, first: $first, after: $after) {
       edges {
         node {
-          ...EdgeCommentCoreFields
+          id
+          edgeId
+          comment
+          sourceLink
+          sourceUserId
+          timestampMs
         }
         cursor
       }
@@ -33,18 +37,16 @@ export const NodePage = gql`
       }
     }
   }
-  ${NodeFragments.coreFields}
-  ${EdgeFragments.coreFields}
-  ${EdgeCommentFragments.coreFields}
 `;
 
 export const NodeByName = gql`
   query Node($id: String!) {
     node(id: $id) {
-      ...NodeCoreFields
+      id
+      description
+      link
     }
   }
-  ${NodeFragments.coreFields}
 `;
 
 export const EdgeSearch = gql`
@@ -52,7 +54,9 @@ export const EdgeSearch = gql`
     edgeSearch(tailNodeId: $tailNodeId, first: $first, after: $after) {
       edges {
         node {
-          ...EdgeCoreFields
+          id
+          tailNodeId
+          headNodeId
         }
         cursor
       }
@@ -61,7 +65,6 @@ export const EdgeSearch = gql`
       }
     }
   }
-  ${EdgeFragments.coreFields}
 `;
 
 export const EdgeCommentSearch = gql`
@@ -69,7 +72,12 @@ export const EdgeCommentSearch = gql`
     edgeCommentSearch(edgeId: $edgeId, first: $first, after: $after) {
       edges {
         node {
-          ...EdgeCommentCoreFields
+          id
+          edgeId
+          comment
+          sourceLink
+          sourceUserId
+          timestampMs
         }
         cursor
       }
@@ -78,7 +86,6 @@ export const EdgeCommentSearch = gql`
       }
     }
   }
-  ${EdgeCommentFragments.coreFields}
 `;
 
 export const RecentHistory = gql`

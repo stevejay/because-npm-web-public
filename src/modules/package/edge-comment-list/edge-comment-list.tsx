@@ -27,18 +27,19 @@ const EdgeCommentList = ({ edgeId }: Props) => (
       edgeId,
       first: EDGE_COMMENT_DEFAULT_TAKE
     }}
+    // notifyOnNetworkStatusChange
   >
     {({ loading, error, data, fetchMore }) => (
       <InfiniteScrollList
         loading={loading}
         error={error}
         searchData={data ? data.edgeCommentSearch : null}
-        emptyMessage="No alternate packages found"
+        emptyMessage="No comments found"
         moreMessage="See more comments"
         component={EdgeComment}
-        onMoreClick={() =>
-          fetchMore(fetchMoreHandler(data, "edgeCommentSearch"))
-        }
+        onMoreClick={async () => {
+          await fetchMore(fetchMoreHandler(data, "edgeCommentSearch"));
+        }}
       />
     )}
   </EdgeCommentSearchQuery>

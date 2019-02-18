@@ -7,9 +7,10 @@
 
 ## Todo
 
+- apollo-link-batch-http
 - Reduced motion media query https://css-tricks.com/introduction-reduced-motion-media-query/
 - stop all icons being included
-- Use fragments with Apollo
+- Use fragments with Apollo again
 - section elements should have aria-labelledby or aria-label
 - grid layout https://bitsofco.de/holy-grail-layout-css-grid/
 - keep an eye on [Hermes](https://github.com/convoyinc/apollo-cache-hermes), an alternative Apollo cache

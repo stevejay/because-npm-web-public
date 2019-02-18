@@ -1,4 +1,4 @@
-import { INode } from "../../types/domain-types";
+import { INode, IEdgeComment } from "../../types/domain-types";
 import { ISearchEdges } from "../../types/graphql-types";
 
 // edge search

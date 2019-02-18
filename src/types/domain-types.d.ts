@@ -13,6 +13,7 @@ export interface IEdge {
 
 export interface IEdgeComment {
   id: string;
+  edgeId: string;
   comment: string;
   timestampMs: string;
   sourceLink: string;
