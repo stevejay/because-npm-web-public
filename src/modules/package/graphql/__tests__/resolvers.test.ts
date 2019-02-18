@@ -93,28 +93,3 @@ test.each([
     });
   }
 );
-
-// test("updateRecentHistoryPackages", () => {
-//   const currentState = {
-//     recentHistory: {
-//       packages: []
-//     }
-//   };
-//   const newPackage = "formik";
-//   const writeData = jest.fn();
-
-//   resolvers.resolvers.Mutation.updateRecentHistoryPackages(
-//     null,
-//     { nodeId: newPackage },
-//     { cache: { readQuery: () => currentState, writeData } }
-//   );
-
-//   expect(writeData).toHaveBeenCalledTimes(1);
-//   expect(writeData).toHaveBeenLastCalledWith({
-//     data: {
-//       recentHistory: {
-//         packages: [newPackage]
-//       }
-//     }
-//   });
-// });

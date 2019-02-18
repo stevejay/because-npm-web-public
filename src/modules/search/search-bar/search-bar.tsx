@@ -10,7 +10,6 @@ type Props = {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };
 
-// TODO role="search"?
 // TODO aria-live?
 
 const SearchBar = ({ searchTerm, onSearchTermChange, onSubmit }: Props) => (

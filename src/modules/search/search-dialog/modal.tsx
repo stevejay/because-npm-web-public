@@ -8,6 +8,8 @@ type Props = {
   children: React.ReactElement<any>;
 };
 
+// All of this file is a WIP!
+
 // TODO move to own file:
 const useAriaHidden: (id?: string) => void = (id = "root") => {
   React.useEffect(() => {

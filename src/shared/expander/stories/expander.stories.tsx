@@ -4,11 +4,7 @@ import Expander from "../expander";
 import "../../../styles/app.scss";
 
 storiesOf("Expander", module).add("Expanded", () => (
-  <Expander
-    expandedOnMount={true}
-    headerContent={<span>Header Content</span>}
-    buttonAriaLabel="The aria label"
-  >
+  <Expander expandedOnMount={true} headerContent={<span>Header Content</span>}>
     <div>The children</div>
   </Expander>
 ));

@@ -7,6 +7,7 @@ function renderEdgeComment() {
     <EdgeComment
       entity={{
         id: "1",
+        edgeId: "1 2",
         comment: "The comment text",
         timestampMs: "1234567890",
         sourceLink: "https://test.com",

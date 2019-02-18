@@ -11,12 +11,14 @@ type Props = {
 
 const EARLY_STOPPING_COUNT = 100;
 
+// TODO put link inside the h2
+
 const SearchResult = ({ result }: Props) => (
   <div className={styles.container}>
     <Link to={`/package/${result.id}`} className={styles.link}>
       <h2 className={styles.name}>{result.id}</h2>
     </Link>
-    <p className={styles.description}> {result.description}</p>
+    <p className={styles.description}>{result.description}</p>
     {!!result.edgeCount && (
       <p className={styles.edgeCount}>
         <FaComment className={styles.icon} />{" "}
