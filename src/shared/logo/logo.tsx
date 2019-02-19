@@ -6,6 +6,7 @@ const Logo = () => (
   <h2 className={styles.heading} data-testid="site-name">
     <Link to="/" className={styles.link}>
       Because <span>NPM</span>
+      <span className="screen-reader-only"> Homepage</span>
     </Link>
   </h2>
 );

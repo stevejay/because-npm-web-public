@@ -33,7 +33,7 @@ const DiscoveringSection = ({ history }: RouteComponentProps) => {
             Search for a package
           </Button>
         </div>
-        <div className={styles.column}>
+        <div className={styles.column} aria-hidden="true" role="presentation">
           <GraphImage className={styles.image} />
         </div>
       </div>

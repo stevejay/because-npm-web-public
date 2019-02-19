@@ -5,7 +5,7 @@ import { withApollo } from "react-apollo";
 import { RouteComponentProps, withRouter } from "react-router";
 import { withAppBus, AppBus } from "../../../shared/app-bus";
 import { AutocompleteNodeSearch } from "../graphql/queries";
-import MenuHandler from "./menu-handler";
+import TypeaheadMenuHandler from "./typeahead-menu-handler";
 import styles from "./search-input.module.scss";
 
 const TYPEAHEAD_DEBOUNCE_MS = 400;
@@ -74,16 +74,12 @@ class SearchInput extends React.Component<AllProps, State> {
       >
         {({
           getInputProps,
-          getLabelProps,
           getMenuProps,
           getItemProps,
           isOpen,
           highlightedIndex
         }) => (
           <div className={styles.container}>
-            <label {...getLabelProps({ className: styles.label })}>
-              Search for an npm package
-            </label>
             <input
               {...getInputProps({
                 autoCapitalize: "off",
@@ -99,7 +95,7 @@ class SearchInput extends React.Component<AllProps, State> {
             />
             <div className={styles.menuContainer}>
               {typeaheadValue && typeaheadValue.length > 2 && (
-                <MenuHandler
+                <TypeaheadMenuHandler
                   getItemProps={getItemProps}
                   getMenuProps={getMenuProps}
                   highlightedIndex={highlightedIndex}

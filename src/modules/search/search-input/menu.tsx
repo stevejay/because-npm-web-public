@@ -33,7 +33,7 @@ const Menu = ({
           [styles.highlighted]: highlightedIndex === index
         });
         return (
-          <li key={item.id} className={className} {...getItemProps()}>
+          <li key={item.id} className={className} {...getItemProps({ item })}>
             <h3>{item.id}</h3>
           </li>
         );

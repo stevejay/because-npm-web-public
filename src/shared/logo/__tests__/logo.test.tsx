@@ -24,5 +24,5 @@ test("displays the site title as a link to the home page", async () => {
   const link = heading.children[0];
   expect(link.tagName).toEqual("A");
   expect(link.getAttribute("href")).toEqual("/");
-  expect(link.textContent).toEqual("Because NPM");
+  expect(link.textContent).toEqual("Because NPM Homepage");
 });

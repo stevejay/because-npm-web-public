@@ -9,19 +9,19 @@ const ContributingSection = () => (
       Want to contribute to the graph? Just tweet!
     </h2>
     <div className={styles.row}>
-      <div className={styles.column}>
+      <div className={styles.column} aria-hidden="true" role="presentation">
         <ContributingImage className={styles.contributingImage} />
       </div>
       <div className={styles.column}>
         <p className={styles.displayParagraph}>
           To comment on why someone might switch from package-a to package-b,
-          send a tweet to <strong>@BecauseNpm</strong>:
+          send a tweet to <strong>@BecauseNpm</strong> with the following form:
         </p>
-        <p className={styles.tweet}>
+        <blockquote className={styles.tweet}>
           <strong>@BecauseNpm</strong> package&#8209;a <strong>to</strong>{" "}
           package&#8209;b
           <strong> because</strong> your reasons here
-        </p>
+        </blockquote>
         <p className={styles.paragraph}>
           Package names must exactly correspond to those in the npm registry.
           You can omit the initial <strong>@</strong> symbol for{" "}

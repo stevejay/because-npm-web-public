@@ -33,7 +33,7 @@ const SearchBarHandler = ({ mutate, location, history }: Props) => {
   return (
     <SearchBar
       searchTerm={searchTerm}
-      onSearchTermChange={setSearchTerm}
+      onSearchTermChange={value => setSearchTerm(value)} // must be lambda
       onSubmit={handleSubmit}
     />
   );

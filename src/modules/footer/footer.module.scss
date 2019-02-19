@@ -28,26 +28,23 @@
   margin: 0;
 }
 
-.linkList {
+.nav {
   display: flex;
   justify-content: flex-end;
   margin: 0;
   padding: 0;
 }
 
-.linkList li {
+.nav a {
   display: inline-block;
   list-style: none;
   font-size: 1rem;
   font-weight: 500;
   text-transform: lowercase;
-
-  & + li {
-    margin-left: 1em;
-  }
-}
-
-.linkList li a {
   color: $grey-600;
   @include underlineOnHover($grey-600);
+
+  & + a {
+    margin-left: 1em;
+  }
 }

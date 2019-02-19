@@ -5,8 +5,6 @@ import Menu from "./menu";
 
 const MAX_AUTOCOMPLETE_ITEMS = 10;
 
-// TODO rename this component to TypeaheadMenuHandler?
-
 interface IVariables {
   first: number;
   term: string;
@@ -26,7 +24,7 @@ type OwnProps = {
 
 type AllProps = QueryProps & OwnProps;
 
-const MenuHandler = ({
+const TypeaheadMenuHandler = ({
   data,
   getItemProps,
   getMenuProps,
@@ -49,4 +47,4 @@ export default graphql<OwnProps, object, IVariables>(AutocompleteNodeSearch, {
       term: props.typeaheadValue
     }
   })
-})(MenuHandler);
+})(TypeaheadMenuHandler);

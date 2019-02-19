@@ -5,22 +5,16 @@ import Logo from "../../shared/logo";
 import styles from "./footer.module.scss";
 
 const Footer = () => (
-  <footer className={styles.footer}>
+  <footer className={styles.footer} role="contentinfo">
     <div className={styles.logoContainer}>
       <Logo />
       <p className={styles.copyright}>&copy; 2018 Middle Engine Software Ltd</p>
     </div>
-    <ul className={styles.linkList}>
-      <li>
-        <Link to="/terms">Terms</Link>
-      </li>
-      <li>
-        <Link to="/privacy">Privacy &amp; Cookies</Link>
-      </li>
-      <li>
-        <Link to="/credits">Credits</Link>
-      </li>
-    </ul>
+    <nav className={styles.nav}>
+      <Link to="/terms">Terms</Link>
+      <Link to="/privacy">Privacy &amp; Cookies</Link>
+      <Link to="/credits">Credits</Link>
+    </nav>
   </footer>
 );
 

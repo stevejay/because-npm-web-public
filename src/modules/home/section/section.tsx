@@ -7,9 +7,9 @@ type Props = {
 };
 
 const Section = ({ className = "", children }: Props) => (
-  <section className={`${styles.section} ${className}`}>
+  <article className={`${styles.section} ${className}`}>
     <div className={styles.sectionInner}>{children}</div>
-  </section>
+  </article>
 );
 
 export default Section;
