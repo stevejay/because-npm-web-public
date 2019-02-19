@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 aliases:
   - &working_directory ~/project
@@ -62,56 +62,6 @@ jobs:
           root: *working_directory
           paths:
             - build-release
-  # e2e_testing:
-  #   working_directory: *working_directory
-  #   docker: *cypress_docker_image
-  #   parallelism: 1
-  #   steps:
-  #     - checkout
-  #     - attach_workspace:
-  #         at: *working_directory
-  #     # caching of node_modules has no effect in this job
-  #     # as it uses a different docker image to the other jobs.
-  #     - *npm_install
-  #     - run:
-  #         command: yarn run serve:build
-  #         background: true
-  #     - run:
-  #         name: cypress run
-  #         command: $(yarn bin)/cypress run --reporter junit --reporter-options "mochaFile=reports/cypress/results.xml"
-  #         when: on_success
-  #     - store_artifacts:
-  #         path: cypress/videos
-  #     - store_artifacts:
-  #         path: cypress/screenshots
-  #     - store_test_results:
-  #         path: ./reports
-  # deploy_to_staging:
-  #   working_directory: *working_directory
-  #   docker: *node_docker_image
-  #   steps:
-  #     - checkout
-  #     - attach_workspace:
-  #         at: *working_directory
-  #     - *restore_npm_cache
-  #     - *npm_install
-  #     - *save_npm_cache
-  #     - run:
-  #         name: Deploy master to staging
-  #         command: ./node_modules/.bin/firebase deploy --project artfullylondon-staging-admin --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
-  # deploy_to_prod:
-  #   working_directory: *working_directory
-  #   docker: *node_docker_image
-  #   steps:
-  #     - checkout
-  #     - attach_workspace:
-  #         at: *working_directory
-  #     - *restore_npm_cache
-  #     - *npm_install
-  #     - *save_npm_cache
-  #     - run:
-  #         name: Deploy master to prod
-  #         command: ./node_modules/.bin/firebase deploy --public=./build-release --project artfullylondon-prod-admin --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
   visual_regression_testing:
     working_directory: *working_directory
     docker: *node_docker_image
@@ -123,53 +73,13 @@ jobs:
       - run: npm run snapshot
 
 workflows:
-  version: 2
   build_and_deploy:
     jobs:
       - unit_test_and_build:
           context: because-npm-staging
       - visual_regression_testing:
           context: because-npm-staging
-      # - e2e_testing:
-      #     context: because-npm-staging
-      #     requires:
-      #       - unit_test_and_build
-      # - deploy_to_staging:
-      #     context: because-npm-staging
-      #     requires:
-      #       - unit_test_and_build
-      #       - e2e_testing
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
-      # - build_release:
-      #     context: because-npm-staging # TODO artfully-prod
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
-      # - hold:
-      #     type: approval
-      #     requires:
-      #       - deploy_to_staging
-      #       - build_release
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
-      # - deploy_to_prod:
-      #     context: because-npm-staging # TODO artfully-prod
-      #     requires:
-      #       - hold
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
-      # - tag_release:
-      #     requires:
-      #       - deploy_to_prod
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+          filters:
+            branches:
+              ignore:
+                - master
