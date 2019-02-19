@@ -20,7 +20,7 @@ function renderSearchResult(edgeCount: number) {
 }
 
 storiesOf("Search/SearchResult", module)
-  .add("No Results", () => renderSearchResult(0))
-  .add("One Result", () => renderSearchResult(1))
-  .add("Two Results", () => renderSearchResult(2))
-  .add("Many Results", () => renderSearchResult(999));
+  .add("No Linked Packages", () => renderSearchResult(0))
+  .add("One Linked Package", () => renderSearchResult(1))
+  .add("Two Linked Packages", () => renderSearchResult(2))
+  .add("Many Linked Packages", () => renderSearchResult(999));

@@ -38,5 +38,4 @@ function loadStories() {
 }
 
 configure(loadStories, module);
-
 serializeStories(getStorybook);
