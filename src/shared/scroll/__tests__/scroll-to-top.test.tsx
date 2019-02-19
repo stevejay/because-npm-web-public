@@ -3,13 +3,6 @@ import { AppBusProvider, useAppBus } from "../../app-bus";
 import React from "react";
 import ScrollToTop from "../scroll-to-top";
 
-// const TestEmitter = () => {
-//   const appBus = useAppBus();
-//   return (
-//     <button data-testid="button" onClick={() => appBus.scrollToTop.emit()} />
-//   );
-// };
-
 const TestListener = ({ listener }: { listener: () => void }) => {
   const appBus = useAppBus();
   React.useLayoutEffect(() => {

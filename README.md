@@ -5,6 +5,12 @@
 - libhunt.com
 - alternativeto.net
 
+## Info
+
+### Percy Info
+
+- Storybook config for Percy [here](https://github.com/percy/percy-storybook/blob/master/integration-tests/storybook-for-react/storybook/config.js)
+
 ## Todo
 
 - apollo-link-batch-http

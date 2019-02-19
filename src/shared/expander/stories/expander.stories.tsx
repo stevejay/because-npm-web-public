@@ -3,8 +3,17 @@ import { storiesOf } from "@storybook/react";
 import Expander from "../expander";
 import "../../../styles/app.scss";
 
-storiesOf("Expander", module).add("Expanded", () => (
-  <Expander expandedOnMount={true} headerContent={<span>Header Content</span>}>
-    <div>The children</div>
-  </Expander>
-));
+storiesOf("Expander", module)
+  .add("Expanded", () => (
+    <Expander expandedOnMount headerContent={<span>Header Content</span>}>
+      <div>The children</div>
+    </Expander>
+  ))
+  .add("Not Expanded", () => (
+    <Expander
+      expandedOnMount={false}
+      headerContent={<span>Header Content</span>}
+    >
+      <div>The children</div>
+    </Expander>
+  ));
