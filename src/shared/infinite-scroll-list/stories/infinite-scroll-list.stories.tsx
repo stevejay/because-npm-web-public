@@ -2,7 +2,6 @@ import { noop } from "lodash";
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import InfiniteScrollList from "../infinite-scroll-list";
-import "../../../styles/app.scss";
 import { ApolloError } from "apollo-client";
 
 const EntityComponent = () => <div>An Entity</div>;

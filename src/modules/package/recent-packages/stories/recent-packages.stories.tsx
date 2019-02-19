@@ -3,7 +3,6 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { storiesOf } from "@storybook/react";
 import RecentPackages from "../recent-packages";
-import "../../../../styles/app.scss";
 
 storiesOf("Packages/RecentPackages", module)
   .add("No Packages", () => (

@@ -7,7 +7,7 @@ import {
 import { withBackgrounds } from "@storybook/addon-backgrounds";
 import { withOptions } from "@storybook/addon-options";
 import createPercyAddon from "@percy-io/percy-storybook";
-import "../src/styles/app.scss"; // "../../../styles/app.scss";
+import "../src/styles/app.scss";
 
 const { percyAddon, serializeStories } = createPercyAddon();
 setAddon(percyAddon);
@@ -31,12 +31,7 @@ addDecorator(
   })
 );
 
-// const req = require.context("../src", true, /\.stories\.tsx?$/);
-const req = require.context(
-  "../src",
-  true,
-  /(logo|page|infinite-scroll-list|icon-button|button|expander|error-message|loading|message)\.stories\.tsx?$/
-);
+const req = require.context("../src", true, /\.stories\.tsx?$/);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));

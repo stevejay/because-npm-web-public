@@ -2,7 +2,6 @@ import Page from "../page";
 import NotFooter from "../not-footer";
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import "../../../styles/app.scss";
 
 storiesOf("Page", module).add("Page Structure", () => (
   <Page>

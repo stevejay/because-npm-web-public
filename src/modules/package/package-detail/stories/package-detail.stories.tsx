@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { storiesOf } from "@storybook/react";
 import PackageDetail from "../package-detail";
-import "../../../../styles/app.scss";
 
 storiesOf("Packages/PackageDetail", module)
   .add("Loading", () => (

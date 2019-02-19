@@ -3,7 +3,6 @@ import { IoIosSearch } from "react-icons/io";
 import { host } from "storybook-host";
 import { storiesOf } from "@storybook/react";
 import IconButton from "../icon-button";
-import "../../../styles/app.scss";
 
 const buttonHost = host({
   align: "center middle",
